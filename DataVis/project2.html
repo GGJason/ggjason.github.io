@@ -63,20 +63,15 @@
 		  .append("g")
 		    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 		
-		d3.tsv("data.tsv", function(error, data) {
+		d3.tsv("data/data1.tsv", function(error, data) {
 		  if (error) throw error;
-		
-		  data.forEach(function(d) {
-		    d.date = parseDate(d.date);
-		    d.close = +d.close;
-		  });
 		
 		  data.sort(function(a, b) {
 		    return a.date - b.date;
 		  });
 		
-		  x.domain([data[0].date, data[data.length - 1].date]);
-		  y.domain(d3.extent(data, function(d) { return d.close; }));
+		  x.domain([data[0].Time, data[data.length - 1].Time]);
+		  y.domain(d3.extent(data, function(d) { return d.Rainfall; }));
 		
 		  svg.append("g")
 		      .attr("class", "x axis")
@@ -91,7 +86,7 @@
 		      .attr("y", 6)
 		      .attr("dy", ".71em")
 		      .style("text-anchor", "end")
-		      .text("Price ($)");
+		      .text("Rainfall");
 		
 		  svg.append("path")
 		      .datum(data)
