@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>VisPractice</title>
+	<meta charset="utf-8">
+	<script src="https://d3js.org/d3.v3.min.js"></script>
+	<script>
+		
+		//©w¸qµe¹Ïªºfunction
+		function Yourname(hi){ //hi = death95.csv's data
+
+			// canvas = the "svg" that added into "body" with "width 800" and "height 400"
+			var canvas = d3.select("body").append("svg").attr("width", 900).attr("height", 1000);
+			
+
+
+
+
+			// spaceForData = select all the rectangle in "canvas" and combine with data "hi"
+			var spaceForData = canvas.selectAll("rect").data(hi).enter();
+			
+			//set coefficient
+			var coef = 2200;
+
+			//calculate total number
+			D={
+        	sumMale:d3.sum(hi, function(d){return parseFloat(d.Male);}),
+        	sumFemale:d3.sum(hi, function(d){return parseFloat(d.Female);}),
+       		}
+
+			// add rectangle into spaceForData for those that doesn't conbine with data "hi"
+			spaceForData.append("rect").attr({
+			//d = [{"Age":"~10", "Male":833, "Female":625}, {...}, ...]
+				"width": function(d){return d.Male/D.sumMale*1000},
+				//"height": "38.454",
+				"height": function(d){return D.sumMale/coef},
+				"x" : "405",
+				"y": function(d, n){return n*40 + 60 }, // n = the nth data
+				"fill" :function(d,n){
+
+					if(n<=1)
+						return "#84D1FF";
+					else if(n<=5)
+						return "#2992D0";
+					else
+						return "#1E6087";
+
+				} ,
+			})
+
+
+
+			spaceForData.append("rect").attr({
+			//d = [{"Age":"~10", "Male":833, "Female":625}, {...}, ...]
+				"width": function(d){return d.Female/D.sumFemale*1000},
+				"height":function(d){return D.sumFemale/coef},
+				"x" : function(d){return 395-d.Female/D.sumFemale*1000},
+				"y": function(d, n){return n*40+(D.sumMale-D.sumFemale)/(2*coef)  + 60 }, // n = the nth data
+				//"fill" : "#E97C30",
+				"fill" :function(d,n){
+					if(n<=1)
+						return "#ffd27f";
+					else if(n<=5)
+						return "#ffa500";
+					else
+						return "#D97B00";
+
+				},
+			})
+
+
+			var spaceForText = canvas.selectAll("text").data(hi).enter();
+
+			spaceForText.append("text")
+			.text(function(d){return d.Female})
+			.attr("x", function(d){return 395-d.Female/D.sumFemale*1000+3})
+			.attr("y",  function(d, n){return n*40 + 80 })
+			.style("font-family","微軟正黑體")
+			.style("font-size","9px")
+			.style("fill","black")
+			.attr("text-anchor",function(d,n){
+				if (n<=2)
+					return "end";
+				else
+					return "start";});
+
+			spaceForText.append("text")
+			.text(function(d){return d.Male})
+			.attr("x", function(d){return 405+d.Male/D.sumMale*1000-3})
+			.attr("y",  function(d, n){return n*40+ 80 })
+			.style("font-family","微軟正黑體")
+			.style("font-size","9px")
+			.style("fill","black")
+			.attr("text-anchor","end")
+			.attr("text-anchor",function(d,n){
+				if (n<=1)
+					return "start";
+				else
+					return "end";});
+
+
+
+		//right axisX
+		var scaleX_R = d3.scale.linear()
+      	.range([400, 755])
+     	.domain([0, 35]);
+
+    	var axisX_R = d3.svg.axis()
+    	.scale(scaleX_R)
+     	.tickFormat(function(d) { return d + "%"; });
+
+    	canvas.append('g')
+    	.attr("transform", "translate(0,465)")
+    	.call(axisX_R);  //call axisX
+
+		//left axisX
+     	var scaleX_L = d3.scale.linear()
+      	.range([55, 400])
+     	.domain([35, 0]);
+
+     	 var axisX_L = d3.svg.axis()
+    	.scale(scaleX_L)
+     	.tickFormat(function(d) { return d + "%"; });
+
+    	canvas.append('g')
+    	.attr("transform", "translate(0,465)")
+    	.call(axisX_L);  //call axisX
+
+    	//male total number
+    	canvas.append('text')
+    	.attr('x', 435)
+    	.attr('y', 570)
+    	.style('fill', '#2992D0')
+    	.style('font-size', function(d){return D.sumMale/1000+ "px";} )
+    	.style('font-weight', 'bold')
+    	.text(function(d){return D.sumMale;})
+
+    	//female total number
+    	canvas.append('text')
+    	.attr('x', 210)
+    	.attr('y', 565)
+    	.style('fill', '#E97C30')
+    	.style('font-size', function(d){return D.sumFemale/1000+ "px";} )
+    	.style('font-weight', 'bold')
+    	.text(function(d){return D.sumFemale;})
+
+		//add title
+		canvas.append("text")
+		.text("民國 97 年")
+		.attr("x", 400)
+		.attr("y", 40)
+		.attr("text-anchor","middle")
+		.style("font-family","微軟正黑體")
+		.style("font-size","20px");  
+
+		}
+
+
+
+
+
+		//callback
+		d3.csv("death.97.csv", Yourname)
+		
+	</script>
+</head>
+<body>
+</body>
+</html>
