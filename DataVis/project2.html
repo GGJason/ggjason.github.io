@@ -35,7 +35,7 @@
 		    height = 500 - margin.top - margin.bottom;
 		
 		var parseDate = d3.time.format("%d-%b-%y").parse,
-		    bisectDate = d3.bisector(function(d) { return d.date; }).left,
+		    bisectDate = d3.bisector(function(d) { return d.Time; }).left,
 		    formatValue = d3.format(",.2f"),
 		    formatCurrency = function(d) { return "$" + formatValue(d); };
 		
@@ -54,8 +54,8 @@
 		    .orient("left");
 		
 		var line = d3.svg.line()
-		    .x(function(d) { return x(d.date); })
-		    .y(function(d) { return y(d.close); });
+		    .x(function(d) { return x(d.Time); })
+		    .y(function(d) { return y(d.Rainfall); });
 		
 		var svg = d3.select("body").append("svg")
 		    .attr("width", width + margin.left + margin.right)
@@ -113,9 +113,9 @@
 		        i = bisectDate(data, x0, 1),
 		        d0 = data[i - 1],
 		        d1 = data[i],
-		        d = x0 - d0.date > d1.date - x0 ? d1 : d0;
-		    focus.attr("transform", "translate(" + x(d.date) + "," + y(d.close) + ")");
-		    focus.select("text").text(formatCurrency(d.close));
+		        d = x0 - d0.Time > d1.Time - x0 ? d1 : d0;
+		    focus.attr("transform", "translate(" + x(d.Time) + "," + y(d.Rainfall) + ")");
+		    focus.select("text").text(formatCurrency(d.Rainfall));
 		  }
 		});
 	</script>
