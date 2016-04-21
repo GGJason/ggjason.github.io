@@ -66,10 +66,6 @@
 		d3.tsv("data/data1.tsv", function(error, data) {
 		  if (error) throw error;
 		
-		  data.sort(function(a, b) {
-		    return a.date - b.date;
-		  });
-		
 		  x.domain([data[0].Time, data[data.length - 1].Time]);
 		  y.domain(d3.extent(data, function(d) { return d.Rainfall; }));
 		
