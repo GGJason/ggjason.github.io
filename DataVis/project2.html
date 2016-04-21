@@ -1,120 +1,88 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<title>Axis</title>
 <style>
-	svg {
+	body {
 	font: 10px sans-serif;
-	shape-rendering: crispEdges;
-	}
-	rect {
-	fill: #ddd;
 	}
 	.axis path,
 	.axis line {
 	fill: none;
-	stroke: #fff;
+	stroke: #000;
+	shape-rendering: crispEdges;
 	}
-	circle {
-	fill: LightSlateGray;
+	.x.axis path {
+	display: none;
+	}
+	.line {
+	fill: none;
+	stroke: steelblue;
+	stroke-width: 1.5px;
 	}
 </style>
 <body>
-	<script src="https://d3js.org/d3.v3.min.js"></script>
+	<script src="//d3js.org/d3.v3.min.js"></script>
 	<script>
-		var data = [{"time":0, "value":1000}, {"time":1.2, "value":1252}, {"time":1.5, "value":1234},
-					{"time":2, "value":1024}, {"time":3, "value":1487}, {"time":3.3, "value":1111},
-					{"time":3.4, "value":886}, {"time":3.9, "value":1252}, {"time":4.2, "value":1350}];
-		//定義邊界、寬高
-		var margin = {top: 20, right: 20, bottom: 30, left: 40},
+		var margin = {top: 20, right: 20, bottom: 30, left: 50},
 		    width = 960 - margin.left - margin.right,
 		    height = 500 - margin.top - margin.bottom;
 		
-		//創造可以將資料轉換為畫面上位置的function
-		var xScale = d3.scale.linear()
-		    .domain(d3.extent(data, function(d){return d.time;}))//設定資料來源的上下界
-		    .range([0, width]);//轉換到畫面上的值的上下界
+		var formatDate = d3.time.format("%d-%b-%y");
 		
-		var yScale = d3.scale.linear()
-		    .domain(d3.extent(data, function(d){return d.value;}))
+		var x = d3.time.scale()
+		    .range([0, width]);
+		
+		var y = d3.scale.linear()
 		    .range([height, 0]);
 		
-		//創造可以劃出座標軸的function
 		var xAxis = d3.svg.axis()
-		    .scale(xScale)//以xScale作為x軸的轉換標準
-		    .orient("bottom")//座標文字在下方
-		    .tickSize(-height);//刻度長度為-height(-代表往反向長)
+		    .scale(x)
+		    .orient("bottom");
 		
 		var yAxis = d3.svg.axis()
-		    .scale(yScale)//以yScale作為y軸的轉換標準
-		    .orient("left")//座標文字在上方
-		    .ticks(5)//規定只會有5個刻度
-		    .tickSize(-width);//刻度長度為-height(-代表往反向長)
+		    .scale(y)
+		    .orient("left");
 		
-		//創造zoom的function
-		var zoom = d3.behavior.zoom()
-		    .x(xScale)
-		    .y(yScale)
-		    .scaleExtent([1, 32])
-		    .on("zoom", zoomed);
-			
-		//創造畫布
+		var line = d3.svg.line()
+		    .x(function(d) { return x(d.date); })
+		    .y(function(d) { return y(d.close); });
+		
 		var svg = d3.select("body").append("svg")
 		    .attr("width", width + margin.left + margin.right)
-		    .attr("height", height + margin.top + margin.bottom);
+		    .attr("height", height + margin.top + margin.bottom)
+		  .append("g")
+		    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 		
-		//建立遮罩
-		svg.append("clipPath").attr("id", "clip").append("rect").attr("width", width).attr("height", height);
+		d3.tsv("data.tsv", type, function(error, data) {
+		  if (error) throw error;
 		
-		//創造盛裝座標軸的群組
-		var axisGroup = svg.append("g")
-		    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-			.call(zoom);
+		  x.domain(d3.extent(data, function(d) { return d.date; }));
+		  y.domain(d3.extent(data, function(d) { return d.close; }));
 		
-		//加入背景色塊
-		axisGroup.append("rect")
-		    .attr("width", width)
-		    .attr("height", height);
+		  svg.append("g")
+		      .attr("class", "x axis")
+		      .attr("transform", "translate(0," + height + ")")
+		      .call(xAxis);
 		
-		//將x, y軸的function套在新增的群組上
-		axisGroup.append("g")
-		    .attr("class", "x axis")
-		    .attr("transform", "translate(0," + height + ")")//把新增的x軸往下移
-		    .call(xAxis);//套用前面對x軸的設定
+		  svg.append("g")
+		      .attr("class", "y axis")
+		      .call(yAxis)
+		    .append("text")
+		      .attr("transform", "rotate(-90)")
+		      .attr("y", 6)
+		      .attr("dy", ".71em")
+		      .style("text-anchor", "end")
+		      .text("Price ($)");
 		
-		axisGroup.append("g")
-		    .attr("class", "y axis")
-		    .call(yAxis);//套用前面對x軸的設定
-			
-		var dataPoints = axisGroup.append('g').attr("clip-path", "url(#clip)")
-			.selectAll("circle").data(data).enter().append("circle").attr({
-			"cx": function(d){return xScale(d.time);},
-			"cy": function(d){return yScale(d.value);},
-			"r": 5,
-		})
-		axisGroup.append("text").attr('x', width-100).attr('y', height)
-			.style('fill', 'green').style('font-size', '24px').text('refresh')
-			.on('click', change);
+		  svg.append("path")
+		      .datum(data)
+		      .attr("class", "line")
+		      .attr("d", line);
+		});
 		
-		var t = 1;
-		
-		function change(){
-		t = t*-1;
-			dataPoints.transition().attr({
-				"cx": function(d){return xScale(d.time)+(t-1)*10;},
-				"cy": function(d){return yScale(d.value)+(t-1)*10;},
-				"r": 5-(t-1)*5,
-			})
-		}
-		
-		function zoomed() {
-			svg.select(".x.axis").call(xAxis);
-			svg.select(".y.axis").call(yAxis);
-			dataPoints.attr({
-				"cx": function(d){return xScale(d.time)+(t-1)*10;},
-				"cy": function(d){return yScale(d.value)+(t-1)*10;},
-				"r": 5-(t-1)*5,
-			})
+		function type(d) {
+		  d.date = formatDate.parse(d.date);
+		  d.close = +d.close;
+		  return d;
 		}
 		
 	</script>
-</body>
