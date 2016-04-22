@@ -101,6 +101,12 @@
 		  var focus = svg.append("g")
 		      .attr("class", "focus")
 		      .style("display", "none");
+
+/////////////////////////////////////////////////////////////////////////////////////
+		var show = svg.append("g")
+			.attr("class","text")
+			.style("display","none");
+/////////////////////////////////////////////////////////////////////////////////////
 		
 		  focus.append("circle")
 		      .attr("r", 4.5);
@@ -108,22 +114,32 @@
 		  focus.append("text")
 		      .attr("x", 9)
 		      .attr("dy", ".35em");
+
 /////////////////////////////////////////////////////////////////////////////////////	
 		  focus.append("line")
 		      .attr("x1",0)
 		      .attr("y1",5)
 		      .attr("x2",0)
-		      .attr("y2",height-20)
+		      .attr("y2",height+20)
 		      .attr("stroke","lightsteelblue")
 		      .attr("stroke-width",1);
 /////////////////////////////////////////////////////////////////////////////////////	
+
 		  svg.append("rect")
 		      .attr("class", "overlay")
 		      .attr("width", width)
 		      .attr("height", height)
-		      .on("mouseover", function() { focus.style("display", null); })
-		      .on("mouseout", function() { focus.style("display", "none"); })
-		      .on("mousemove", mousemove);
+		      .on("mouseover", function() { 
+		      	focus.style("display", null); 
+		      	show.style("display",null);
+		  	})
+		      .on("mouseout", function() { 
+		      	focus.style("display", "none"); 
+		      	show.style("display","none");
+		      	})
+		      .on("mousemove", function(){
+		      	mousemove();
+		      	});
 		
 		  function mousemove() {
 		    var x0 = x.invert(d3.mouse(this)[0]),
