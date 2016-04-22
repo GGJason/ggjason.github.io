@@ -106,15 +106,18 @@
 		var show = svg.append("g")
 			.attr("class","text")
 			.style("display","none");
+		var.append("text")
+		      .attr("x", 9)
+		      .attr("y", 9);
 /////////////////////////////////////////////////////////////////////////////////////
 		
 		  focus.append("circle")
 		      .attr("r", 4.5);
 		
-		  focus.append("text")
+/*		  focus.append("text")
 		      .attr("x", 9)
 		      .attr("dy", ".35em");
-
+*/
 /////////////////////////////////////////////////////////////////////////////////////	
 		  focus.append("line")
 		      .attr("x1",0)
@@ -146,7 +149,7 @@
 		        d1 = data[i],
 		        d = x0 - d0.date > d1.date - x0 ? d1 : d0;
 		    focus.attr("transform", "translate(" + x(d.date) + "," + y(d.close) + ")");
-		    focus.select("text").text(formatCurrency(d.close));
+		    show.select("text").text(formatCurrency(d.close));
 		  }
 		});
 	</script>
