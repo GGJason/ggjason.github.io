@@ -15,7 +15,7 @@
   }
   .line {
     fill: none;
-    stroke: lightsteelblue;
+    stroke: steelblue;
     stroke-width: 1.5px;
   }
   .overlay {
@@ -121,33 +121,34 @@
         .duration(10000)  //¨S¥Î?
         .attr("class", "line")
         .attr("d", lineR);
-      var focus = svgR.append("g")
+
+      var focusR = svgR.append("g")
         .attr("class", "focus")
         .style("display", "none");
 
 /////////////////////////////////////////////////////////////////////////////////////
-      var show = svgR.append("g")
+      var showR = svgR.append("g")
         .attr("class","text")
         .style("display","none");
-      show.append("text")
+      showR.append("text")
         .attr("x", 9)
         .attr("y", 9);
 /////////////////////////////////////////////////////////////////////////////////////
 
-      focus.append("circle")
+      focusR.append("circle")
         .attr("r", 4.5);
 
-/*      focus.append("text")
+/*      focusR.append("text")
           .attr("x", 9)
           .attr("dy", ".35em");
           */
 ///////////////////////////////////////////////////////////////////////////////////// 
-      focus.append("line")
+      focusR.append("line")
         .attr("class","line")
         .attr("x1",0)
         .attr("y1",5)
         .attr("x2",0)
-        .attr("y2",height+20)
+        .attr("y2",y(0))
         .attr("stroke","lightsteelblue")
         .attr("stroke-width",1);
 ///////////////////////////////////////////////////////////////////////////////////// 
@@ -157,12 +158,12 @@
         .attr("width", width)
         .attr("height", height)
         .on("mouseover", function() { 
-          focus.style("display", null); 
-          show.style("display",null);
+          focusR.style("display", null); 
+          showR.style("display",null);
         })
         .on("mouseout", function() { 
-          focus.style("display", "none"); 
-          show.style("display","none");
+          focusR.style("display", "none"); 
+          showR.style("display","none");
         })
         .on("mousemove",mousemove);
 
@@ -172,9 +173,9 @@
         d0 = data[i - 1],
         d1 = data[i],
         d = x0 - d0.Time > d1.Time - x0 ? d1 : d0;
-        focus.attr("transform", "translate(" + x(d.Time) + "," + y(d.Rainfall) + ")");
-        show.select("text").text(formatCurrency(d.Rainfall)+" "+formatCurrency(d1.Rainfall)+" "+formatCurrency(d0.Rainfall));
-        focus.line.attr("y2",formatCurrency(d.Rainfall)-30);
+        focusR.attr("transform", "translate(" + x(d.Time) + "," + y(d.Rainfall) + ")");
+        showR.select("text").text(formatCurrency(d.Rainfall)+" "+formatCurrency(d1.Rainfall)+" "+formatCurrency(d0.Rainfall));
+        focusR.line.attr("y2",formatCurrency(d.Rainfall));
       }
     });
 /*
@@ -202,8 +203,63 @@
       svgG.append("path")
       .datum(data)
       .attr("class", "line")
-      .attr("d", lineG);
-    });
+      .attr("d", lineG);      
+      var focusG = svgR.append("g")
+        .attr("class", "focus")
+        .style("display", "none");
+
+/////////////////////////////////////////////////////////////////////////////////////
+      var showG = svgR.append("g")
+        .attr("class","text")
+        .style("display","none");
+      showG.append("text")
+        .attr("x", 9)
+        .attr("y", 9);
+/////////////////////////////////////////////////////////////////////////////////////
+
+      focusG.append("circle")
+        .attr("r", 4.5);
+
+/*      focusG.append("text")
+          .attr("x", 9)
+          .attr("dy", ".35em");
+          *//*
+///////////////////////////////////////////////////////////////////////////////////// 
+      focusG.append("line")
+        .attr("class","line")
+        .attr("x1",0)
+        .attr("y1",5)
+        .attr("x2",0)
+        .attr("y2",y(0))
+        .attr("stroke","lightsteelblue")
+        .attr("stroke-width",1);
+///////////////////////////////////////////////////////////////////////////////////// 
+
+      svgG.append("rect")
+        .attr("class", "overlay")
+        .attr("width", width)
+        .attr("height", height)
+        .on("mouseover", function() { 
+          focusG.style("display", null); 
+          showG.style("display",null);
+        })
+        .on("mouseout", function() { 
+          focusG.style("display", "none"); 
+          showG.style("display","none");
+        })
+        .on("mousemove",mousemove);
+
+      function mousemove() {
+        var x0 = x.invert(d3.mouse(this)[0]),
+        i = bisectDate(data, x0, 1),
+        d0 = data[i - 1],
+        d1 = data[i],
+        d = x0 - d0.Time > d1.Time - x0 ? d1 : d0;
+        focusG.attr("transform", "translate(" + x(d.Time) + "," + y(d.GroundWater) + ")");
+        showG.select("text").text(formatCurrency(d.GroundWater)+" "+formatCurrency(d1.GroundWater)+" "+formatCurrency(d0.GroundWater));
+        focusG.line.attr("y2",formatCurrency(d.GroundWater));
+      }
+    });/*
     d3.tsv("data1.tsv", typeD, function(error, data) {
       if (error) throw error;
 
