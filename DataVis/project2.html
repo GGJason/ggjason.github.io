@@ -137,9 +137,7 @@
 		      	focus.style("display", "none"); 
 		      	show.style("display","none");
 		      	})
-		      .on("mousemove", function(){
-		      	mousemove();
-		      	});
+		      .on("mousemove",mousemove);
 		
 		  function mousemove() {
 		    var x0 = x.invert(d3.mouse(this)[0]),
