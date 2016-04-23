@@ -1,0 +1,398 @@
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+  body {
+  font: 10px sans-serif;
+  }
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+  .x.axis path {
+    display: none;
+  }
+  .line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 1.5px;
+  }
+  .overlay {
+    fill: none;
+    pointer-events: all;
+  }
+  .focus circle {
+    fill: none;
+    stroke: steelblue;
+  }
+</style>
+<body>
+  <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script>
+    var margin = {top: 20, right: 20, bottom: 30, left: 50},  //�d��
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+    function typeR(d) {
+      d.Time = formatDate.parse(d.Time);; //formatDate�w�q�b�@�}�l
+      d.Rainfall = +d.Rainfall;
+      return d;
+    }
+    function typeG(d) {
+      d.Time = formatDate.parse(d.Time);; //formatDate�w�q�b�@�}�l
+      d.GroundWater = +d.GroundWater;
+      return d;
+    }
+    function typeD(d) {
+      d.Time = formatDate.parse(d.Time);; //formatDate�w�q�b�@�}�l
+      d.Distance = +d.Distance;
+      return d;
+    }
+
+
+/////CHANGE START/////////////////////////////////////////////////////
+    var drag = d3.behavior.drag().on("drag", move);
+    var rainfall_yellow_value = 353.5613850996852;
+    
+    function inBoundaries(y){    
+      if(y<0)//upper bound
+        return 0;
+      else if(y>height)//lower bound
+        return height;
+      else
+        return y;
+    }
+
+    function move(d){
+      //move
+      var x_new = d3.event.x,//get positon now
+          y_new = d3.event.y;
+      rainfall_yellow_value = y_new
+
+      d3.select(this).attr("y", inBoundaries(y_new));
+    }
+
+    function position_calculation(y){
+      var postion = 450 - 0.4721930745*y -2;
+
+      return inBoundaries(postion);
+
+    }
+/////CHANGE END///////////////////////////////////////////////////////
+    
+    var formatDate = d3.time.format("%Y/%m/%d %H:%M"),
+    bisectDate = d3.bisector(function(d) { return d.Time; }).left,
+    formatValue = d3.format(",.2f"),
+    formatCurrency = function(d) { return formatValue(d); };
+    
+    var x = d3.time.scale()
+      .range([0, width]);
+    
+    var y = d3.scale.linear()
+      .range([height, 0]);
+    
+    var xAxis = d3.svg.axis()
+      .scale(x)
+      .orient("bottom");
+    
+    var yAxis = d3.svg.axis()
+      .scale(y)
+      //.ticks(10)
+      .orient("left");
+    
+    var lineR = d3.svg.line()
+      .x(function(d) { return x(d.Time); })
+      .y(function(d) { return y(d.Rainfall); });
+    var lineG = d3.svg.line()
+      .x(function(d) { return x(d.Time); })
+      .y(function(d) { return y(d.GroundWater); });
+    var lineD = d3.svg.line()
+      .x(function(d) { return x(d.Time); })
+      .y(function(d) { return y(d.Distance); });
+    
+    var svgR = d3.select("body").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    /*var svgG = d3.select("body").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    var svgD = d3.select("body").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");*/
+    
+    d3.tsv("data1.tsv", typeR, function(error, data) {
+      if (error) throw error;
+ 
+      x.domain(d3.extent(data, function(d) { return d.Time; }));
+      y.domain(d3.extent(data, function(d) { return d.Rainfall; }));
+
+      svgR.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis);
+
+      svgR.append("g")
+        .attr("class", "y axis")
+        .call(yAxis)
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("Rainfall");
+
+      svgR.append("path")
+        .datum(data)
+        .transition() //�S��?
+        .duration(10000)  //�S��?
+        .attr("class", "line")
+        .attr("d", lineR);
+
+      var focusR = svgR.append("g")
+        .attr("class", "focus")
+        .style("display", "none");
+
+/////////////////////////////////////////////////////////////////////////////////////
+      var showR = svgR.append("g")
+        .attr("class","text")
+        .style("display","none");
+      showR.append("text")
+        .attr("x", 9)
+        .attr("y", 9);
+
+
+
+      var yellow_display = svgR.append("g")
+        .attr("class","text")
+        .style("display","none");
+
+        yellow_display.append("text")
+        .attr("x", 0)
+        .attr("y", 9);
+
+         yellow_display.select("text").text(rainfall_yellow_value);
+/////////////////////////////////////////////////////////////////////////////////////
+
+      focusR.append("circle")
+        .attr("r", 4.5);
+
+/*      focusR.append("text")
+          .attr("x", 9)
+          .attr("dy", ".35em");
+          */
+///////////////////////////////////////////////////////////////////////////////////// 
+      focusR.append("line")
+        .attr("class","line")
+        .attr("x1",0)
+        .attr("y1",5)
+        .attr("x2",0)
+        .attr("y2",y(0))
+        .attr("stroke","lightsteelblue")
+        .attr("stroke-width",1);
+
+///////////////////////////////////////////////////////////////////////////////////// 
+
+      svgR.append("rect")
+        .attr("class", "overlay")
+        .attr("width", width)
+        .attr("height", height)
+        .on("mouseover", function() { 
+          focusR.style("display", null); 
+          showR.style("display",null);
+        })
+        .on("mouseout", function() { 
+          focusR.style("display", "none"); 
+          showR.style("display","none");
+        })
+        .on("mousemove",mousemove);
+
+      function mousemove() {
+        var x0 = x.invert(d3.mouse(this)[0]),
+        i = bisectDate(data, x0, 1),
+        d0 = data[i - 1],
+        d1 = data[i],
+        d = x0 - d0.Time > d1.Time - x0 ? d1 : d0;
+        focusR.attr("transform", "translate(" + x(d.Time) + "," + y(d.Rainfall) + ")");
+        showR.select("text").text(formatCurrency(d.Rainfall)+" "+formatCurrency(d1.Rainfall)+" "+formatCurrency(d0.Rainfall));
+      }
+
+/////CHANGE START//////////////////////////////////////////////////////
+      
+
+      var lineGraph = svgR.append("rect")
+        .attr("id","yellow_line")
+        .attr("width", width)
+        .attr("height", 4)
+        .attr("fill", "#FFCC00")
+        .attr("x", 0)
+        .attr("y", rainfall_yellow_value)
+        .call(drag);
+
+        var lineGraph = svgR.append("rect")
+        .attr("id","red_line")
+        .attr("width", width)
+        .attr("height", 4)
+        .attr("fill", "#FF2020")
+        .attr("x", 0)
+        .attr("y", 211.903462749213)
+        .call(drag);
+
+    });
+
+/////CHANGE END///////////////////////////////////////////////////////
+/*
+    d3.tsv("data1.tsv", typeG, function(error, data) {
+      if (error) throw error;
+
+      x.domain(d3.extent(data, function(d) { return d.Time; }));
+      y.domain(d3.extent(data, function(d) { return d.GroundWater; }));
+
+      svgG.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+      svgG.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+      .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("GroundWater");
+
+      svgG.append("path")
+      .datum(data)
+      .attr("class", "line")
+      .attr("d", lineG);      
+      var focusG = svgR.append("g")
+        .attr("class", "focus")
+        .style("display", "none");
+
+/////////////////////////////////////////////////////////////////////////////////////
+      var showG = svgR.append("g")
+        .attr("class","text")
+        .style("display","none");
+      showG.append("text")
+        .attr("x", 9)
+        .attr("y", 9);
+/////////////////////////////////////////////////////////////////////////////////////
+
+      focusG.append("circle")
+        .attr("r", 4.5);
+
+/*      focusG.append("text")
+          .attr("x", 9)
+          .attr("dy", ".35em");
+          *//*
+///////////////////////////////////////////////////////////////////////////////////// 
+      focusG.append("line")
+        .attr("class","line")
+        .attr("x1",0)
+        .attr("y1",5)
+        .attr("x2",0)
+        .attr("y2",y(0))
+        .attr("stroke","lightsteelblue")
+        .attr("stroke-width",1);
+///////////////////////////////////////////////////////////////////////////////////// 
+
+      svgG.append("rect")
+        .attr("class", "overlay")
+        .attr("width", width)
+        .attr("height", height)
+        .on("mouseover", function() { 
+          focusG.style("display", null); 
+          showG.style("display",null);
+        })
+        .on("mouseout", function() { 
+          focusG.style("display", "none"); 
+          showG.style("display","none");
+        })
+        .on("mousemove",mousemove);
+
+      function mousemove() {
+        var x0 = x.invert(d3.mouse(this)[0]),
+        i = bisectDate(data, x0, 1),
+        d0 = data[i - 1],
+        d1 = data[i],
+        d = x0 - d0.Time > d1.Time - x0 ? d1 : d0;
+        focusG.attr("transform", "translate(" + x(d.Time) + "," + y(d.GroundWater) + ")");
+        showG.select("text").text(formatCurrency(d.GroundWater)+" "+formatCurrency(d1.GroundWater)+" "+formatCurrency(d0.GroundWater));
+        focusG.line.attr("y2",formatCurrency(d.GroundWater));
+      }
+    });/*
+    d3.tsv("data1.tsv", typeD, function(error, data) {
+      if (error) throw error;
+
+      x.domain(d3.extent(data, function(d) { return d.Time; }));
+      y.domain(d3.extent(data, function(d) { return d.Distance; }));
+
+      svgD.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+      svgD.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+      .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Distance");
+
+      svgD.append("path")
+      .datum(data)
+      .attr("class", "line")
+      .attr("d", lineD);
+    });
+    
+    
+    
+  */  
+
+  
+  </script>
+  
+  <form>
+    注意線：
+    <input type='text' id='rainfall_yellow_input' value="200">
+    警戒線：
+    <input type='text' id='rainfall_red_input' value="500">
+  </form>
+  <button onclick="rainfall_submit()"> SUBMIT </button>
+
+  
+  <script type="text/javascript">
+    function rainfall_submit() {
+      var yellow_input = document.getElementById('rainfall_yellow_input').value;
+      var yellow_origin = document.getElementById("yellow_line").getBBox().y;
+      var yellow_dy = position_calculation(yellow_input) - yellow_origin;
+
+      d3.select("#yellow_line")
+      //.attr("y", position_calculation(input_yellow))
+      .transition()
+      .attr("transform", "translate(0," + yellow_dy + ")")
+      .duration(1000);
+      
+      var red_input = document.getElementById('rainfall_red_input').value;
+      var red_origin = document.getElementById("red_line").getBBox().y;
+      var red_dy = position_calculation(red_input) - red_origin;
+
+      d3.select("#red_line")
+      //.attr("y", position_calculation(input_yellow))
+      .transition()
+      .attr("transform", "translate(0," + red_dy + ")")
+      .duration(1000); 
+    }
+  </script>
+</body>
