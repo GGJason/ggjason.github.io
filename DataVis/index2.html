@@ -5,6 +5,12 @@
   body {
   font: 10px sans-serif;
   }
+  svg,form{
+    float: left;
+  }
+input{
+  max-width: 60pt;
+}
   .axis path,
   .axis line {
     fill: none;
@@ -39,7 +45,7 @@
     var dis_red_value =2;
     var margin = {top: 20, right: 20, bottom: 30, left: 50},  //�d��
     width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    height = 250 - margin.top - margin.bottom;
     function typeR(d) {
       d.Time = formatDate.parse(d.Time);; //formatDate�w�q�b�@�}�l
       d.Rainfall = +d.Rainfall;
@@ -201,7 +207,7 @@
       rainfall_yellow_value=yR(rainfall_yellow_value)-2;
       rainfall_red_value=yR(rainfall_red_value)-2;
 
-      var lineGraphR = svgR.append("rect")
+      var lineGraph = svgR.append("rect")
         .attr("id","rainfall_yellow_line")
         .attr("width", width)
         .attr("height", 4)
@@ -210,7 +216,7 @@
         .attr("y", rainfall_yellow_value)
         .call(dragR);
 
-        var lineGraphR = svgR.append("rect")
+        var lineGraph = svgR.append("rect")
         .attr("id","rainfall_red_line")
         .attr("width", width)
         .attr("height", 4)
@@ -227,20 +233,19 @@
   
   <form>
     注意線：
-    <input type='text' id='rainfall_yellow_input' value="200">
+    <input type='text' id='rainfall_yellow_input' value="200"><br>
     警戒線：
-    <input type='text' id='rainfall_red_input' value="500">
+    <input type='text' id='rainfall_red_input' value="500"><br>
 
   <button type="button" onclick="rainfall_submit()"> SUBMIT </button> 
   </form>
 
   
   <script type="text/javascript">
-    function rainfall_submit() {
+   function rainfall_submit() {
       var yellow_input = document.getElementById('rainfall_yellow_input').value;
       var yellow_origin = document.getElementById("rainfall_yellow_line").getBBox().y;
       var yellow_dy = position_calculation(yellow_input) - yellow_origin;
-
       d3.select("#rainfall_yellow_line")
       //.attr("y", position_calculation(input_yellow))
       .transition()
@@ -250,7 +255,6 @@
       var red_input = document.getElementById('rainfall_red_input').value;
       var red_origin = document.getElementById("rainfall_red_line").getBBox().y;
       var red_dy = position_calculation(red_input) - red_origin;
-
       d3.select("#rainfall_red_line")
       //.attr("y", position_calculation(input_yellow))
       .transition()
@@ -345,7 +349,7 @@
         .transition() //�S��?
         .duration(10000)  //�S��?
         .attr("class", "line")
-        .attr("d", lineR);
+        .attr("d", lineG);
 
       var focusG = svgG.append("g")
         .attr("class", "focus")
@@ -420,7 +424,7 @@
       ground_yellow_value=yG(ground_yellow_value)-2;
       ground_red_value=yG(ground_red_value)-2;
 
-      var lineGraphG = svgG.append("rect")
+      var lineGraph = svgG.append("rect")
         .attr("id","ground_yellow_line")
         .attr("width", width)
         .attr("height", 4)
@@ -429,7 +433,7 @@
         .attr("y", ground_yellow_value)
         .call(dragG);
 
-        var lineGraphG = svgG.append("rect")
+        var lineGraph = svgG.append("rect")
         .attr("id","ground_red_line")
         .attr("width", width)
         .attr("height", 4)
@@ -444,11 +448,11 @@
 
   </script>
   
-  <form>
+  <form style="float: left;">
     注意線：
-    <input type='text' id='ground_yellow_input' value="-42">
+    <input type='text' id='ground_yellow_input' value="-42"><br>
     警戒線：
-    <input type='text' id='ground_red_input' value="-35">
+    <input type='text' id='ground_red_input' value="-35"><br>
 
     <button type="button" onclick="ground_submit()"> SUBMIT </button> 
   </form>
