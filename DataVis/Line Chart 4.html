@@ -109,11 +109,11 @@ d3.tsv("data1.tsv", typeR, function(error, data) {
 	  var temp = { "Time" : data[i].Time, "Rainfall" : data[i].Rainfall };            
 		dataR.push( temp );
         
-	  svgR.append("path")
+	  svgR.select("path").enter("path")
 		  .datum(dataR)
 		  .transition() //沒用?
-		  .delay(5000)  //只delay一次!?
-		  .duration(10000)  //沒用?
+                .duration(10000)  //沒用?
+//		  .delay(1000)  //只delay一次!?
 		  .attr("class", "line")
 		  .attr("d", lineR);
 
