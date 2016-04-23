@@ -5,12 +5,13 @@
   body {
   font: 10px sans-serif;
   }
-  svg,form{
+  form,svg{
     float: left;
   }
-input{
-  max-width: 60pt;
-}
+  input{
+    max-width: 30pt;
+  }
+
   .axis path,
   .axis line {
     fill: none;
@@ -33,6 +34,11 @@ input{
     fill: none;
     stroke: steelblue;
   }
+  .level {
+    z-index: 1;
+    fill-opacity:0.5;
+  }
+
 </style>
 <body>
   <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
@@ -41,11 +47,12 @@ input{
     var rainfall_red_value = 500;
      var ground_yellow_value = -35;
     var ground_red_value = -42;
-    var dis_yellow_value = 0.5;
-    var dis_red_value =2;
+    var Distance_yellow_value = 0.5;
+    var Distance_red_value =2;
+    var lineHeight = 4;
     var margin = {top: 20, right: 20, bottom: 30, left: 50},  //�d��
     width = 960 - margin.left - margin.right,
-    height = 250 - margin.top - margin.bottom;
+    height = 240 - margin.top - margin.bottom;
     function typeR(d) {
       d.Time = formatDate.parse(d.Time);; //formatDate�w�q�b�@�}�l
       d.Rainfall = +d.Rainfall;
@@ -71,7 +78,7 @@ input{
       d3.select(this).attr("y", inBoundaries(y_new));
     }
     function position_calculation(y){
-      var postion = 450 - 0.4721930745*y -2;
+      var postion = 450 - 0.4721930745*y -lineHeight/2;
       return inBoundaries(postion);
     }
 /////CHANGE END///////////////////////////////////////////////////////
@@ -143,8 +150,8 @@ input{
         .attr("class","text")
         .style("display","none");
       showR.append("text")
-        .attr("x", 9)
-        .attr("y", 9);
+        .attr("x", width/2)
+        .attr("y", 0);
 
 
 
@@ -153,8 +160,8 @@ input{
         .style("display","none");
 
         yellow_displayR.append("text")
-        .attr("x", 0)
-        .attr("y", 9);
+        .attr("x", width/2)
+        .attr("y", 0);
 
          yellow_displayR.select("text").text(rainfall_yellow_value);
 /////////////////////////////////////////////////////////////////////////////////////
@@ -204,22 +211,24 @@ input{
       }
 
 /////CHANGE START//////////////////////////////////////////////////////
-      rainfall_yellow_value=yR(rainfall_yellow_value)-2;
-      rainfall_red_value=yR(rainfall_red_value)-2;
+      rainfall_yellow_value=yR(rainfall_yellow_value)-lineHeight/2;
+      rainfall_red_value=yR(rainfall_red_value)-lineHeight/2;
 
-      var lineGraph = svgR.append("rect")
+      var lineGraphR = svgR.append("rect")
         .attr("id","rainfall_yellow_line")
+        .attr("class","level")
         .attr("width", width)
-        .attr("height", 4)
+        .attr("height", lineHeight)
         .attr("fill", "#FFCC00")
         .attr("x", 0)
         .attr("y", rainfall_yellow_value)
         .call(dragR);
 
-        var lineGraph = svgR.append("rect")
+        var lineGraphR = svgR.append("rect")
         .attr("id","rainfall_red_line")
+        .attr("class","level")
         .attr("width", width)
-        .attr("height", 4)
+        .attr("height", lineHeight)
         .attr("fill", "#FF2020")
         .attr("x", 0)
         .attr("y",rainfall_red_value)
@@ -242,10 +251,11 @@ input{
 
   
   <script type="text/javascript">
-   function rainfall_submit() {
+    function rainfall_submit() {
       var yellow_input = document.getElementById('rainfall_yellow_input').value;
       var yellow_origin = document.getElementById("rainfall_yellow_line").getBBox().y;
-      var yellow_dy = position_calculation(yellow_input) - yellow_origin;
+      var yellow_dy = yR(yellow_input) - yellow_origin-lineHeight/2;
+
       d3.select("#rainfall_yellow_line")
       //.attr("y", position_calculation(input_yellow))
       .transition()
@@ -254,7 +264,8 @@ input{
       
       var red_input = document.getElementById('rainfall_red_input').value;
       var red_origin = document.getElementById("rainfall_red_line").getBBox().y;
-      var red_dy = position_calculation(red_input) - red_origin;
+      var red_dy = yR(red_input) - red_origin-lineHeight/2;
+
       d3.select("#rainfall_red_line")
       //.attr("y", position_calculation(input_yellow))
       .transition()
@@ -360,9 +371,8 @@ input{
         .attr("class","text")
         .style("display","none");
       showG.append("text")
-        .attr("x", 9)
-        .attr("y", 9);
-
+        .attr("x", width/2)
+        .attr("y", 0);
 
 
       var yellow_displayG = svgG.append("g")
@@ -370,8 +380,8 @@ input{
         .style("display","none");
 
         yellow_displayG.append("text")
-        .attr("x", 0)
-        .attr("y", 9);
+        .attr("x", width/2)
+        .attr("y", 0);
 
          yellow_displayG.select("text").text(ground_yellow_value);
 /////////////////////////////////////////////////////////////////////////////////////
@@ -389,7 +399,7 @@ input{
         .attr("x1",0)
         .attr("y1",5)
         .attr("x2",0)
-        .attr("y2",yG(-50))
+        .attr("y2",yG(-100))
         .attr("stroke","lightsteelblue")
         .attr("stroke-width",1);
 
@@ -421,22 +431,24 @@ input{
       }
 
 /////CHANGE START//////////////////////////////////////////////////////
-      ground_yellow_value=yG(ground_yellow_value)-2;
-      ground_red_value=yG(ground_red_value)-2;
+      ground_yellow_value=yG(ground_yellow_value)-lineHeight/2;
+      ground_red_value=yG(ground_red_value)-lineHeight/2;
 
-      var lineGraph = svgG.append("rect")
+      var lineGraphG = svgG.append("rect")
         .attr("id","ground_yellow_line")
+        .attr("class","level")
         .attr("width", width)
-        .attr("height", 4)
+        .attr("height", lineHeight)
         .attr("fill", "#FFCC00")
         .attr("x", 0)
         .attr("y", ground_yellow_value)
         .call(dragG);
 
-        var lineGraph = svgG.append("rect")
+        var lineGraphG = svgG.append("rect")
         .attr("id","ground_red_line")
+        .attr("class","level")
         .attr("width", width)
-        .attr("height", 4)
+        .attr("height",lineHeight)
         .attr("fill", "#FF2020")
         .attr("x", 0)
         .attr("y", ground_red_value)
@@ -448,7 +460,7 @@ input{
 
   </script>
   
-  <form style="float: left;">
+  <form>
     注意線：
     <input type='text' id='ground_yellow_input' value="-42"><br>
     警戒線：
@@ -460,9 +472,9 @@ input{
   
   <script type="text/javascript">
     function ground_submit() {
-      var yellow_input = document.getElementById('ground_yellow_input').value;
+      var yellow_input = yG(document.getElementById('ground_yellow_input').value);
       var yellow_origin = document.getElementById("ground_yellow_line").getBBox().y;
-      var yellow_dy = position_calculation(yellow_input) - yellow_origin;
+      var yellow_dy = yellow_input - yellow_origin-lineHeight/2;
 
       d3.select("#ground_yellow_line")
       //.attr("y", position_calculation(input_yellow))
@@ -470,11 +482,224 @@ input{
       .attr("transform", "translate(0," + yellow_dy + ")")
       .duration(1000);
       
-      var red_input = document.getElementById('ground_red_input').value;
+      var red_input = yG(document.getElementById('ground_red_input').value);
       var red_origin = document.getElementById("ground_red_line").getBBox().y;
-      var red_dy = position_calculation(red_input) - red_origin;
+      var red_dy = red_input - red_origin-lineHeight/2;
 
       d3.select("#ground_red_line")
+      //.attr("y", position_calculation(input_yellow))
+      .transition()
+      .attr("transform", "translate(0," + red_dy + ")")
+      .duration(1000); 
+    }
+  </script>
+ <script>
+    function typeD(d) {
+      d.Time = formatDate.parse(d.Time);; //formatDate�w�q�b�@�}�l
+      d.Distance = +d.Distance;
+      return d;
+    }
+  
+/////CHANGE START/////////////////////////////////////////////////////
+    var dragD = d3.behavior.drag().on("drag", moveD);
+
+    function moveD(d){
+      //move
+      var x_new = d3.event.x,//get positon now
+      y_new = d3.event.y;
+      Distance_yellow_value = y_new
+      d3.select(this).attr("y", inBoundaries(y_new));
+    }
+    function position_calculation(y){
+      var postion = 450 - 0.4721930745*y -2;
+      return inBoundaries(postion);
+    }
+/////CHANGE END///////////////////////////////////////////////////////
+    
+    var formatDate = d3.time.format("%Y/%m/%d %H:%M"),
+    bisectDate = d3.bisector(function(d) { return d.Time; }).left,
+    formatValue = d3.format(",.2f"),
+    formatCurrency = function(d) { return formatValue(d); };
+    
+    var xD = d3.time.scale()
+      .range([0, width]);
+    
+    var yD = d3.scale.linear()
+      .range([height, 0]);
+    
+    var xAxisD = d3.svg.axis()
+      .scale(xD)
+      .orient("bottom");
+    
+    var yAxisD = d3.svg.axis()
+      .scale(yD)
+      //.ticks(10)
+      .orient("left");
+    
+    var lineD = d3.svg.line()
+      .x(function(d) { return xD(d.Time); })
+      .y(function(d) { return yD(d.Distance); });
+    
+    var svgD = d3.select("body").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+   
+    d3.tsv("data1.tsv", typeD, function(error, data) {
+      if (error) throw error;
+ 
+      xD.domain(d3.extent(data, function(d) { return d.Time; }));
+      yD.domain(d3.extent(data, function(d) { return d.Distance; }));
+
+      svgD.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxisD);
+
+      svgD.append("g")
+        .attr("class", "y axis")
+        .call(yAxisD)
+        .append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", ".71em")
+        .style("text-anchor", "end")
+        .text("Distance");
+
+      svgD.append("path")
+        .datum(data)
+        .transition() //�S��?
+        .duration(10000)  //�S��?
+        .attr("class", "line")
+        .attr("d", lineD);
+
+      var focusD = svgD.append("g")
+        .attr("class", "focus")
+        .style("display", "none");
+
+/////////////////////////////////////////////////////////////////////////////////////
+      var showD = svgD.append("g")
+        .attr("class","text")
+        .style("display","none");
+      showD.append("text")
+        .attr("x", width/2)
+        .attr("y", 0);
+
+
+
+      var yellow_displayD = svgD.append("g")
+        .attr("class","text")
+        .style("display","none");
+
+        yellow_displayD.append("text")
+        .attr("x", width/2)
+        .attr("y", 0);
+
+         yellow_displayD.select("text").text(Distance_yellow_value);
+/////////////////////////////////////////////////////////////////////////////////////
+
+      focusD.append("circle")
+        .attr("r", 4.5);
+
+/*      focusD.append("text")
+          .attr("x", 9)
+          .attr("dy", ".35em");
+          */
+///////////////////////////////////////////////////////////////////////////////////// 
+      focusD.append("line")
+        .attr("class","line")
+        .attr("x1",0)
+        .attr("y1",5)
+        .attr("x2",0)
+        .attr("y2",yD(0))
+        .attr("stroke","lightsteelblue")
+        .attr("stroke-width",1);
+
+///////////////////////////////////////////////////////////////////////////////////// 
+
+      svgD.append("rect")
+        .attr("class", "overlay")
+        .attr("width", width)
+        .attr("height", height)
+        .on("mouseover", function() { 
+          focusD.style("display", null); 
+          showD.style("display",null);
+        })
+        .on("mouseout", function() { 
+          focusD.style("display", "none"); 
+          showD.style("display","none");
+        })
+        .on("mousemove",mousemoveD);
+
+      function mousemoveD() {
+        var x0 = xG.invert(d3.mouse(this)[0]),
+        i = bisectDate(data, x0, 1),
+        d0 = data[i - 1],
+        d1 = data[i],
+        d = x0 - d0.Time > d1.Time - x0 ? d1 : d0;
+        focusD.attr("transform", "translate(" + xD(d.Time) + "," + yD(d.Distance) + ")");
+        showD.select("text").text(d.Distance);
+        focusD.line.attr("y2",yD(d.Distance));
+      }
+
+/////CHANGE START//////////////////////////////////////////////////////
+      Distance_yellow_value=yD(Distance_yellow_value)-lineHeight/2;
+      Distance_red_value=yD(Distance_red_value)-lineHeight/2;
+
+      var lineGraphD = svgD.append("rect")
+        .attr("id","Distance_yellow_line")
+        .attr("class","level")
+        .attr("width", width)
+        .attr("height", lineHeight)
+        .attr("fill", "#FFCC00")
+        .attr("x", 0)
+        .attr("y", Distance_yellow_value)
+        .call(dragD);
+
+        var lineGraphD = svgD.append("rect")
+        .attr("id","Distance_red_line")
+        .attr("class","level")
+        .attr("width", width)
+        .attr("height", lineHeight)
+        .attr("fill", "#FF2020")
+        .attr("x", 0)
+        .attr("y", Distance_red_value)
+        .call(dragD);
+
+    });
+
+/////CHANGE END///////////////////////////////////////////////////////
+
+  </script>
+  
+  <form>
+    注意線：
+    <input type='text' id='Distance_yellow_input' value="0.5"><br>
+    警戒線：
+    <input type='text' id='Distance_red_input' value="2"><br>
+
+    <button type="button" onclick="Distance_submit()"> SUBMIT </button> 
+  </form>
+
+  
+  <script type="text/javascript">
+    function Distance_submit() {
+      var yellow_input = yD(document.getElementById('Distance_yellow_input').value);
+      var yellow_origin = document.getElementById("Distance_yellow_line").getBBox().y;
+      var yellow_dy = yellow_input - yellow_origin-lineHeight/2;
+
+      d3.select("#Distance_yellow_line")
+      //.attr("y", position_calculation(input_yellow))
+      .transition()
+      .attr("transform", "translate(0," + yellow_dy + ")")
+      .duration(1000);
+      
+      var red_input = yD(document.getElementById('Distance_red_input').value);
+      var red_origin = document.getElementById("Distance_red_line").getBBox().y;
+      var red_dy = red_input - red_origin-lineHeight/2;
+
+      d3.select("#Distance_red_line")
       //.attr("y", position_calculation(input_yellow))
       .transition()
       .attr("transform", "translate(0," + red_dy + ")")
