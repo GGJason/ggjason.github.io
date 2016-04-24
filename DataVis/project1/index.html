@@ -1,0 +1,217 @@
+<DOCTYPE html>
+<html>
+<head>
+	<title>VIE 2016 | G15 | Project 1</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		h1{
+			text-align: center;
+			font-family: "微軟正黑體";
+		}
+		nav li{
+			list-style-type: none;
+			padding-bottom: 2px;
+		}
+		body{
+			/*background-color: #FFFFB9;*/
+			background: "48-Ice.png";
+			font-family: "noto-sans"
+		}
+		nav {
+			float: left;
+			width: 20%;
+		}
+		article{
+			float: left;
+			width: 80%;
+			
+		}
+		footer{
+			float: left;
+			text-align: center;
+			width: 100%;
+		}
+	</style>
+
+		<script src="https://d3js.org/d3.v3.min.js"></script>
+		<script>function run(year){
+			document.getElementById("show").innerHTML="";
+				function Yourname(hi){ //hi = death95.csv's data
+					// canvas = the "svg" that added into "body" with "width 800" and "height 400"
+					var canvas = d3.select("article").append("svg").attr("width", 900).attr("height", 1000);
+					// spaceForData = select all the rectangle in "canvas" and combine with data "hi"
+					var spaceForData = canvas.selectAll("rect").data(hi).enter();
+					//set coefficient
+					var coef = 2200;
+					//calculate total number
+					D={
+						sumMale:d3.sum(hi, function(d){return parseFloat(d.Male);}),
+						sumFemale:d3.sum(hi, function(d){return parseFloat(d.Female);}),
+					}
+
+					// add rectangle into spaceForData for those that doesn't conbine with data "hi"
+					spaceForData.append("rect").attr({
+						"width": function(d){return d.Male/D.sumMale*1000},
+						"height": function(d){return D.sumMale/coef},
+						"x" : "410",
+						"y": function(d, n){return n*40 + 60 }, // n = the nth data
+						"fill" :function(d,n){
+							if(n<=1)
+								return "#84D1FF";
+							else if(n<=5)
+								return "#2992D0";
+							else
+								return "#1E6087";
+						} ,
+					})
+					spaceForData.append("rect").attr({
+						//d = [{"Age":"~10", "Male":833, "Female":625}, {...}, ...]
+						"width": function(d){return d.Female/D.sumFemale*1000},
+						"height":function(d){return D.sumFemale/coef},
+						"x" : function(d){return 390-d.Female/D.sumFemale*1000},
+						"y": function(d, n){return n*40+(D.sumMale-D.sumFemale)/(2*coef)  + 60 }, // n = the nth data
+						//"fill" : "#E97C30",
+						"fill" :function(d,n){
+							if(n<=1)
+								return "#ffd27f";
+							else if(n<=5)
+								return "#ffa500";
+							else
+								return "#D97B00";
+
+						},
+					})
+
+
+					var spaceForText = canvas.selectAll("text").data(hi).enter();
+
+					spaceForText.append("text")
+					.text(function(d){return d.Female})
+					.attr("x", function(d){return 390-d.Female/D.sumFemale*1000-3})
+					.attr("y",  function(d, n){return n*40 + 80 })
+					.style("font-family","微軟正黑體")
+					.style("font-size","9px")
+					.style("fill","black")
+					.attr("text-anchor","end");
+
+					spaceForText.append("text")
+					.text(function(d){return d.Male})
+					.attr("x", function(d){return 410+d.Male/D.sumMale*1000+3})
+					.attr("y",  function(d, n){return n*40+ 80 })
+					.style("font-family","微軟正黑體")
+					.style("font-size","9px")
+					.style("fill","black")
+					.attr("text-anchor","start");
+					//right axisX
+					var scaleX_R = d3.scale.linear()
+					.range([410, 755])
+					.domain([0, 35]);
+
+					var axisX_R = d3.svg.axis()
+					.scale(scaleX_R)
+					.tickFormat(function(d) { return d + "%"; });
+
+					canvas.append('g')
+					.attr("transform", "translate(0,465)")
+			    		.call(axisX_R);  //call axisX
+
+					//left axisX
+					var scaleX_L = d3.scale.linear()
+					.range([55, 390])
+					.domain([35, 0]);
+
+					var axisX_L = d3.svg.axis()
+					.scale(scaleX_L)
+					.tickFormat(function(d) { return d + "%"; });
+
+					canvas.append('g')
+					.attr("transform", "translate(0,465)")
+			    		.call(axisX_L);  //call axisX
+
+				    	//male total number
+				    	canvas.append('text')
+				    	.attr('x', 550)
+				    	.attr('y', 570)
+				    	.attr("text-anchor","middle")
+				    	.style('fill', '#2992D0')
+				    	.style('font-size', function(d){return D.sumMale/1000+ "px";} )
+				    	.style('font-weight', 'bold')
+				    	.text(function(d){return D.sumMale;})
+
+				    	//female total number
+				    	canvas.append('text')
+				    	.attr('x', 250)
+				    	.attr('y', 565)
+				    	.attr("text-anchor","middle")
+				    	.style('fill', '#E97C30')
+				    	.style('font-size', function(d){return D.sumFemale/1000+ "px";} )
+				    	.style('font-weight', 'bold')
+				    	.text(function(d){return D.sumFemale;})
+
+					//add title
+					canvas.append("text")
+					.text("民國 "+ year +" 年")
+					.attr("x", 400)
+					.attr("y", 40)
+					.attr("text-anchor","middle")
+					.style("font-family","微軟正黑體")
+					.style('font-weight', 'bold')
+					.style("font-size","20px");  
+
+					
+					canvas.append("rect").attr({
+						"width": "10px",
+						"height" : "420px",
+						"x" : "395px",
+						"y": "50px",
+
+						"fill" : "black"
+					})
+
+					var array = [0,10,20,30,40,50,60,70,80,90];
+
+
+					spaceForText.append("text")
+					.data(array)
+					.text(function(d){return d})
+					.attr("x","400px")
+					.attr("y",  function(d, n){return n*40+ 60 })
+					.style("font-family","微軟正黑體")
+					.style("font-size","8px")
+					.style("fill","white")
+					.attr("text-anchor","middle")
+				}
+			//callback
+			d3.csv("death."+year+".csv", Yourname);
+		}
+		</script>
+</head>
+<body background="48-Ice.png">
+	<!--<header>
+		<h1>年度死亡人數統計表</h1>
+	</header>-->
+	<nav>
+		<form>
+			<ul>
+				<li><button id="but_95" type="button" onclick= "run(95)" >民國95年</button></li>
+				<li><button id="but_96" type="button" onclick= "run(96)">民國96年</button></li>
+				<li><button id="but_97" type="button" onclick= "run(97)">民國97年</button></li>
+				<li><button id="but_98" type="button" onclick= "run(98)">民國98年</button></li>
+			</ul><!--
+			<select>
+				<option>Whole ages</option>
+				<option></option>
+			</select>
+			<div >
+				<input type="checkbox" value="Male" style="align:center">Male</input><br>
+				<input type="checkbox" value="Female" style="align-self:center">Female</input>
+			</div>-->
+
+		</form>
+	</nav>
+	<article id="show">
+		<script type="text/javascript">run(95);</script>
+	</article>
+<!--<footer>Made by 白博升, 莊日陞, 吳軒竹<br>Copyright 2016</footer>-->
+</body>
+</html>

@@ -1,156 +1,70 @@
-<!DOCTYPE html>
-<meta charset="utf-8">
-<style>
-	body {
-	font: 10px sans-serif;
-	}
-	.axis path,
-	.axis line {
-	fill: none;
-	stroke: #000;
-	shape-rendering: crispEdges;
-	}
-	.x.axis path {
-	display: none;
-	}
-	.line {
-	fill: none;
-	stroke: steelblue;
-	stroke-width: 1.5px;
-	}
-	.overlay {
-	fill: none;
-	pointer-events: all;
-	}
-	.focus circle {
-	fill: none;
-	stroke: steelblue;
-	}
-</style>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
+
+Name       : PlainDisplay 
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20140309
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Data Visualization Project 1</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="http://fonts.googleapis.com/css?family=Varela" rel="stylesheet" />
+<link href="default.css" rel="stylesheet" type="text/css" media="all" />
+<link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
+
+<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+
+</head>
+
+
+
+
 <body>
-	<script src="//d3js.org/d3.v3.min.js"></script>
-	<script>
-		var margin = {top: 20, right: 50, bottom: 30, left: 50},
-		    width = 960 - margin.left - margin.right,
-		    height = 500 - margin.top - margin.bottom;
-		
-		var parseDate = d3.time.format("%d-%b-%y").parse,
-		    bisectDate = d3.bisector(function(d) { return d.date; }).left,
-		    formatValue = d3.format(",.2f"),
-		    formatCurrency = function(d) { return "$" + formatValue(d); };
-		
-		var x = d3.time.scale()
-		    .range([0, width]);
-		
-		var y = d3.scale.linear()
-		    .range([height, 0]);
-		
-		var xAxis = d3.svg.axis()
-		    .scale(x)
-		    .orient("bottom");
-		
-		var yAxis = d3.svg.axis()
-		    .scale(y)
-		    .orient("left");
-		
-		var line = d3.svg.line()
-		    .x(function(d) { return x(d.date); })
-		    .y(function(d) { return y(d.close); });
-		
-		var svg = d3.select("body").append("svg")
-		    .attr("width", width + margin.left + margin.right)
-		    .attr("height", height + margin.top + margin.bottom)
-		  .append("g")
-		    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-		
-		d3.tsv("data.tsv", function(error, data) {
-		  if (error) throw error;
-		
-		  data.forEach(function(d) {
-		    d.date = parseDate(d.date);
-		    d.close = +d.close;
-		  });
-		
-		  data.sort(function(a, b) {
-		    return a.date - b.date;
-		  });
-		
-		  x.domain([data[0].date, data[data.length - 1].date]);
-		  y.domain(d3.extent(data, function(d) { return d.close; }));
-		
-		  svg.append("g")
-		      .attr("class", "x axis")
-		      .attr("transform", "translate(0," + height + ")")
-		      .call(xAxis);
-		
-		  svg.append("g")
-		      .attr("class", "y axis")
-		      .call(yAxis)
-		    .append("text")
-		      .attr("transform", "rotate(-90)")
-		      .attr("y", 6)
-		      .attr("dy", ".71em")
-		      .style("text-anchor", "end")
-		      .text("Price ($)");
-		
-		  svg.append("path")
-		      .datum(data)
-		      .attr("class", "line")
-		      .attr("d", line);
-		
-		  var focus = svg.append("g")
-		      .attr("class", "focus")
-		      .style("display", "none");
 
-/////////////////////////////////////////////////////////////////////////////////////
-		var show = svg.append("g")
-			.attr("class","text")
-			.style("display","none");
-		show.append("text")
-		      .attr("x", 9)
-		      .attr("y", 9);
-/////////////////////////////////////////////////////////////////////////////////////
-		
-		  focus.append("circle")
-		      .attr("r", 4.5);
-		
-/*		  focus.append("text")
-		      .attr("x", 9)
-		      .attr("dy", ".35em");
-*/
-/////////////////////////////////////////////////////////////////////////////////////	
-		  focus.append("line")
-		      .attr("x1",0)
-		      .attr("y1",5)
-		      .attr("x2",0)
-		      .attr("y2",height+20)
-		      .attr("stroke","lightsteelblue")
-		      .attr("stroke-width",1);
-/////////////////////////////////////////////////////////////////////////////////////	
+<div id="wrapper">
+	<div id="header-wrapper">
+	<div id="header" class="container">
+		<div id="logo">
+			<h1><a href="#">Data Visualization</a></h1>
+		</div>
+		<div id="menu">
+			<ul>
+				<li><a href="index.html" accesskey="1" title="">Homepage</a></li>
+				<li><a href="project1.html" accesskey="2" title="">Project 1</a></li>
+				<li class="current_page_item"><a href="project2.html" accesskey="3" title="">Project 2</a></li>
+				<li><a href="project3.html" accesskey="4" title="">Project 3</a></li>
+				<li><a href="final_project.html" accesskey="5" title="">Final Project</a></li>
+			</ul>
+		</div>
+	</div>
+	</div>
+	<div class="content">
+		<div class="container">
+			<div class="title">
+				<h2>Data Visualization</h2>
+				<span class="byline">資料視覺化 Data Visualization 2016 Group 15</span> 
+			</div>
 
-		  svg.append("rect")
-		      .attr("class", "overlay")
-		      .attr("width", width)
-		      .attr("height", height)
-		      .on("mouseover", function() { 
-		      	focus.style("display", null); 
-		      	show.style("display",null);
-		  	})
-		      .on("mouseout", function() { 
-		      	focus.style("display", "none"); 
-		      	show.style("display","none");
-		      	})
-		      .on("mousemove",mousemove);
-		
-		  function mousemove() {
-		    var x0 = x.invert(d3.mouse(this)[0]),
-		        i = bisectDate(data, x0, 1),
-		        d0 = data[i - 1],
-		        d1 = data[i],
-		        d = x0 - d0.date > d1.date - x0 ? d1 : d0;
-		    focus.attr("transform", "translate(" + x(d.date) + "," + y(d.close) + ")");
-		    show.select("text").text(formatCurrency(d.close));
-		    focus.line.attr("y2",formatCurrency(d.close));
-		  }
-		});
-	</script>
+			<div class ="svg_index">
+				<iframe src="project2/index2.html" width="100%" height="1000" frameborder="0" scrolling="no"></iframe>
+			</div>
+
+		</div>
+	</div>
+
+
+
+</div>
+
+<div id="copyright" class="container">
+	<p>&copy; 2016 National Taiwain University | MADE by 吳軒竹 白博升 莊日陞</p>
+</body>
+</html>
