@@ -39,14 +39,27 @@
     fill-opacity:0.5;
   }
 
+  .btn{
+    margin-top: 0.5em;
+    float: right;
+  }
+
 </style>
 <body>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
   <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
   <script>
    var rainfall_yellow_value = 200;
     var rainfall_red_value = 500;
-     var ground_yellow_value = -35;
-    var ground_red_value = -42;
+    var ground_yellow_value = -42;
+    var ground_red_value = -35;
     var Distance_yellow_value = 0.5;
     var Distance_red_value =2;
     var lineHeight = 4;
@@ -245,8 +258,9 @@
     <input type='text' id='rainfall_yellow_input' value="200"><br>
     警戒線：
     <input type='text' id='rainfall_red_input' value="500"><br>
-
-  <button type="button" onclick="rainfall_submit()"> SUBMIT </button> 
+    <button type="button" class="btn btn-default btn-xs" onclick="rainfall_submit()">SUBMIT</button>
+    <!--<br>
+    <button type="button" class="btn btn-default btn-xs" onclick="rainfall_reset()">RESET </button>-->
   </form>
 
   
@@ -272,6 +286,7 @@
       .attr("transform", "translate(0," + red_dy + ")")
       .duration(1000); 
     }
+
   </script>
   <script>
     function typeG(d) {
@@ -466,7 +481,7 @@
     警戒線：
     <input type='text' id='ground_red_input' value="-35"><br>
 
-    <button type="button" onclick="ground_submit()"> SUBMIT </button> 
+    <button type="button" class="btn btn-default btn-xs" onclick="ground_submit()"> SUBMIT </button> 
   </form>
 
   
@@ -494,7 +509,7 @@
       .duration(1000); 
     }
   </script>
- <script>
+  <script>
     function typeD(d) {
       d.Time = formatDate.parse(d.Time);; //formatDate�w�q�b�@�}�l
       d.Distance = +d.Distance;
@@ -631,7 +646,22 @@
           focusD.style("display", "none"); 
           showD.style("display","none");
         })
+        //.on("mouseout", mouseoutD)
         .on("mousemove",mousemoveD);
+
+
+      /*function mouseoutD() {
+        var x0 = xG.invert(d3.mouse(this)[0]),
+        i = bisectDate(data, x0, 1),
+        d0 = data[i - 1],
+        d1 = data[i],
+        d = x0 - d0.Time > d1.Time - x0 ? d1 : d0;
+        focusD.attr("transform", "translate(" + xD(d.Time) + "," + yD(d.Distance) + ")");
+        showD.select("text").text(d.Distance);
+        focusD.line.attr("y2",yD(d.Distance));
+      }*/
+
+
 
       function mousemoveD() {
         var x0 = xG.invert(d3.mouse(this)[0]),
@@ -680,7 +710,7 @@
     警戒線：
     <input type='text' id='Distance_red_input' value="2"><br>
 
-    <button type="button" onclick="Distance_submit()"> SUBMIT </button> 
+    <button type="button" class="btn btn-default btn-xs" onclick="Distance_submit()"> SUBMIT </button> 
   </form>
 
   
