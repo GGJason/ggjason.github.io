@@ -57,7 +57,7 @@ Released   : 20140309
 				<h1>Decision Support Visualization</h1>
 				<h2></h2>
 				<script type='text/javascript' src='https://public.tableau.com/javascripts/api/viz_v1.js'></script>
-				<div class='tableauPlaceholder' style='width: 982px; height: 742px;'>
+				<div class='tableauPlaceholder' style='width: 1100px; height: 900px;'>
 					<noscript>
 						<a href='#'><img alt='Dashboard 1' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;DZ&#47;DZNP98QTG&#47;1_rss.png' style='border: none' /></a></noscript>
 						<object class='tableauViz' width='982' height='742' style='display:none;'>
@@ -72,6 +72,8 @@ Released   : 20140309
 				</div>
 				<div>
 					<h2>資料前處理與分析</h2>
+					<p>在第一階段進行資料前處理的時候，我們發現這份資料十分的複雜，同一年度會有十幾個資料，因此我們決定針對再生能源的部份進行討論，一方面先挑出太陽能、風力、地熱三種發電方式的的資料，並且搭配世界銀行所提供的各國人口總數。</p>
+					<p>而在處理資料的過程當中第一個遇到的就是兩份文件對於國家地區名字的定義不盡相同，因次我們用人工的方式先將世界銀行中比BP提供更多的資料刪除，並且補上一些世界銀行沒有提及的資料（例如台灣）。</p>
 				</div>
 				<p>Source: <a href ="http://www.bp.com/en/global/corporate/energy-economics/statistical-review-of-world-energy.html">"Statistical Review of World Energy", British Petroleum</a> 、<a href="http://data.worldbank.org/indicator/SP.POP.TOTL">The world bank</a></p>
 			</div>
