@@ -1,0 +1,91 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>peer_reviews</h1>
+
+    <h2>Description</h2>
+    <p>
+        The reviews that reviewers have made for submissions
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>peer_review_id</td><td>Primary Key</td>
+        </tr>
+        
+        <tr>
+          <td>peer_submission_id</td><td>The submission that this review is for</td>
+        </tr>
+        
+        <tr>
+          <td>taiwan_peer_assignments_user_id</td><td>Encrypted Coursera user id for taiwan peer_assignments data.</td>
+        </tr>
+        
+        <tr>
+          <td>peer_review_created_ts</td><td> The time when that the review was created. The review never changes after creation</td>
+        </tr>
+        
+        <tr>
+          <td>peer_review_first_visible_to_submitter_ts</td><td>The time when that the review was first visible to the submission submitter. Is NULL if the review is not visible. Note that an invisible review might never become visible</td>
+        </tr>
+        
+        <tr>
+          <td>peer_review_marked_helpful_ts</td><td>The time that the review receiver marked this review as helpful. Is NULL if the receiver has not marked it helpful. This feature is deprecated in favor of ratings around 2015-06-19 (see peer_review_rated_ts and peer_review_ratings
+columns below), but this column still contains data from when the feature was not deprecated.</td>
+        </tr>
+        
+        <tr>
+          <td>peer_review_rated_ts</td><td>The time that the review receiver rated this review. Is NULL if the receiver has not rated it. This feature started existing around 2015-06-19 and stopped existing around 2015-09-16.</td>
+        </tr>
+        
+        <tr>
+          <td>peer_review_rating</td><td>The rating that the review receiver gave this review. Is NULL if the receiver has not rated it. This feature started existing around 2015-06-19 and stopped existing around 2015-09-16.</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE peer_reviews (
+    peer_review_id VARCHAR(50) 
+    ,peer_submission_id VARCHAR(50) 
+    ,taiwan_peer_assignments_user_id VARCHAR(50) NOT NULL
+    ,peer_review_created_ts TIMESTAMP 
+    ,peer_review_first_visible_to_submitter_ts TIMESTAMP 
+    ,peer_review_marked_helpful_ts TIMESTAMP 
+    ,peer_review_rated_ts TIMESTAMP 
+    ,peer_review_rating INT4 
+    ,PRIMARY KEY (peer_review_id)
+    ,FOREIGN KEY (peer_submission_id) REFERENCES peer_submissions(peer_submission_id)
+);
+    </pre>
+</div>

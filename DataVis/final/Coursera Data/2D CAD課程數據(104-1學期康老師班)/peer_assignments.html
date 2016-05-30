@@ -1,0 +1,96 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>peer_assignments</h1>
+
+    <h2>Description</h2>
+    <p>
+        Metadata of peer assignments
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>peer_assignment_id</td><td>This is a &#x27;course_content_id&#x27;, and is versioned. (e.g ABC@1 is version 1)</td>
+        </tr>
+        
+        <tr>
+          <td>peer_assignment_base_id</td><td>The unversioned id</td>
+        </tr>
+        
+        <tr>
+          <td>peer_assignment_type</td><td>The type (&quot;standard&quot;, &quot;graded&quot;, &quot;closed&quot;)</td>
+        </tr>
+        
+        <tr>
+          <td>peer_assignment_required_review_count</td><td>The number of reviews a submitter needs to do (of others&#x27; submissions) to get credit.</td>
+        </tr>
+        
+        <tr>
+          <td>peer_assignment_passing_fraction</td><td>Fraction of the maximum possible score that a submitter must achieve in order to pass. This only exists for assignments that generate scores</td>
+        </tr>
+        
+        <tr>
+          <td>peer_assignment_required_reviewer_count_for_score</td><td>The number of reviews a submission must receive to get a score.</td>
+        </tr>
+        
+        <tr>
+          <td>peer_assignment_required_wait_for_score_ms</td><td>Amount of time that must elapse since a submission has been submitted before it may have a score. This only exists for assignments that generate scores.
+</td>
+        </tr>
+        
+        <tr>
+          <td>peer_assignment_maximum_score</td><td>Maximum score for this assignment. This is nullable because not all assignments generate scores.
+</td>
+        </tr>
+        
+        <tr>
+          <td>peer_assignment_update_ts</td><td>When this version of the assignment was created</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE peer_assignments (
+    peer_assignment_id VARCHAR(50) 
+    ,peer_assignment_base_id VARCHAR(50) 
+    ,peer_assignment_type VARCHAR(50) 
+    ,peer_assignment_required_review_count INT4 
+    ,peer_assignment_passing_fraction FLOAT8 
+    ,peer_assignment_required_reviewer_count_for_score INT4 
+    ,peer_assignment_required_wait_for_score_ms INT8 
+    ,peer_assignment_maximum_score FLOAT8 
+    ,peer_assignment_update_ts TIMESTAMP 
+    ,PRIMARY KEY (peer_assignment_id)
+);
+    </pre>
+</div>

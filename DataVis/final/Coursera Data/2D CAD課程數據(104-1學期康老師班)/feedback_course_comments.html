@@ -1,0 +1,80 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>feedback_course_comments</h1>
+
+    <h2>Description</h2>
+    <p>
+        Contains the contents of course reviews
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>course_id</td><td>Course id for the course receiving reviews</td>
+        </tr>
+        
+        <tr>
+          <td>feedback_system</td><td>Feedback system: STAR for course reviews</td>
+        </tr>
+        
+        <tr>
+          <td>taiwan_feedback_user_id</td><td>Encrypted Coursera user id for taiwan feedback data.</td>
+        </tr>
+        
+        <tr>
+          <td>feedback_category</td><td>For course reviews, the only category should be &quot;generic&quot;</td>
+        </tr>
+        
+        <tr>
+          <td>feedback_text</td><td>CML text of the review</td>
+        </tr>
+        
+        <tr>
+          <td>feedback_ts</td><td>Timestamp when the feedback was left</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE feedback_course_comments (
+    course_id varchar 
+    ,feedback_system varchar 
+    ,taiwan_feedback_user_id VARCHAR(50) NOT NULL
+    ,feedback_category varchar 
+    ,feedback_text varchar 
+    ,feedback_ts timestamp 
+    ,PRIMARY KEY (course_id, feedback_system, taiwan_feedback_user_id, feedback_category, feedback_ts)
+    ,FOREIGN KEY (course_id) REFERENCES courses(course_id)
+);
+    </pre>
+</div>

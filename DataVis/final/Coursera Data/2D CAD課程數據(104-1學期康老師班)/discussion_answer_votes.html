@@ -1,0 +1,74 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>discussion_answer_votes</h1>
+
+    <h2>Description</h2>
+    <p>
+        records when a discussion answer was upvoted or revoked.
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>taiwan_discussions_user_id</td><td>Encrypted Coursera user id for taiwan discussions data.</td>
+        </tr>
+        
+        <tr>
+          <td>course_id</td><td>22 character unique string identifying an individual course</td>
+        </tr>
+        
+        <tr>
+          <td>discussion_answer_id</td><td>The discussion answer to which the vote was applied</td>
+        </tr>
+        
+        <tr>
+          <td>discussion_answer_vote_value</td><td>Discussion answers can only be upvoted on the Phoenix platform; there is no such thing as a downvoting an answer. Upon upvoting, the value of this column is 1. However, if a user &quot;revokes&quot; their upvote, the value will instead be 0.</td>
+        </tr>
+        
+        <tr>
+          <td>discussion_answer_vote_ts</td><td>The timestamp of when the vote was applied</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE discussion_answer_votes (
+    taiwan_discussions_user_id VARCHAR(50) NOT NULL
+    ,course_id varchar 
+    ,discussion_answer_id varchar 
+    ,discussion_answer_vote_value int4 
+    ,discussion_answer_vote_ts timestamp 
+    ,PRIMARY KEY (taiwan_discussions_user_id, discussion_answer_id, discussion_answer_vote_ts)
+);
+    </pre>
+</div>

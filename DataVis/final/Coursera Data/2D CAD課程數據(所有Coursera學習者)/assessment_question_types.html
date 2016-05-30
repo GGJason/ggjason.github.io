@@ -1,0 +1,59 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>assessment_question_types</h1>
+
+    <h2>Description</h2>
+    <p>
+        Description of the types of quiz questions
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>assessment_question_type_id</td><td>A numerical identifier correspnding to each of the assessment question types described by the assessment_question_type_desc field</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_question_type_desc</td><td>Our assessments system defines several different quiz question types, some of which are limited only to in-video quiz questions embedded within videos. The table description is a text identifier which corresponds to the following items: regex (Regular Expression), math expression (Math Expression), mcq (Multiple Choice Question), single numeric (Numeric match), checkbox (Checkbox), text exact match (Text match), reflect (Ungraded text entry question), mcqReflect (Multiple Choice Question - Reflective / Ungraded), checkboxReflect (Checkbox - Reflective / Ungraded), checkbox poll (Checkbox - Poll question - Lecture only), poll (Multiple Choice Question - Poll question - Lecture only), continue (Pause and reflect question - Lecture only)</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE assessment_question_types (
+    assessment_question_type_id INT4 
+    ,assessment_question_type_desc VARCHAR(50) 
+    ,PRIMARY KEY (assessment_question_type_id)
+);
+    </pre>
+</div>

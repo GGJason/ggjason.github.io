@@ -1,0 +1,10 @@
+assessment_pattern_flag_type_id,assessment_pattern_flag_type_desc
+4,"COMMENTS"
+256,"UNICODE_CHARACTER_CLASS"
+128,"CANON_EQ"
+8,"MULTILINE"
+32,"DOTALL"
+16,"LITERAL"
+1,"UNIX_LINES"
+2,"CASE_INSENSITIVE"
+64,"UNICODE_CASE"

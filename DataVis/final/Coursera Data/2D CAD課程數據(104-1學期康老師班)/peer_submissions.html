@@ -1,0 +1,96 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>peer_submissions</h1>
+
+    <h2>Description</h2>
+    <p>
+        Submissions to peer assignments.
+Caveats: This table contains public submissions, draft submissions, and deleted submissions. Use the peer_submission_is_draft and peer_submission_has_been_removed_from_public columns to disambiguate
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>peer_submission_id</td><td>Peer submission id</td>
+        </tr>
+        
+        <tr>
+          <td>peer_assignment_id</td><td>The assignment that this submission is for</td>
+        </tr>
+        
+        <tr>
+          <td>taiwan_peer_assignments_user_id</td><td>Encrypted Coursera user id for taiwan peer_assignments data.</td>
+        </tr>
+        
+        <tr>
+          <td>peer_submission_created_ts</td><td>The time that this submission was created. The submission itself never changes after creation, but some columns affected by things outside the submission may change after creation: (i) `peer_submission_removed_from_public_ts` changes from NULL to non-NULL if/when the author removes the submission from the public (ii) `peer_submission_score_available_ts` and `peer_submission_score` change from NULL to non-NULL if/when the submission receives a score</td>
+        </tr>
+        
+        <tr>
+          <td>peer_submission_is_draft</td><td>Whether this submission is a draft. Drafts are not visible to anyone except the author</td>
+        </tr>
+        
+        <tr>
+          <td>peer_submission_title</td><td>The &quot;title&quot; field of the submission</td>
+        </tr>
+        
+        <tr>
+          <td>peer_submission_removed_from_public_ts</td><td>When this submission was removed from the public review area. This is NULL for public submissions that haven&#x27;t been removed. This is also NULL for drafts because they were never in the public review area</td>
+        </tr>
+        
+        <tr>
+          <td>peer_submission_score_available_ts</td><td>The first time at which the score for this submission was available. This is NULL for submissions without scores and for assignments that don&#x27;t generate scores. Note currently (2016-01) there is a lag between a submission get all reviews needed and peer_submission_score_available_ts. And for learners who submit by review deadline, they willl get be graded even if not meeting N-review requirement, as long as at least being reviewed once(under which scenario, this timestamp will be past review deadline).</td>
+        </tr>
+        
+        <tr>
+          <td>peer_submission_score</td><td>The submission&#x27;s score. This is NULL for submissions without scores and for assignments that don&#x27;t generate scores</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE peer_submissions (
+    peer_submission_id VARCHAR(50) 
+    ,peer_assignment_id VARCHAR(50) 
+    ,taiwan_peer_assignments_user_id VARCHAR(50) NOT NULL
+    ,peer_submission_created_ts TIMESTAMP 
+    ,peer_submission_is_draft BOOL 
+    ,peer_submission_title VARCHAR(65535) 
+    ,peer_submission_removed_from_public_ts TIMESTAMP 
+    ,peer_submission_score_available_ts TIMESTAMP 
+    ,peer_submission_score FLOAT8 
+    ,PRIMARY KEY (peer_submission_id)
+    ,FOREIGN KEY (peer_assignment_id) REFERENCES peer_assignments(peer_assignment_id)
+);
+    </pre>
+</div>

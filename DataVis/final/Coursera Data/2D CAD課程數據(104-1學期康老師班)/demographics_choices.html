@@ -1,0 +1,64 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>demographics_choices</h1>
+
+    <h2>Description</h2>
+    <p>
+        Stores choices to the questions from the demographics survey and user intent questions.
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>question_id</td><td>Integer id for the questions</td>
+        </tr>
+        
+        <tr>
+          <td>choice_id</td><td>The choice id helps to identify how a learner responded to a demographic question. The choice id itself is not a unique identifier, but the question id/choice id combo is unique and relates to a specific choice description (choice_desc) that provides the text of a learner&#x27;s answer selection. </td>
+        </tr>
+        
+        <tr>
+          <td>choice_desc</td><td>Indicated by a unique question id/choice id combo, this provides the text of a learner&#x27;s answer selection to a demographic question.</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE demographics_choices (
+    question_id int4 
+    ,choice_id int4 
+    ,choice_desc varchar 
+    ,PRIMARY KEY (question_id, choice_id)
+);
+    </pre>
+</div>

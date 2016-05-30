@@ -1,0 +1,2099 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+
+    <h1> Export Data Summary </h1>
+
+    <h2> Tables </h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        
+        <tr>
+            <td>assessment_actions</td>
+            <td>This table stores the interactions of the user with the assessment.</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_assessments_questions</td>
+            <td>Link table between the assessment and the questions data and describe high-level information of questions in an assessment.</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_checkbox_questions</td>
+            <td>Information of checkbox quiz questions</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_checkbox_reflect_questions</td>
+            <td>Information of checkbox(Reflective / Ungraded) quiz questions</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_math_expression_patterns</td>
+            <td>the patterns of the answers to a math assessment question</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_math_expression_questions</td>
+            <td>math assessment questions and default text displayed to learners upon answering the questions incorrectly</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_mcq_questions</td>
+            <td>multiple-choice assessment questions</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_mcq_reflect_questions</td>
+            <td>Information of  (Reflective / Ungraded) Multiple Choice Questions</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_options</td>
+            <td>Information of choice options for a question</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_pattern_flag_types</td>
+            <td>Information on pattern flag types</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_pattern_types</td>
+            <td>Info on pattern matching questions: Text Answer, Numeric, Regular Expression, and Math Expression</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_question_types</td>
+            <td>Description of the types of quiz questions</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_questions</td>
+            <td>Information of quiz questions</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_reflect_questions</td>
+            <td>Information of ungraded text entry question</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_regex_pattern_flags</td>
+            <td>[No table description available]</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_regex_patterns</td>
+            <td>[No table description available]</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_regex_questions</td>
+            <td>[No table description available]</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_response_options</td>
+            <td>learner responses to assessments</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_response_patterns</td>
+            <td>[No table description available]</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_responses</td>
+            <td>information of learner responses to a quiz question and the score received</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_scope_types</td>
+            <td>The description of the varying contexts in which the user can interact with the assessment</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_scopes</td>
+            <td>Unique contexts in which the user can interact with the assessment</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_single_numeric_patterns</td>
+            <td>Table that stores the single numeric pattern type questions.</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_single_numeric_questions</td>
+            <td>Information of single numeric (Numeric match) questions</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_text_exact_match_patterns</td>
+            <td>[No table description available]</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_text_exact_match_questions</td>
+            <td>Information of text exact match questions</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_types</td>
+            <td>Description of assessment types</td>
+        </tr>
+        
+        <tr>
+            <td>assessments</td>
+            <td>Table of all the assessments / quizzes.</td>
+        </tr>
+        
+        <tr>
+            <td>course_formative_quiz_grades</td>
+            <td>Grades of a single user in each of the ungraded quizzes.</td>
+        </tr>
+        
+        <tr>
+            <td>course_grades</td>
+            <td>This table provides the grading event of when the user hit his or her highest grade in one course.
+Also provides the passing/not-passing state for each user and course.</td>
+        </tr>
+        
+        <tr>
+            <td>course_item_assessments</td>
+            <td>For each course, provide the mapping between course items and assessments.</td>
+        </tr>
+        
+        <tr>
+            <td>course_item_grades</td>
+            <td>Grades of user for each of the items in the course</td>
+        </tr>
+        
+        <tr>
+            <td>course_item_passing_states</td>
+            <td>Each item in a course can be in one of three &quot;states&quot; with respect a learner passing the item.</td>
+        </tr>
+        
+        <tr>
+            <td>course_item_peer_assignments</td>
+            <td>For each course, provide the mapping between course items and peer assignments.</td>
+        </tr>
+        
+        <tr>
+            <td>course_item_programming_assignments</td>
+            <td>For each course, provide the mapping between course items and programming assignments.</td>
+        </tr>
+        
+        <tr>
+            <td>course_item_types</td>
+            <td>There are many different types of of items that make up a course. Each item is given an item_type_id for ease of identification.</td>
+        </tr>
+        
+        <tr>
+            <td>course_items</td>
+            <td>A single content item in a course such as lecture, quiz or peer review assignment.
+
+Note: For courses that uses the Course Versioning feature, please refer to the branch version of this table.</td>
+        </tr>
+        
+        <tr>
+            <td>course_lessons</td>
+            <td>Subsection of a single module, can be composed of multiple items in a course.
+
+Note: For courses that uses the Course Versioning feature, please refer to the branch version of this table.</td>
+        </tr>
+        
+        <tr>
+            <td>course_memberships</td>
+            <td>A log of when and what membership role did a user get assigned to for a course. 
+
+A &lt;user_id, course_id&gt; tuple can have multiple values in this table to record the different roles across time.  For example, a learner could have watched the preview content (BROWSER), then hit the enroll button to join (LEARNER), and then unenrolled a few days later (NOT_ENROLLED).</td>
+        </tr>
+        
+        <tr>
+            <td>course_modules</td>
+            <td>Contains each course&#x27;s set of modules, their names, their description, and their order.
+Note: For courses that use the Course Versioning feature, please refer to the branch version of this table.</td>
+        </tr>
+        
+        <tr>
+            <td>course_passing_states</td>
+            <td>The descriptions of passing states for courses from the course_grades table</td>
+        </tr>
+        
+        <tr>
+            <td>course_progress</td>
+            <td>Contains a log of when and how a user progresses in one course item of a course, with one of two progress states: &#x27;started&#x27; or &#x27;completed&#x27;</td>
+        </tr>
+        
+        <tr>
+            <td>course_progress_state_types</td>
+            <td>A mapping table from ids to descriptions of the different course progress states, such as 1 meaning &quot;started&quot;.</td>
+        </tr>
+        
+        <tr>
+            <td>courses</td>
+            <td>The list of Coursera&#x27;s courses on the Phoenix platform, including info on its important dates (e.g. when it was launched)</td>
+        </tr>
+        
+        <tr>
+            <td>demographics_answers</td>
+            <td>Stores answers to the questions from the demographics survey and user intent questions.</td>
+        </tr>
+        
+        <tr>
+            <td>demographics_choices</td>
+            <td>Stores choices to the questions from the demographics survey and user intent questions.</td>
+        </tr>
+        
+        <tr>
+            <td>demographics_question_types</td>
+            <td>Stores question types for the demographics questions.</td>
+        </tr>
+        
+        <tr>
+            <td>demographics_questions</td>
+            <td>Stores questions from the demographics survey and user intent questions.</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_answer_flags</td>
+            <td>records when a discussion answer is marked as resolved.</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_answer_votes</td>
+            <td>records when a discussion answer was upvoted or revoked.</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_answers</td>
+            <td>For each course&#x27;s discussion forums, contains the list of the answers that users submitted to discussion questions.</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_forums</td>
+            <td>For each course&#x27;s discussion forums, contains the list of forums (e.g. General Discussions, Meet and Greet, etc.)</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_question_flags</td>
+            <td>records when an discussion question is flagged as resolved</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_question_followings</td>
+            <td>records when discussion question is followed or unfollowed</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_question_votes</td>
+            <td>records when a discussion question was upvoted</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_questions</td>
+            <td>For each course&#x27;s discussion forums, contains the list of the questions, with its title, content, and author.</td>
+        </tr>
+        
+        <tr>
+            <td>feedback_course_comments</td>
+            <td>Contains the contents of course reviews</td>
+        </tr>
+        
+        <tr>
+            <td>feedback_course_ratings</td>
+            <td>Contains data for course ratings</td>
+        </tr>
+        
+        <tr>
+            <td>feedback_item_comments</td>
+            <td>Contains the contents of comments on items or sub-items, which should generally be flags</td>
+        </tr>
+        
+        <tr>
+            <td>feedback_item_ratings</td>
+            <td>Contains data for item-level ratings</td>
+        </tr>
+        
+        <tr>
+            <td>on_demand_session_memberships</td>
+            <td>For each course&#x27;s session, list the learners with the role of &#x27;member&#x27; in that session and their start/end timestamps</td>
+        </tr>
+        
+        <tr>
+            <td>on_demand_sessions</td>
+            <td>Contains sessions info (e.g start and end dates) and the Course Versioning used on the Phoenix platform</td>
+        </tr>
+        
+        <tr>
+            <td>peer_assignment_review_schema_part_options</td>
+            <td>The options for review schema parts that have options</td>
+        </tr>
+        
+        <tr>
+            <td>peer_assignment_review_schema_parts</td>
+            <td>The questions that the reviewer must answer</td>
+        </tr>
+        
+        <tr>
+            <td>peer_assignment_submission_schema_parts</td>
+            <td>The questions that a submitter must answer in their submission</td>
+        </tr>
+        
+        <tr>
+            <td>peer_assignments</td>
+            <td>Metadata of peer assignments</td>
+        </tr>
+        
+        <tr>
+            <td>peer_comments</td>
+            <td>Peer comments on submissions</td>
+        </tr>
+        
+        <tr>
+            <td>peer_review_part_choices</td>
+            <td>Answers to option-based review schema questions (&quot;options&quot; and &quot;yesNo&quot;)</td>
+        </tr>
+        
+        <tr>
+            <td>peer_review_part_free_responses</td>
+            <td>Answers to free response review schema questions (&quot;singleLineInput&quot; and &quot;multiLineInput&quot;)</td>
+        </tr>
+        
+        <tr>
+            <td>peer_reviews</td>
+            <td>The reviews that reviewers have made for submissions</td>
+        </tr>
+        
+        <tr>
+            <td>peer_skips</td>
+            <td>Users may &quot;skip&quot; reviewing a submission if there is a problem with it. This table records all the skips that happen.</td>
+        </tr>
+        
+        <tr>
+            <td>peer_submission_part_free_responses</td>
+            <td>Answers to the submission schema questions, for the &quot;plainText&quot; and &quot;richText&quot; submission schema part types.</td>
+        </tr>
+        
+        <tr>
+            <td>peer_submission_part_scores</td>
+            <td>Part scores that a submission gets. This only exists for submissions that have scores.</td>
+        </tr>
+        
+        <tr>
+            <td>peer_submission_part_urls</td>
+            <td>Answers to the submission schema questions, for the &quot;fileUpload&quot; and &quot;url&quot; submission schema part types</td>
+        </tr>
+        
+        <tr>
+            <td>peer_submissions</td>
+            <td>Submissions to peer assignments.
+Caveats: This table contains public submissions, draft submissions, and deleted submissions. Use the peer_submission_is_draft and peer_submission_has_been_removed_from_public columns to disambiguate</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignment_submission_schema_part_grid_schemas</td>
+            <td>Information of asynchronously graded parts of programming assignments</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignment_submission_schema_part_xbkvdx</td>
+            <td>possible correct responses to a part of a programming assignment. Name shortened from &#x27;programming_assignment_submission_schema_part_possible_responses&#x27; for compatibility.</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignment_submission_schema_parts</td>
+            <td>Information of individual parts of a programming assignment</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignments</td>
+            <td>Information of programming assignments</td>
+        </tr>
+        
+        <tr>
+            <td>programming_submission_part_evaluations</td>
+            <td>scores of individual parts of a programming assignment</td>
+        </tr>
+        
+        <tr>
+            <td>programming_submission_part_grid_grading_statuses</td>
+            <td>The status of grading of a submission to an asynchronously graded question</td>
+        </tr>
+        
+        <tr>
+            <td>programming_submission_part_grid_submissions</td>
+            <td>Submissions to asynchronously graded questions</td>
+        </tr>
+        
+        <tr>
+            <td>programming_submission_part_text_submissions</td>
+            <td>learner submissions to synchronously graded questions of a programming assignment</td>
+        </tr>
+        
+        <tr>
+            <td>programming_submission_parts</td>
+            <td>Information of learner submissions to individual parts of a programming assignment</td>
+        </tr>
+        
+        <tr>
+            <td>programming_submissions</td>
+            <td>submissions of a programming assignment</td>
+        </tr>
+        
+        <tr>
+            <td>taiwan_course_user_ids</td>
+            <td>Encrypted user id mapping table. Use this table to connect learner data from exports, which identifies taiwan learners using taiwan_user_id, to course-scoped data from external surveys.      </td>
+        </tr>
+        
+        <tr>
+            <td>users</td>
+            <td>Information about Coursera users</td>
+        </tr>
+        
+    </table>
+
+    <h2> Columns </h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Tables</th>
+        </tr>
+        
+        <tr>
+            <td>_2d_cad_user_id</td>
+            <td>Encrypted Coursera user id for 2d-cad data.</td>
+            <td>taiwan_course_user_ids</td>
+        </tr>
+        
+        <tr>
+            <td>answer_int</td>
+            <td>Demographics question answered by typing an interger (birth year, 4 digits). </td>
+            <td>demographics_answers</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_action_base_id</td>
+            <td>Base id for the assessment interaction that is used for creating new versions for interaction of the user - assessment pair.</td>
+            <td>assessment_actions</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_action_id</td>
+            <td>unique id for each interaction of the user with the assessment, linking to the assessment_action_id field in the prod.assessment_actions table</td>
+            <td>assessment_actions, assessment_responses</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_action_start_ts</td>
+            <td>Start timestamp of the users interaction with the assessment.
+</td>
+            <td>assessment_actions</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_action_ts</td>
+            <td>Timestamp of the users interaction with the assessment.
+</td>
+            <td>assessment_actions</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_action_version</td>
+            <td>The version of the learner&#x27;s responses to the assessment</td>
+            <td>assessment_actions, assessment_responses</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_base_id</td>
+            <td>Every quiz has a globally unique base id that is associated with a course. 
+</td>
+            <td>assessments</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_id</td>
+            <td>Each quiz is assigned a unique id that is a combination of a base id and version. </td>
+            <td>assessment_actions, assessment_assessments_questions, assessment_responses, assessments, course_item_assessments</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_option_correct</td>
+            <td>For text answer type questions, instructors can insert both correct and incorrect answer patterns in order to provide learners with tailored feedback based on common solutions or misconceptions. This field indicates whether the pattern was one that corresponded to a correct solution (t) or an incorrect solution (f).</td>
+            <td>assessment_options</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_option_display</td>
+            <td>The JSON blob containing the question prompt. This is written in a custom Coursera markup language. The actual prompt text is encapsulated within key named &quot;value.&quot;</td>
+            <td>assessment_options</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_option_feedback</td>
+            <td>The text that is displayed to learners upon answering a question correctly</td>
+            <td>assessment_options</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_option_id</td>
+            <td>unique choice option id, linking to the assessment_option_id in the assessment_options table</td>
+            <td>assessment_options, assessment_response_options</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_pattern_correct</td>
+            <td>For regular expression type questions, instructors can insert both correct and incorrect answer patterns in order to provide learners with tailored feedback based on common solutions or misconceptions. This field indicates whether the pattern was one that corresponded to a correct solution (t) or an incorrect solution (f).</td>
+            <td>assessment_math_expression_patterns, assessment_regex_patterns, assessment_single_numeric_patterns, assessment_text_exact_match_patterns</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_pattern_display</td>
+            <td>The JSON blob containing the question prompt. This is written in a custom Coursera markup language. The actual prompt text is encapsulated within key named &quot;value.&quot;</td>
+            <td>assessment_math_expression_patterns, assessment_text_exact_match_patterns</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_pattern_feedback</td>
+            <td>The text that is displayed to learners upon answering a question that matches the pattern.</td>
+            <td>assessment_math_expression_patterns, assessment_regex_patterns, assessment_single_numeric_patterns, assessment_text_exact_match_patterns</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_pattern_flag_type_desc</td>
+            <td>A description, e.g 2 = &#x27;CASE_INSENSITIVE&#x27;, 32 = &#x27;DOTALL&#x27;</td>
+            <td>assessment_pattern_flag_types</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_pattern_flag_type_id</td>
+            <td>ID for a pattern flag type</td>
+            <td>assessment_pattern_flag_types, assessment_regex_pattern_flags</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_pattern_id</td>
+            <td>No column description available</td>
+            <td>assessment_math_expression_patterns, assessment_regex_pattern_flags, assessment_regex_patterns, assessment_response_patterns, assessment_single_numeric_patterns, assessment_text_exact_match_patterns</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_pattern_include_max</td>
+            <td>No column description available</td>
+            <td>assessment_single_numeric_patterns</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_pattern_include_min</td>
+            <td>No column description available</td>
+            <td>assessment_single_numeric_patterns</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_pattern_max</td>
+            <td>No column description available</td>
+            <td>assessment_single_numeric_patterns</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_pattern_min</td>
+            <td>No column description available</td>
+            <td>assessment_single_numeric_patterns</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_pattern_regex</td>
+            <td>No column description available</td>
+            <td>assessment_regex_patterns</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_pattern_type_desc</td>
+            <td>Our assessments system defines three types of pattern matching questions: Text Answer, Numeric, Regular Expression, and Math Expression. </td>
+            <td>assessment_pattern_types</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_pattern_type_id</td>
+            <td>No column description available</td>
+            <td>assessment_pattern_types, assessment_single_numeric_patterns</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_pattern_value</td>
+            <td>No column description available</td>
+            <td>assessment_single_numeric_patterns</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_question_allow_partial_scoring</td>
+            <td>No column description available</td>
+            <td>assessment_checkbox_questions</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_question_base_id</td>
+            <td>No column description available</td>
+            <td>assessment_questions</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_question_cuepoint</td>
+            <td>The number of milliseconds into a lecture video that the in-video question is placed. For quizzes that are not in-video quizzes, it is 0.</td>
+            <td>assessment_assessments_questions</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_question_feedback</td>
+            <td>No column description available</td>
+            <td>assessment_reflect_questions</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_question_id</td>
+            <td>The id that uniquely identifies a question in an assessment</td>
+            <td>assessment_assessments_questions, assessment_checkbox_questions, assessment_checkbox_reflect_questions, assessment_math_expression_patterns, assessment_math_expression_questions, assessment_mcq_questions, assessment_mcq_reflect_questions, assessment_options, assessment_questions, assessment_reflect_questions, assessment_regex_patterns, assessment_regex_questions, assessment_responses, assessment_single_numeric_patterns, assessment_single_numeric_questions, assessment_text_exact_match_patterns, assessment_text_exact_match_questions</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_question_internal_id</td>
+            <td>No column description available</td>
+            <td>assessment_assessments_questions</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_question_order</td>
+            <td>Order in which the questions are asked in the assessment.</td>
+            <td>assessment_assessments_questions</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_question_prompt</td>
+            <td>The raw text data of the question prompt. This may contain additional markup language for formatting purposes.</td>
+            <td>assessment_questions</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_question_shuffle_options</td>
+            <td>Answer options can either be displayed to the learner in the order in which they are listed within the authoring interface, or in a random order each time the learner attempts the assessment. If the answer option ordering is randomized, &quot;assessment_question_shuffle_options&quot; will be &quot;t,&quot; and &quot;f&quot; otherwise</td>
+            <td>assessment_checkbox_questions, assessment_checkbox_reflect_questions, assessment_mcq_questions, assessment_mcq_reflect_questions</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_question_type_desc</td>
+            <td>Our assessments system defines several different quiz question types, some of which are limited only to in-video quiz questions embedded within videos. The table description is a text identifier which corresponds to the following items: regex (Regular Expression), math expression (Math Expression), mcq (Multiple Choice Question), single numeric (Numeric match), checkbox (Checkbox), text exact match (Text match), reflect (Ungraded text entry question), mcqReflect (Multiple Choice Question - Reflective / Ungraded), checkboxReflect (Checkbox - Reflective / Ungraded), checkbox poll (Checkbox - Poll question - Lecture only), poll (Multiple Choice Question - Poll question - Lecture only), continue (Pause and reflect question - Lecture only)</td>
+            <td>assessment_question_types</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_question_type_id</td>
+            <td>	
+A numerical identifier correspnding to each of the assessment question types described by the assessment_question_type_desc field</td>
+            <td>assessment_question_types, assessment_questions</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_question_update_ts</td>
+            <td>When the question was updated</td>
+            <td>assessment_questions</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_question_version</td>
+            <td>the version of the question</td>
+            <td>assessment_questions</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_question_weight</td>
+            <td>No column description available</td>
+            <td>assessment_assessments_questions</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_response_answer</td>
+            <td>No column description available</td>
+            <td>assessment_response_patterns</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_response_correct</td>
+            <td>Whether the response was correct</td>
+            <td>assessment_response_options, assessment_response_patterns</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_response_feedback</td>
+            <td>Feedback shown to the user on interacting with the assessment.</td>
+            <td>assessment_response_options, assessment_response_patterns</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_response_id</td>
+            <td>Unique id for each of users&#x27; responses to an assessment.</td>
+            <td>assessment_response_options, assessment_response_patterns, assessment_responses</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_response_score</td>
+            <td>score for the particular assessment response</td>
+            <td>assessment_responses</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_response_selected</td>
+            <td>Whether this response option was selected</td>
+            <td>assessment_response_options</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_response_weighted_score</td>
+            <td>No column description available</td>
+            <td>assessment_responses</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_scope_id</td>
+            <td>Unique contexts in which the user can interact with the assessment.</td>
+            <td>assessment_actions, assessment_scopes</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_scope_type_desc</td>
+            <td>No column description available</td>
+            <td>assessment_scope_types</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_scope_type_id</td>
+            <td>the id that links the assessmnt_scope_types table to see the assessment scope type description</td>
+            <td>assessment_actions, assessment_scope_types, assessment_scopes</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_type_desc</td>
+            <td>description of each assessment type</td>
+            <td>assessment_types</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_type_id</td>
+            <td>Type of assessment so that it can be joined with the corresponding type specific tables.</td>
+            <td>assessment_types, assessments</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_update_ts</td>
+            <td>Update timestamp for a change to the assessment.</td>
+            <td>assessments</td>
+        </tr>
+        
+        <tr>
+            <td>assessment_version</td>
+            <td>Whenever a quiz is updated the base id is kept the same but the version and assessment id are updated.</td>
+            <td>assessments</td>
+        </tr>
+        
+        <tr>
+            <td>browser_language_cd</td>
+            <td>The language code of the user&#x27;s language, as set in their broswer.</td>
+            <td>users</td>
+        </tr>
+        
+        <tr>
+            <td>choice_desc</td>
+            <td>Indicated by a unique question id/choice id combo, this provides the text of a learner&#x27;s answer selection to a demographic question.</td>
+            <td>demographics_choices</td>
+        </tr>
+        
+        <tr>
+            <td>choice_id</td>
+            <td>The choice id helps to identify how a learner responded to a demographic question. The choice id itself is not a unique identifier, but the question id/choice id combo is unique and relates to a specific choice description (choice_desc) that provides the text of a learner&#x27;s answer selection. </td>
+            <td>demographics_answers, demographics_choices</td>
+        </tr>
+        
+        <tr>
+            <td>country_cd</td>
+            <td> The country context in which the question was posted, only applicable to country-specific questions.</td>
+            <td>discussion_questions, users</td>
+        </tr>
+        
+        <tr>
+            <td>course_deleted</td>
+            <td>The timestamp of when a course was deleted. </td>
+            <td>courses</td>
+        </tr>
+        
+        <tr>
+            <td>course_desc</td>
+            <td>The course description which appears on the landing page</td>
+            <td>courses</td>
+        </tr>
+        
+        <tr>
+            <td>course_grade_overall</td>
+            <td>The grade a learner has in the course, according to the instructor-set grading policy, based on passed items. </td>
+            <td>course_grades</td>
+        </tr>
+        
+        <tr>
+            <td>course_grade_overall_passed_items</td>
+            <td>The number of items in the course that the learner has passed.</td>
+            <td>course_grades</td>
+        </tr>
+        
+        <tr>
+            <td>course_grade_ts</td>
+            <td>The timestamp for when a learner&#x27;s course grade has changed. This occurs everytime a grading event takes place. </td>
+            <td>course_grades</td>
+        </tr>
+        
+        <tr>
+            <td>course_grade_verified</td>
+            <td>The grade a learner has in the course, according to the instructor-set grading policy, based on items that have been passed and for which the learner&#x27;s identity has been verified. </td>
+            <td>course_grades</td>
+        </tr>
+        
+        <tr>
+            <td>course_grade_verified_passed_items</td>
+            <td>The number of items in the course that the learner has passed and verified their identity. </td>
+            <td>course_grades</td>
+        </tr>
+        
+        <tr>
+            <td>course_graded</td>
+            <td>Indicates whether a course contains graded items: 0 (no graded items), 1 (has graded items)</td>
+            <td>courses</td>
+        </tr>
+        
+        <tr>
+            <td>course_id</td>
+            <td>22 character unique string identifying an individual course</td>
+            <td>course_formative_quiz_grades, course_grades, course_item_assessments, course_item_grades, course_item_peer_assignments, course_item_programming_assignments, course_items, course_lessons, course_memberships, course_modules, course_progress, courses, discussion_answer_flags, discussion_answer_votes, discussion_answers, discussion_forums, discussion_question_flags, discussion_question_followings, discussion_question_votes, discussion_questions, feedback_course_comments, feedback_course_ratings, feedback_item_comments, feedback_item_ratings, on_demand_session_memberships, on_demand_sessions</td>
+        </tr>
+        
+        <tr>
+            <td>course_item_grade_overall</td>
+            <td>The grade a learner received on an item in the course.</td>
+            <td>course_item_grades</td>
+        </tr>
+        
+        <tr>
+            <td>course_item_grade_pending</td>
+            <td>True if the learner identity is pending verification.
+</td>
+            <td>course_item_grades</td>
+        </tr>
+        
+        <tr>
+            <td>course_item_grade_ts</td>
+            <td>The timestamp for when an item was graded.</td>
+            <td>course_item_grades</td>
+        </tr>
+        
+        <tr>
+            <td>course_item_grade_verified</td>
+            <td>The grade a learner recieved on an item in the course, while also verifying their identity. If a learner verify&#x27;s their identity when competing an item, the &quot;course_item_grade_overall&quot; and &quot;course_item_grade_verified&quot; will be the same. If the learner does not verify their identity when completing an item, the achieved grade will be found in &quot;course_item_grade_overall&quot; while &quot;course_item_grade_verified&quot; will be &quot;0&quot;.</td>
+            <td>course_item_grades</td>
+        </tr>
+        
+        <tr>
+            <td>course_item_id</td>
+            <td>5 character alphanumeric string identifying an individual item within a course. course_item_id need not be unique, but a course_item_id/course_id pair is unique.</td>
+            <td>course_formative_quiz_grades, course_item_assessments, course_item_grades, course_item_peer_assignments, course_item_programming_assignments, course_items, course_progress, discussion_questions, feedback_item_comments, feedback_item_ratings</td>
+        </tr>
+        
+        <tr>
+            <td>course_item_name</td>
+            <td>The name of an item, as seen in the learner view of the course. </td>
+            <td>course_items</td>
+        </tr>
+        
+        <tr>
+            <td>course_item_optional</td>
+            <td>A course item can either be optional (&quot;true&quot;, which means a learner does not need to pass it to complete the course) or not (&quot;false&quot;, which means the learner must pass it to complete the course. </td>
+            <td>course_items</td>
+        </tr>
+        
+        <tr>
+            <td>course_item_order</td>
+            <td>The order of an item within a particular lesson, with &quot;0&quot; indicating the first item in the lesson.</td>
+            <td>course_items</td>
+        </tr>
+        
+        <tr>
+            <td>course_item_passing_state_desc</td>
+            <td>0 means the learner has not passed it, 1 means the learner has passed it but not verified their identity, and 2 means the learner has passed it and verified their identity.</td>
+            <td>course_item_passing_states</td>
+        </tr>
+        
+        <tr>
+            <td>course_item_passing_state_id</td>
+            <td>Each item in a course can be in one of three &quot;states&quot;: 0 means the learner has not passed it, 1 means the learner has passed it but not verified their identity, and 2 means the learner has passed it and verified their identity.</td>
+            <td>course_item_grades, course_item_passing_states</td>
+        </tr>
+        
+        <tr>
+            <td>course_item_type_category</td>
+            <td>There are a variety of different categories that course items fall into, currently: lecture, supplemental item (ie, reading), quiz, peer review, and programming. Within each of these categories, there is the potential to have various item types, which allow for different handling of the items (for example, formative vs summative assignments and open vs closed peer reviews).</td>
+            <td>course_item_types</td>
+        </tr>
+        
+        <tr>
+            <td>course_item_type_desc</td>
+            <td>The description attempts to describe the item in a few words (for example, &quot;graded programming&quot; or &quot;exam&quot;). </td>
+            <td>course_item_types</td>
+        </tr>
+        
+        <tr>
+            <td>course_item_type_graded</td>
+            <td>An item can be either graded (&quot;true&quot;, which means it is required that a learner pass the item to pass the course) or not (&quot;false&quot;, which means it is either an assessment that allows the learner to practice their skills, such as a practice quiz, or an item that provides information, such as a lecture or reading, regardless it is an optional item). </td>
+            <td>course_item_types</td>
+        </tr>
+        
+        <tr>
+            <td>course_item_type_id</td>
+            <td>There are many different types of of items that make up a course. Each item is given an item_type_id for ease of identification. </td>
+            <td>course_item_types, course_items</td>
+        </tr>
+        
+        <tr>
+            <td>course_launch_ts</td>
+            <td>The timestamp of when a course was made available to learners. </td>
+            <td>courses</td>
+        </tr>
+        
+        <tr>
+            <td>course_lesson_id</td>
+            <td>5 character alphanumeric string identifying an individual lesson within a course. course_lesson_id need not be unique, but a course_lesson_id/course_id pair is unique.</td>
+            <td>course_items, course_lessons</td>
+        </tr>
+        
+        <tr>
+            <td>course_lesson_name</td>
+            <td>The name of a lesson, as seen in the learner view of the course. </td>
+            <td>course_lessons</td>
+        </tr>
+        
+        <tr>
+            <td>course_lesson_order</td>
+            <td>The order of a lesson within a particular module, with &quot;0&quot; indicating the first lesson in a module. </td>
+            <td>course_lessons</td>
+        </tr>
+        
+        <tr>
+            <td>course_membership_role</td>
+            <td>A user can have one of multiple roles in a course, set either by their affiliation to the course, or their activity. Currently the options include: not_enrolled, pre_enrolled_learner, browser, learner, mentor, teaching_staff, instructor, university_admin. </td>
+            <td>course_memberships</td>
+        </tr>
+        
+        <tr>
+            <td>course_membership_ts</td>
+            <td>The timestamp for when a user became affiliated with the course in that particular membership role.</td>
+            <td>course_memberships</td>
+        </tr>
+        
+        <tr>
+            <td>course_module_desc</td>
+            <td>The description of the module, seen as the note to learners above the module in the learner view of the course. </td>
+            <td>course_modules</td>
+        </tr>
+        
+        <tr>
+            <td>course_module_id</td>
+            <td>5 character alphanumeric string identifying an individual module within a course. course_module_id need not be unique, but a course_module_id/course_id pair is unique.</td>
+            <td>course_lessons, course_modules, discussion_questions</td>
+        </tr>
+        
+        <tr>
+            <td>course_module_name</td>
+            <td>The name of a module, as seen in the learner view of the course. </td>
+            <td>course_modules</td>
+        </tr>
+        
+        <tr>
+            <td>course_module_order</td>
+            <td>The order of a module within a particular course, with &quot;0&quot; indicating the first module in the course. </td>
+            <td>course_modules</td>
+        </tr>
+        
+        <tr>
+            <td>course_name</td>
+            <td>The name of a course. </td>
+            <td>courses</td>
+        </tr>
+        
+        <tr>
+            <td>course_passing_state_desc</td>
+            <td>a description for course passing state (e.g. &quot;passed&quot;, &quot;verified passed&quot;)</td>
+            <td>course_passing_states</td>
+        </tr>
+        
+        <tr>
+            <td>course_passing_state_id</td>
+            <td>A learner can be in one of four &quot;states&quot; with respect to passing a course: 0 means they have started the course but not passed, 1 means they have completed the course without identity verification, 2 means they&#x27;ve completed the course with identity verification, 3 means the course is not passable.</td>
+            <td>course_grades, course_passing_states</td>
+        </tr>
+        
+        <tr>
+            <td>course_preenrollment_ts</td>
+            <td>The timestamp of when pre-enrollment was opened for a course. </td>
+            <td>courses</td>
+        </tr>
+        
+        <tr>
+            <td>course_progress_state_type_desc</td>
+            <td>The description of each possible progress state type. Currently 0 (not started), 1 (started), and 2 (completed). </td>
+            <td>course_progress_state_types</td>
+        </tr>
+        
+        <tr>
+            <td>course_progress_state_type_id</td>
+            <td>There are different possible progress state types, each state is given a number. </td>
+            <td>course_progress, course_progress_state_types</td>
+        </tr>
+        
+        <tr>
+            <td>course_progress_ts</td>
+            <td>The timestamp for when a learner&#x27;s progress on a course item has changed. </td>
+            <td>course_progress</td>
+        </tr>
+        
+        <tr>
+            <td>course_quiz_grade</td>
+            <td>The number of points a learner scored on a particular submission of a quiz. For each learner, there can be multiple grades for one quiz if the learner submits the quiz multiple times. </td>
+            <td>course_formative_quiz_grades</td>
+        </tr>
+        
+        <tr>
+            <td>course_quiz_grade_ts</td>
+            <td>The timestamp for when a learner submitted a quiz and it was graded. For each learner, there can be multiple timestamps for one quiz if the learner submits the quiz multiple times. </td>
+            <td>course_formative_quiz_grades</td>
+        </tr>
+        
+        <tr>
+            <td>course_quiz_max_grade</td>
+            <td>Maximum possible points that can be scored on that quiz.</td>
+            <td>course_formative_quiz_grades</td>
+        </tr>
+        
+        <tr>
+            <td>course_restricted</td>
+            <td>Indicates whether enroll access to the course is open or restricted only to eligible participants. All courses are unrestricted with the exception of Capstone courses and deprecated courses: 0 (unrestricted), 1 (restricted)</td>
+            <td>courses</td>
+        </tr>
+        
+        <tr>
+            <td>course_session_enabled_ts</td>
+            <td>The timestamp of when this course used sessions (instead of on-demand)</td>
+            <td>courses</td>
+        </tr>
+        
+        <tr>
+            <td>course_slug</td>
+            <td>The shortname of a course. This can be found in the course url, in the piece immediately following &quot;coursera.org/learn/&quot;.</td>
+            <td>courses</td>
+        </tr>
+        
+        <tr>
+            <td>course_update_ts</td>
+            <td>The timestamp of when a course was last updated. </td>
+            <td>courses</td>
+        </tr>
+        
+        <tr>
+            <td>course_verification_enabled_at_ts</td>
+            <td>The timestamp of when Course Certificates were enabled for a course. </td>
+            <td>courses</td>
+        </tr>
+        
+        <tr>
+            <td>course_workload</td>
+            <td>The estimated workload of a course as shown on the course description page. </td>
+            <td>courses</td>
+        </tr>
+        
+        <tr>
+            <td>default_incorrect_feedback</td>
+            <td>The text that is displayed to learners upon answering a question incorrectly. In the authoring interface, this corresponds to the &quot;Explain Incorrect Answer (optional)&quot; field</td>
+            <td>assessment_math_expression_questions, assessment_regex_questions, assessment_single_numeric_questions, assessment_text_exact_match_questions</td>
+        </tr>
+        
+        <tr>
+            <td>detailed_context</td>
+            <td>Contains information on the element and its parents, usually including versioning information</td>
+            <td>feedback_item_comments, feedback_item_ratings</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_answer_content</td>
+            <td>Content of the answer (CML)</td>
+            <td>discussion_answers</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_answer_created_ts</td>
+            <td>The timestamp of when the discussion answer was created. </td>
+            <td>discussion_answers</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_answer_flag_active</td>
+            <td>A learner may flag a discussion answer, and later mark that answer as resolved. If a flag is still active, the value of &quot;discussion_answer_flag_active&quot; will be t. If the report was marked as resolved, the value will be f.</td>
+            <td>discussion_answer_flags</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_answer_flag_ts</td>
+            <td>Indicates the time at which the discussion answer was flagged</td>
+            <td>discussion_answer_flags</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_answer_id</td>
+            <td>The discussion answer to which the vote was applied</td>
+            <td>discussion_answer_flags, discussion_answer_votes, discussion_answers</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_answer_parent_discussion_answer_id</td>
+            <td>Parent answer if this is a nested reply (we cap nesting at 1 level)</td>
+            <td>discussion_answers</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_answer_updated_ts</td>
+            <td>The timestamp of when the discussion answer was updated.</td>
+            <td>discussion_answers</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_answer_vote_ts</td>
+            <td>The timestamp of when the vote was applied</td>
+            <td>discussion_answer_votes</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_answer_vote_value</td>
+            <td>Discussion answers can only be upvoted on the Phoenix platform; there is no such thing as a downvoting an answer. Upon upvoting, the value of this column is 1. However, if a user &quot;revokes&quot; their upvote, the value will instead be 0.</td>
+            <td>discussion_answer_votes</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_forum_description</td>
+            <td>Forum description</td>
+            <td>discussion_forums</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_forum_id</td>
+            <td>The id of the discussion forum. </td>
+            <td>discussion_forums, discussion_questions</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_forum_order</td>
+            <td>The order in which the discussion forum appears under the &quot;Course Forums&quot; label on the Discussions page. </td>
+            <td>discussion_forums</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_forum_title</td>
+            <td>Title of the forum</td>
+            <td>discussion_forums</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_question_context_type</td>
+            <td>The context of this discussion question, e.g. &quot;module&quot;</td>
+            <td>discussion_questions</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_question_created_ts</td>
+            <td>The timestamp of when the discussion question was created. </td>
+            <td>discussion_questions</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_question_details</td>
+            <td>The content of the question</td>
+            <td>discussion_questions</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_question_flag_active</td>
+            <td>whether or not the flag is active</td>
+            <td>discussion_question_flags</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_question_flag_ts</td>
+            <td>timestamp of flagging</td>
+            <td>discussion_question_flags</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_question_following_active</td>
+            <td>true if following, false if not</td>
+            <td>discussion_question_followings</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_question_following_ts</td>
+            <td>timestamp of following status change</td>
+            <td>discussion_question_followings</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_question_id</td>
+            <td>The id of the question in the discussion forum.</td>
+            <td>discussion_answers, discussion_question_flags, discussion_question_followings, discussion_question_votes, discussion_questions</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_question_title</td>
+            <td>The title of the question.</td>
+            <td>discussion_questions</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_question_updated_ts</td>
+            <td>The timestamp of when the discussion question was updated.</td>
+            <td>discussion_questions</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_question_vote_ts</td>
+            <td>Timestamp of vote</td>
+            <td>discussion_question_votes</td>
+        </tr>
+        
+        <tr>
+            <td>discussion_question_vote_value</td>
+            <td>0 = nothing, 1 = upvote</td>
+            <td>discussion_question_votes</td>
+        </tr>
+        
+        <tr>
+            <td>feedback_active</td>
+            <td>Indicates whether or not the feedback is still active, or if it was resolved, whether by the submitter or the instructor</td>
+            <td>feedback_item_comments</td>
+        </tr>
+        
+        <tr>
+            <td>feedback_category</td>
+            <td>For course reviews, the only category should be &quot;generic&quot;</td>
+            <td>feedback_course_comments, feedback_item_comments</td>
+        </tr>
+        
+        <tr>
+            <td>feedback_max_rating</td>
+            <td>Maximum value of the rating: 1 for item-level ratings</td>
+            <td>feedback_course_ratings, feedback_item_ratings</td>
+        </tr>
+        
+        <tr>
+            <td>feedback_rating</td>
+            <td>Value of the rating. Should be 1-5 for active course ratings</td>
+            <td>feedback_course_ratings, feedback_item_ratings</td>
+        </tr>
+        
+        <tr>
+            <td>feedback_system</td>
+            <td>Feedback system: FLAG for item-level and sub-item-level flagging</td>
+            <td>feedback_course_comments, feedback_course_ratings, feedback_item_comments, feedback_item_ratings</td>
+        </tr>
+        
+        <tr>
+            <td>feedback_text</td>
+            <td>CML text of the feedback</td>
+            <td>feedback_course_comments, feedback_item_comments</td>
+        </tr>
+        
+        <tr>
+            <td>feedback_ts</td>
+            <td>Timestamp when the feedback was left</td>
+            <td>feedback_course_comments, feedback_course_ratings, feedback_item_comments, feedback_item_ratings</td>
+        </tr>
+        
+        <tr>
+            <td>feedback_unit_id</td>
+            <td>Detailed info for the element receiving feedback. Will generally be a versioned id for item-level feedback, or a sub-item id when feedback can be left on particular elements within an item, e.g. a part of a programming assignment</td>
+            <td>feedback_item_comments, feedback_item_ratings</td>
+        </tr>
+        
+        <tr>
+            <td>feedback_unit_type</td>
+            <td>The type of the element feedback is being left on. May be an item type or sub-item type</td>
+            <td>feedback_item_comments, feedback_item_ratings</td>
+        </tr>
+        
+        <tr>
+            <td>guest_user_id</td>
+            <td>ids of learners who did not log in</td>
+            <td>assessment_actions</td>
+        </tr>
+        
+        <tr>
+            <td>on_demand_session_id</td>
+            <td>unique identifer for a course&#x27;s session on the Phoenix platform</td>
+            <td>on_demand_session_memberships, on_demand_sessions</td>
+        </tr>
+        
+        <tr>
+            <td>on_demand_sessions_end_ts</td>
+            <td>The end date of a Phoenix session</td>
+            <td>on_demand_sessions</td>
+        </tr>
+        
+        <tr>
+            <td>on_demand_sessions_enrollment_end_ts</td>
+            <td>The end date of the enrollment period of a Phoenix session</td>
+            <td>on_demand_sessions</td>
+        </tr>
+        
+        <tr>
+            <td>on_demand_sessions_membership_end_ts</td>
+            <td>the datetime of when the learner ended his or her &#x27;member&#x27; role for this course&#x27;s session</td>
+            <td>on_demand_session_memberships</td>
+        </tr>
+        
+        <tr>
+            <td>on_demand_sessions_membership_start_ts</td>
+            <td>the datetime of when the learner became a &#x27;member&#x27; role for this course&#x27;s session</td>
+            <td>on_demand_session_memberships</td>
+        </tr>
+        
+        <tr>
+            <td>on_demand_sessions_start_ts</td>
+            <td>The start date of a Phoenix session</td>
+            <td>on_demand_sessions</td>
+        </tr>
+        
+        <tr>
+            <td>peer_assignment_base_id</td>
+            <td>The unversioned id</td>
+            <td>peer_assignments</td>
+        </tr>
+        
+        <tr>
+            <td>peer_assignment_id</td>
+            <td>This is a &#x27;course_content_id&#x27;, and is versioned. (e.g ABC@1 is version 1)</td>
+            <td>course_item_peer_assignments, peer_assignment_review_schema_part_options, peer_assignment_review_schema_parts, peer_assignment_submission_schema_parts, peer_assignments, peer_review_part_choices, peer_review_part_free_responses, peer_submission_part_free_responses, peer_submission_part_scores, peer_submission_part_urls, peer_submissions</td>
+        </tr>
+        
+        <tr>
+            <td>peer_assignment_maximum_score</td>
+            <td>Maximum score for this assignment. This is nullable because not all assignments generate scores.
+</td>
+            <td>peer_assignments</td>
+        </tr>
+        
+        <tr>
+            <td>peer_assignment_passing_fraction</td>
+            <td>Fraction of the maximum possible score that a submitter must achieve in order to pass. This only exists for assignments that generate scores</td>
+            <td>peer_assignments</td>
+        </tr>
+        
+        <tr>
+            <td>peer_assignment_required_review_count</td>
+            <td>The number of reviews a submitter needs to do (of others&#x27; submissions) to get credit.</td>
+            <td>peer_assignments</td>
+        </tr>
+        
+        <tr>
+            <td>peer_assignment_required_reviewer_count_for_score</td>
+            <td>The number of reviews a submission must receive to get a score.</td>
+            <td>peer_assignments</td>
+        </tr>
+        
+        <tr>
+            <td>peer_assignment_required_wait_for_score_ms</td>
+            <td>Amount of time that must elapse since a submission has been submitted before it may have a score. This only exists for assignments that generate scores.
+</td>
+            <td>peer_assignments</td>
+        </tr>
+        
+        <tr>
+            <td>peer_assignment_review_schema_part_id</td>
+            <td>The part of the review schema that this answer applies to</td>
+            <td>peer_assignment_review_schema_part_options, peer_assignment_review_schema_parts, peer_review_part_choices, peer_review_part_free_responses, peer_submission_part_scores</td>
+        </tr>
+        
+        <tr>
+            <td>peer_assignment_review_schema_part_maximum_score</td>
+            <td>The maximum score that this part can give. This is nullable because not all parts generate scores</td>
+            <td>peer_assignment_review_schema_parts</td>
+        </tr>
+        
+        <tr>
+            <td>peer_assignment_review_schema_part_option_id</td>
+            <td>This option&#x27;s id within the part</td>
+            <td>peer_assignment_review_schema_part_options, peer_review_part_choices</td>
+        </tr>
+        
+        <tr>
+            <td>peer_assignment_review_schema_part_option_score</td>
+            <td>The score of this option. Note that this is nullable because not all options make scores.</td>
+            <td>peer_assignment_review_schema_part_options</td>
+        </tr>
+        
+        <tr>
+            <td>peer_assignment_review_schema_part_option_text</td>
+            <td>The text of this option</td>
+            <td>peer_assignment_review_schema_part_options</td>
+        </tr>
+        
+        <tr>
+            <td>peer_assignment_review_schema_part_order</td>
+            <td>The order within the assignment (lowest comes first)</td>
+            <td>peer_assignment_review_schema_parts</td>
+        </tr>
+        
+        <tr>
+            <td>peer_assignment_review_schema_part_prompt</td>
+            <td>The prompt (a question for the reviewer to answer)</td>
+            <td>peer_assignment_review_schema_parts</td>
+        </tr>
+        
+        <tr>
+            <td>peer_assignment_review_schema_part_type</td>
+            <td>The type (&quot;multiLineInput&quot;, &quot;options&quot;, &quot;singleLineInput&quot;, &quot;yesNo&quot;)</td>
+            <td>peer_assignment_review_schema_parts</td>
+        </tr>
+        
+        <tr>
+            <td>peer_assignment_submission_schema_part_id</td>
+            <td>The part of the submission schema that this answer applies to</td>
+            <td>peer_assignment_submission_schema_parts, peer_submission_part_free_responses, peer_submission_part_urls</td>
+        </tr>
+        
+        <tr>
+            <td>peer_assignment_submission_schema_part_order</td>
+            <td>The order within the assignment (lowest comes first)</td>
+            <td>peer_assignment_submission_schema_parts</td>
+        </tr>
+        
+        <tr>
+            <td>peer_assignment_submission_schema_part_prompt</td>
+            <td>The prompt (a question for the submitter to answer)</td>
+            <td>peer_assignment_submission_schema_parts</td>
+        </tr>
+        
+        <tr>
+            <td>peer_assignment_submission_schema_part_type</td>
+            <td>The type (&quot;fileUpload&quot;, &quot;plainText&quot;, &quot;richText&quot;, &quot;url&quot;)</td>
+            <td>peer_assignment_submission_schema_parts</td>
+        </tr>
+        
+        <tr>
+            <td>peer_assignment_type</td>
+            <td>The type (&quot;standard&quot;, &quot;graded&quot;, &quot;closed&quot;)</td>
+            <td>peer_assignments</td>
+        </tr>
+        
+        <tr>
+            <td>peer_assignment_update_ts</td>
+            <td>When this version of the assignment was created</td>
+            <td>peer_assignments</td>
+        </tr>
+        
+        <tr>
+            <td>peer_comment_created_ts</td>
+            <td>The time when the comment was created. The comment never changes after creation</td>
+            <td>peer_comments</td>
+        </tr>
+        
+        <tr>
+            <td>peer_comment_id</td>
+            <td>primary key</td>
+            <td>peer_comments</td>
+        </tr>
+        
+        <tr>
+            <td>peer_comment_text</td>
+            <td>The text of the comment</td>
+            <td>peer_comments</td>
+        </tr>
+        
+        <tr>
+            <td>peer_review_created_ts</td>
+            <td> The time when that the review was created. The review never changes after creation</td>
+            <td>peer_reviews</td>
+        </tr>
+        
+        <tr>
+            <td>peer_review_first_visible_to_submitter_ts</td>
+            <td>The time when that the review was first visible to the submission submitter. Is NULL if the review is not visible. Note that an invisible review might never become visible</td>
+            <td>peer_reviews</td>
+        </tr>
+        
+        <tr>
+            <td>peer_review_id</td>
+            <td>The review that this answer is part of</td>
+            <td>peer_review_part_choices, peer_review_part_free_responses, peer_reviews</td>
+        </tr>
+        
+        <tr>
+            <td>peer_review_marked_helpful_ts</td>
+            <td>The time that the review receiver marked this review as helpful. Is NULL if the receiver has not marked it helpful. This feature is deprecated in favor of ratings around 2015-06-19 (see peer_review_rated_ts and peer_review_ratings
+columns below), but this column still contains data from when the feature was not deprecated.</td>
+            <td>peer_reviews</td>
+        </tr>
+        
+        <tr>
+            <td>peer_review_part_free_response_text</td>
+            <td>The answer</td>
+            <td>peer_review_part_free_responses</td>
+        </tr>
+        
+        <tr>
+            <td>peer_review_rated_ts</td>
+            <td>The time that the review receiver rated this review. Is NULL if the receiver has not rated it. This feature started existing around 2015-06-19 and stopped existing around 2015-09-16.</td>
+            <td>peer_reviews</td>
+        </tr>
+        
+        <tr>
+            <td>peer_review_rating</td>
+            <td>The rating that the review receiver gave this review. Is NULL if the receiver has not rated it. This feature started existing around 2015-06-19 and stopped existing around 2015-09-16.</td>
+            <td>peer_reviews</td>
+        </tr>
+        
+        <tr>
+            <td>peer_skip_created_ts</td>
+            <td>The time when the skipper skipped this submission</td>
+            <td>peer_skips</td>
+        </tr>
+        
+        <tr>
+            <td>peer_skip_id</td>
+            <td>Primary Key</td>
+            <td>peer_skips</td>
+        </tr>
+        
+        <tr>
+            <td>peer_skip_text</td>
+            <td>The explanation that the skipper gave</td>
+            <td>peer_skips</td>
+        </tr>
+        
+        <tr>
+            <td>peer_skip_type</td>
+            <td>The type of skip (&quot;inappropriateContent&quot;, &quot;incompleteSubmission&quot;, &quot;other&quot;, &quot;plagiarism&quot;)</td>
+            <td>peer_skips</td>
+        </tr>
+        
+        <tr>
+            <td>peer_submission_created_ts</td>
+            <td>The time that this submission was created. The submission itself never changes after creation, but some columns affected by things outside the submission may change after creation: (i) `peer_submission_removed_from_public_ts` changes from NULL to non-NULL if/when the author removes the submission from the public (ii) `peer_submission_score_available_ts` and `peer_submission_score` change from NULL to non-NULL if/when the submission receives a score</td>
+            <td>peer_submissions</td>
+        </tr>
+        
+        <tr>
+            <td>peer_submission_id</td>
+            <td>The submission that this answer is part of</td>
+            <td>peer_comments, peer_reviews, peer_skips, peer_submission_part_free_responses, peer_submission_part_scores, peer_submission_part_urls, peer_submissions</td>
+        </tr>
+        
+        <tr>
+            <td>peer_submission_is_draft</td>
+            <td>Whether this submission is a draft. Drafts are not visible to anyone except the author</td>
+            <td>peer_submissions</td>
+        </tr>
+        
+        <tr>
+            <td>peer_submission_part_free_response_text</td>
+            <td>The contents of the answer</td>
+            <td>peer_submission_part_free_responses</td>
+        </tr>
+        
+        <tr>
+            <td>peer_submission_part_score</td>
+            <td>The score</td>
+            <td>peer_submission_part_scores</td>
+        </tr>
+        
+        <tr>
+            <td>peer_submission_part_url_description</td>
+            <td>The url description of the answer</td>
+            <td>peer_submission_part_urls</td>
+        </tr>
+        
+        <tr>
+            <td>peer_submission_part_url_title</td>
+            <td>The url title of the answer</td>
+            <td>peer_submission_part_urls</td>
+        </tr>
+        
+        <tr>
+            <td>peer_submission_part_url_url</td>
+            <td>The url link of the answer</td>
+            <td>peer_submission_part_urls</td>
+        </tr>
+        
+        <tr>
+            <td>peer_submission_removed_from_public_ts</td>
+            <td>When this submission was removed from the public review area. This is NULL for public submissions that haven&#x27;t been removed. This is also NULL for drafts because they were never in the public review area</td>
+            <td>peer_submissions</td>
+        </tr>
+        
+        <tr>
+            <td>peer_submission_score</td>
+            <td>The submission&#x27;s score. This is NULL for submissions without scores and for assignments that don&#x27;t generate scores</td>
+            <td>peer_submissions</td>
+        </tr>
+        
+        <tr>
+            <td>peer_submission_score_available_ts</td>
+            <td>The first time at which the score for this submission was available. This is NULL for submissions without scores and for assignments that don&#x27;t generate scores. Note currently (2016-01) there is a lag between a submission get all reviews needed and peer_submission_score_available_ts. And for learners who submit by review deadline, they willl get be graded even if not meeting N-review requirement, as long as at least being reviewed once(under which scenario, this timestamp will be past review deadline).</td>
+            <td>peer_submissions</td>
+        </tr>
+        
+        <tr>
+            <td>peer_submission_title</td>
+            <td>The &quot;title&quot; field of the submission</td>
+            <td>peer_submissions</td>
+        </tr>
+        
+        <tr>
+            <td>primary_translation_equivalent_course_id</td>
+            <td>The course id for the primary translation of a course. </td>
+            <td>courses</td>
+        </tr>
+        
+        <tr>
+            <td>profile_language_cd</td>
+            <td>The language code of the user&#x27;s language, based on IP address or as set by the user in their profile. </td>
+            <td>users</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignment_base_id</td>
+            <td>None versioned id</td>
+            <td>programming_assignments</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignment_id</td>
+            <td>This is a &#x27;course_content_id&#x27;, and is versioned. (e.g ABC@1 is version 1)</td>
+            <td>course_item_programming_assignments, programming_assignment_submission_schema_part_grid_schemas, programming_assignment_submission_schema_part_xbkvdx, programming_assignment_submission_schema_parts, programming_assignments, programming_submission_part_evaluations, programming_submission_part_grid_grading_statuses, programming_submission_part_grid_submissions, programming_submission_part_text_submissions, programming_submission_parts, programming_submissions</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignment_instruction_text</td>
+            <td>The CML Instruction content</td>
+            <td>programming_assignments</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignment_passing_fraction</td>
+            <td>Fraction of the maximum possible score that you must achieve in order to pass. This only exists for assignments that generate scores.</td>
+            <td>programming_assignments</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignment_submission_builder_schema</td>
+            <td>No column description available</td>
+            <td>programming_assignments</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignment_submission_builder_schema_type</td>
+            <td>No column description available</td>
+            <td>programming_assignments</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignment_submission_schema_default_g663i6</td>
+            <td>The default incorrect feedback of a submission. Name shortened from &#x27;programming_assignment_submission_schema_default_incorrect_feedback&#x27; for compatibility.</td>
+            <td>programming_assignment_submission_schema_parts</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignment_submission_schema_part_2fyxz4</td>
+            <td>Numeric type convert By Internal Class. For example, Internal(2, 3, true, false) -&gt; [2, 3),
+ Regex type convert by AnswerPattern Class. Name shortened from &#x27;programming_assignment_submission_schema_part_possible_response_answers&#x27; for compatibility.</td>
+            <td>programming_assignment_submission_schema_part_xbkvdx</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignment_submission_schema_part_d4407a</td>
+            <td>The result of the possible response. Name shortened from &#x27;programming_assignment_submission_schema_part_possible_response_is_correct&#x27; for compatibility.</td>
+            <td>programming_assignment_submission_schema_part_xbkvdx</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignment_submission_schema_part_grid_49aqrn</td>
+            <td>Custom grid grader parameters. Name shortened from &#x27;programming_assignment_submission_schema_part_grid_custom_grader_parameters&#x27; for compatibility.</td>
+            <td>programming_assignment_submission_schema_part_grid_schemas</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignment_submission_schema_part_grid_gyd0w6</td>
+            <td>Expected file name. Name shortened from &#x27;programming_assignment_submission_schema_part_grid_schema_expected_file_name&#x27; for compatibility.</td>
+            <td>programming_assignment_submission_schema_part_grid_schemas</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignment_submission_schema_part_grid_lb2xog</td>
+            <td>The universal Id of the part executor in Grid. Name shortened from &#x27;programming_assignment_submission_schema_part_grid_schema_executor_id&#x27; for compatibility.</td>
+            <td>programming_assignment_submission_schema_part_grid_schemas</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignment_submission_schema_part_grid_svecfr</td>
+            <td>The expected timeout of the part. Name shortened from &#x27;programming_assignment_submission_schema_part_grid_schema_timeout&#x27; for compatibility.</td>
+            <td>programming_assignment_submission_schema_part_grid_schemas</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignment_submission_schema_part_id</td>
+            <td>The universal part id of the programming assignment. maybe duplicate in different programming assignment.</td>
+            <td>programming_assignment_submission_schema_part_grid_schemas, programming_assignment_submission_schema_part_xbkvdx, programming_assignment_submission_schema_parts, programming_submission_part_evaluations, programming_submission_part_grid_grading_statuses, programming_submission_part_grid_submissions, programming_submission_part_text_submissions, programming_submission_parts</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignment_submission_schema_part_is_optional</td>
+            <td>Whether this part is optional or not.</td>
+            <td>programming_assignment_submission_schema_parts</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignment_submission_schema_part_m934n</td>
+            <td>The order of the possible response in the programming assignment. Name shortened from &#x27;programming_assignment_submission_schema_part_possible_response_order&#x27; for compatibility.</td>
+            <td>programming_assignment_submission_schema_part_xbkvdx</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignment_submission_schema_part_max_score</td>
+            <td>Max score of the part.</td>
+            <td>programming_assignment_submission_schema_parts</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignment_submission_schema_part_mrj41</td>
+            <td>The feedback of the possible response. Name shortened from &#x27;programming_assignment_submission_schema_part_possible_response_feedback&#x27; for compatibility.</td>
+            <td>programming_assignment_submission_schema_part_xbkvdx</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignment_submission_schema_part_order</td>
+            <td>The order within the assignment (lowest comes first).</td>
+            <td>programming_assignment_submission_schema_parts</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignment_submission_schema_part_title</td>
+            <td>Name of the submission.</td>
+            <td>programming_assignment_submission_schema_parts</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignment_submission_schema_part_type</td>
+            <td>The type ( &quot;grid&quot;, &quot;numeric&quot;, &quot;regex&quot;)</td>
+            <td>programming_assignment_submission_schema_parts</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignment_submission_schema_part_xacgt8</td>
+            <td>The internal authoring version of the part, only used by authoring tools. Name shortened from &#x27;programming_assignment_submission_schema_part_authoring_version&#x27; for compatibility.</td>
+            <td>programming_assignment_submission_schema_parts</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignment_submission_type</td>
+            <td>The type (&quot;mulitpart&quot;)</td>
+            <td>programming_assignments</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignment_type</td>
+            <td>The type (&quot;standard&quot;, &quot;graded&quot;, &quot;closed&quot;).</td>
+            <td>programming_assignments</td>
+        </tr>
+        
+        <tr>
+            <td>programming_assignment_update_ts</td>
+            <td>When this version of the assignment was created.</td>
+            <td>programming_assignments</td>
+        </tr>
+        
+        <tr>
+            <td>programming_submission_created_ts</td>
+            <td>The timestamp of this submission.</td>
+            <td>programming_submissions</td>
+        </tr>
+        
+        <tr>
+            <td>programming_submission_grading_status</td>
+            <td>Status(&quot;started&quot;, &quot;successed&quot;, &quot;failed&quot;)</td>
+            <td>programming_submissions</td>
+        </tr>
+        
+        <tr>
+            <td>programming_submission_id</td>
+            <td>The universal submission Id. </td>
+            <td>programming_submission_part_evaluations, programming_submission_part_grid_grading_statuses, programming_submission_part_grid_submissions, programming_submission_part_text_submissions, programming_submission_parts, programming_submissions</td>
+        </tr>
+        
+        <tr>
+            <td>programming_submission_part_feedback</td>
+            <td>Feedback of this part.</td>
+            <td>programming_submission_part_evaluations</td>
+        </tr>
+        
+        <tr>
+            <td>programming_submission_part_grading_ts</td>
+            <td>Timestamp of this part.</td>
+            <td>programming_submission_part_evaluations</td>
+        </tr>
+        
+        <tr>
+            <td>programming_submission_part_grid_grading_status_jzmjz1</td>
+            <td>The current status of the executor run. Type(&quot;PENDING&quot;, &quot;SUCCESSED&quot;, &quot;FAILED&quot;). Name shortened from &#x27;programming_submission_part_grid_grading_status_executor_run_status&#x27; for compatibility.</td>
+            <td>programming_submission_part_grid_grading_statuses</td>
+        </tr>
+        
+        <tr>
+            <td>programming_submission_part_grid_grading_status_pgrtf5</td>
+            <td>The grid executorRun Id. Only for internal use. Name shortened from &#x27;programming_submission_part_grid_grading_status_executor_run_id&#x27; for compatibility.</td>
+            <td>programming_submission_part_grid_grading_statuses</td>
+        </tr>
+        
+        <tr>
+            <td>programming_submission_part_grid_grading_status_x21exo</td>
+            <td>The timestamp of the start of the part&#x27;s executor run. Name shortened from &#x27;programming_submission_part_grid_grading_status_executor_run_start_ts&#x27; for compatibility.</td>
+            <td>programming_submission_part_grid_grading_statuses</td>
+        </tr>
+        
+        <tr>
+            <td>programming_submission_part_grid_submission_custom_cykkte</td>
+            <td>The extra grid grader parameter. Name shortened from &#x27;programming_submission_part_grid_submission_custom_grader_parameters&#x27; for compatibility.</td>
+            <td>programming_submission_part_grid_submissions</td>
+        </tr>
+        
+        <tr>
+            <td>programming_submission_part_grid_submission_url</td>
+            <td>The url of the grid submission.</td>
+            <td>programming_submission_part_grid_submissions</td>
+        </tr>
+        
+        <tr>
+            <td>programming_submission_part_score</td>
+            <td>Score of this part.</td>
+            <td>programming_submission_part_evaluations</td>
+        </tr>
+        
+        <tr>
+            <td>programming_submission_part_text_submission_answer</td>
+            <td>The text answer of the submission. Regex or Numeric.</td>
+            <td>programming_submission_part_text_submissions</td>
+        </tr>
+        
+        <tr>
+            <td>programming_submission_part_type</td>
+            <td>Type(&quot;multipart&quot;)</td>
+            <td>programming_submission_parts</td>
+        </tr>
+        
+        <tr>
+            <td>programming_submission_score</td>
+            <td>No column description available</td>
+            <td>programming_submissions</td>
+        </tr>
+        
+        <tr>
+            <td>programming_submission_type</td>
+            <td>Type(&quot;multipart&quot;)</td>
+            <td>programming_submissions</td>
+        </tr>
+        
+        <tr>
+            <td>question_desc</td>
+            <td>The text of the quesiton the learner was asked.</td>
+            <td>demographics_questions</td>
+        </tr>
+        
+        <tr>
+            <td>question_id</td>
+            <td>The indentifier for a particular question the learner answered. Can be used to connect demographics_answers, demographics_questions, and demographics_choices.</td>
+            <td>demographics_answers, demographics_choices, demographics_questions</td>
+        </tr>
+        
+        <tr>
+            <td>question_type_desc</td>
+            <td>Described the answer required by each question type: 0 (mulitple choice), 1 (integer), 2 (text).</td>
+            <td>demographics_question_types</td>
+        </tr>
+        
+        <tr>
+            <td>question_type_id</td>
+            <td>Indiciation of where this data was collected, based on id 0 (choice_id), 1 (integer response), 2 (text response).</td>
+            <td>demographics_question_types, demographics_questions</td>
+        </tr>
+        
+        <tr>
+            <td>region_cd</td>
+            <td>The region code of the user&#x27;s location, based on IP address or as set by the user in their profile. </td>
+            <td>users</td>
+        </tr>
+        
+        <tr>
+            <td>submission_ts</td>
+            <td>The timestamp for when the learner submitted their demographic survey.</td>
+            <td>demographics_answers</td>
+        </tr>
+        
+        <tr>
+            <td>taiwan_assessments_user_id</td>
+            <td>Encrypted Coursera user id for taiwan assessments data.</td>
+            <td>assessment_actions</td>
+        </tr>
+        
+        <tr>
+            <td>taiwan_demographics_user_id</td>
+            <td>Encrypted Coursera user id for taiwan demographics data.</td>
+            <td>demographics_answers</td>
+        </tr>
+        
+        <tr>
+            <td>taiwan_discussions_user_id</td>
+            <td>Encrypted Coursera user id for taiwan discussions data.</td>
+            <td>discussion_answer_flags, discussion_answer_votes, discussion_answers, discussion_question_flags, discussion_question_followings, discussion_question_votes, discussion_questions</td>
+        </tr>
+        
+        <tr>
+            <td>taiwan_feedback_user_id</td>
+            <td>Encrypted Coursera user id for taiwan feedback data.</td>
+            <td>feedback_course_comments, feedback_course_ratings, feedback_item_comments, feedback_item_ratings</td>
+        </tr>
+        
+        <tr>
+            <td>taiwan_peer_assignments_user_id</td>
+            <td>Encrypted Coursera user id for taiwan peer_assignments data.</td>
+            <td>peer_comments, peer_reviews, peer_skips, peer_submissions</td>
+        </tr>
+        
+        <tr>
+            <td>taiwan_programming_assignments_user_id</td>
+            <td>Encrypted Coursera user id for taiwan programming_assignments data.</td>
+            <td>programming_submissions</td>
+        </tr>
+        
+        <tr>
+            <td>taiwan_user_id</td>
+            <td>Encrypted Coursera user id for taiwan data.</td>
+            <td>course_formative_quiz_grades, course_grades, course_item_grades, course_memberships, course_progress, on_demand_session_memberships, taiwan_course_user_ids, users</td>
+        </tr>
+        
+        <tr>
+            <td>user_join_ts</td>
+            <td>The timestamp of when the user joined Coursera.</td>
+            <td>users</td>
+        </tr>
+        
+    </table>
+
+    <h1> Data format notes </h1>
+        <p>
+            Coursera uses Amazon Redshift for internal analytics. The data we provide as research
+            exports are generated by unloading sanitized subsets of this internal research data.
+            We want this data to be as useful as possible, and recognize that volume, variety,
+            and formatting may pose challenges. Please reach out with specific questions about
+            importing data into your system after reviewing the following notes.
+        </p>
+        <p>
+            Each CSV format data file contains a header with column names followed by zero or more
+            (tables may be empty) rows of data. Rows are separated by a newline character (\n).
+            Within each row, columns are enclosed by double-quotes (") and separated by commas
+            characters (,). String column data may contain double-quotes and and backslash
+            characters (\). Both of these will be escaped using a backslash character. For
+            example, here is a very short table with two columns:
+        </p>
+        <pre>
+number,bool,null,string,json
+1,t,,"a string","{\"key1\":1,\"key2\":\"\\\"a nested quotation\\\"\"}"
+
+        </pre>
+        <p>
+            The second column includes JSON-formatted data with escaped double-quote and backslash
+            characters. You must take special care to interpret escaped characters correctly
+            when importing data into other programs. Code examples showing how to load data
+            with a few common analytics programs are shown below below.
+        </p>
+
+        <h3>Python</h3>
+            <pre>
+import csv
+
+csv.register_dialect(
+    'coursera-postgres-format',
+    delimiter=',',
+    doublequote=False,
+    escapechar='\\',
+    lineterminator='\n',
+    quotechar='"')
+
+with open('path/to/courses.csv', 'r') as f:
+    reader = csv.reader(f, dialect='coursera-postgres-format')
+    header = next(reader)
+    rows = list(reader)
+            </pre>
+
+        <h3>PostegreSQL</h3>
+            <pre>
+COPY courses
+FROM 'path/to/courses.csv'
+CSV
+DELIMITER ','
+QUOTE '"'
+ESCAPE '\'
+HEADER
+;
+            </pre>
+
+    <h1> Research Community </h1>
+        We encourage MOOC researchers to share tools and techniques with one another.
+        <ul>
+            <li>
+                Jasper Ginn of Leiden University maintains a thoroughly documented, open-source
+                <a href="https://github.com/JasperHG90/coursera-ondemand-exports">script</a>
+                to load Coursera on-demand export data into a PostgreSQL database.
+            </li>
+        </ul>
+        Please contact <a href="mailto:data-feedback@coursera.org">data-feedback@coursera
+    .org</a> if
+        you would like to join this list.
+</div>

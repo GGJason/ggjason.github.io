@@ -1,0 +1,82 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>programming_submission_part_evaluations</h1>
+
+    <h2>Description</h2>
+    <p>
+        scores of individual parts of a programming assignment
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>programming_assignment_id</td><td>The universal id of the programming assignment.</td>
+        </tr>
+        
+        <tr>
+          <td>programming_assignment_submission_schema_part_id</td><td>The universal part id of the programming assignment. maybe duplicate in different programming assignment.</td>
+        </tr>
+        
+        <tr>
+          <td>programming_submission_id</td><td>The universal submission Id.</td>
+        </tr>
+        
+        <tr>
+          <td>programming_submission_part_score</td><td>Score of this part.</td>
+        </tr>
+        
+        <tr>
+          <td>programming_submission_part_grading_ts</td><td>Timestamp of this part.</td>
+        </tr>
+        
+        <tr>
+          <td>programming_submission_part_feedback</td><td>Feedback of this part.</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE programming_submission_part_evaluations (
+    programming_assignment_id VARCHAR(50) 
+    ,programming_assignment_submission_schema_part_id VARCHAR(50) 
+    ,programming_submission_id VARCHAR(50) 
+    ,programming_submission_part_score INT4 
+    ,programming_submission_part_grading_ts TIMESTAMP 
+    ,programming_submission_part_feedback VARCHAR(65535) 
+    ,PRIMARY KEY (programming_assignment_id, programming_assignment_submission_schema_part_id, programming_submission_id)
+    ,FOREIGN KEY (programming_assignment_id, programming_submission_id) REFERENCES programming_submissions(programming_assignment_id, programming_submission_id)
+    ,FOREIGN KEY (programming_assignment_submission_schema_part_id, programming_assignment_id) REFERENCES programming_assignment_submission_schema_parts(programming_assignment_submission_schema_part_id, programming_assignment_id)
+    ,FOREIGN KEY (programming_assignment_id) REFERENCES programming_assignments(programming_assignment_id)
+);
+    </pre>
+</div>

@@ -1,0 +1,17 @@
+course_item_type_id,course_item_type_desc,course_item_type_category,course_item_type_graded
+6,"exam","quiz",t
+13,"graded lti","lti",t
+5,"quiz","quiz",f
+2,"assess open single page","quiz",f
+8,"graded peer","peer",t
+1,"lecture","lecture",f
+7,"others",,
+10,"graded programming","programming",t
+14,"ungraded lti","lti",f
+9,"closed peer","peer",t
+11,"ungraded programming","programming",f
+12,"phased peer","peer",t
+15,"slideshow","slideshow",f
+3,"supplement","supplement",f
+16,"staff graded","staffGraded",t
+4,"peer","peer",f

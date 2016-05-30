@@ -1,0 +1,73 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>on_demand_session_memberships</h1>
+
+    <h2>Description</h2>
+    <p>
+        For each course&#x27;s session, list the learners with the role of &#x27;member&#x27; in that session and their start/end timestamps
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>course_id</td><td>22 character unique string identifying an individual course</td>
+        </tr>
+        
+        <tr>
+          <td>on_demand_session_id</td><td>unique identifer for a course&#x27;s session on the Phoenix platform</td>
+        </tr>
+        
+        <tr>
+          <td>taiwan_user_id</td><td>Encrypted Coursera user id for taiwan data.</td>
+        </tr>
+        
+        <tr>
+          <td>on_demand_sessions_membership_start_ts</td><td>the datetime of when the learner became a &#x27;member&#x27; role for this course&#x27;s session</td>
+        </tr>
+        
+        <tr>
+          <td>on_demand_sessions_membership_end_ts</td><td>the datetime of when the learner ended his or her &#x27;member&#x27; role for this course&#x27;s session</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE on_demand_session_memberships (
+    course_id varchar 
+    ,on_demand_session_id varchar 
+    ,taiwan_user_id VARCHAR(50) NOT NULL
+    ,on_demand_sessions_membership_start_ts timestamp 
+    ,on_demand_sessions_membership_end_ts timestamp 
+);
+    </pre>
+</div>

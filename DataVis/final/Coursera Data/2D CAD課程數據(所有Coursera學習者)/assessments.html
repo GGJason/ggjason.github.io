@@ -1,0 +1,81 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>assessments</h1>
+
+    <h2>Description</h2>
+    <p>
+        Table of all the assessments / quizzes.
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>assessment_id</td><td>Each quiz is assigned a unique id that is a combination of a base id and version. </td>
+        </tr>
+        
+        <tr>
+          <td>assessment_base_id</td><td>Every quiz has a globally unique base id that is associated with a course. 
+</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_version</td><td>Whenever a quiz is updated the base id is kept the same but the version and assessment id are updated.</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_type_id</td><td>Type of assessment so that it can be joined with the corresponding type specific tables.</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_update_ts</td><td>Update timestamp for a change to the assessment.</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_passing_fraction</td><td>No column description available</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE assessments (
+    assessment_id VARCHAR(50) 
+    ,assessment_base_id VARCHAR(50) 
+    ,assessment_version INT4 
+    ,assessment_type_id INT4 
+    ,assessment_update_ts TIMESTAMP 
+    ,assessment_passing_fraction FLOAT4 
+    ,PRIMARY KEY (assessment_id)
+    ,FOREIGN KEY (assessment_type_id) REFERENCES assessment_types(assessment_type_id)
+);
+    </pre>
+</div>

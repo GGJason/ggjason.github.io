@@ -1,0 +1,75 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>assessment_response_options</h1>
+
+    <h2>Description</h2>
+    <p>
+        learner responses to assessments
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>assessment_response_id</td><td>Unique id for each of users&#x27; responses to an assessment.</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_option_id</td><td>unique choice option id, linking to the assessment_option_id in the assessment_options table</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_response_correct</td><td>Whether the response was correct</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_response_feedback</td><td>Feedback shown to the user on interacting with the assessment.</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_response_selected</td><td>Whether this response option was selected</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE assessment_response_options (
+    assessment_response_id VARCHAR(50) 
+    ,assessment_option_id VARCHAR(50) 
+    ,assessment_response_correct BOOL 
+    ,assessment_response_feedback VARCHAR(20000) 
+    ,assessment_response_selected BOOL 
+    ,PRIMARY KEY (assessment_response_id, assessment_option_id)
+    ,FOREIGN KEY (assessment_response_id) REFERENCES assessment_responses(assessment_response_id)
+);
+    </pre>
+</div>

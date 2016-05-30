@@ -1,0 +1,76 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>peer_assignment_review_schema_part_options</h1>
+
+    <h2>Description</h2>
+    <p>
+        The options for review schema parts that have options
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>peer_assignment_id</td><td>The assignment that this option is in</td>
+        </tr>
+        
+        <tr>
+          <td>peer_assignment_review_schema_part_id</td><td>The schema part that this option is for</td>
+        </tr>
+        
+        <tr>
+          <td>peer_assignment_review_schema_part_option_id</td><td>This option&#x27;s id within the part</td>
+        </tr>
+        
+        <tr>
+          <td>peer_assignment_review_schema_part_option_text</td><td>The text of this option</td>
+        </tr>
+        
+        <tr>
+          <td>peer_assignment_review_schema_part_option_score</td><td>The score of this option. Note that this is nullable because not all options make scores.</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE peer_assignment_review_schema_part_options (
+    peer_assignment_id VARCHAR(50) 
+    ,peer_assignment_review_schema_part_id VARCHAR(50) 
+    ,peer_assignment_review_schema_part_option_id VARCHAR(50) 
+    ,peer_assignment_review_schema_part_option_text VARCHAR(65535) 
+    ,peer_assignment_review_schema_part_option_score FLOAT8 
+    ,PRIMARY KEY (peer_assignment_id, peer_assignment_review_schema_part_id, peer_assignment_review_schema_part_option_id)
+    ,FOREIGN KEY (peer_assignment_id) REFERENCES peer_assignments(peer_assignment_id)
+    ,FOREIGN KEY (peer_assignment_id, peer_assignment_review_schema_part_id) REFERENCES peer_assignment_review_schema_parts(peer_assignment_id, peer_assignment_review_schema_part_id)
+);
+    </pre>
+</div>

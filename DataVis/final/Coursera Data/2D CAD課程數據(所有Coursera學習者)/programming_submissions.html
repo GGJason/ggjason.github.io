@@ -1,0 +1,86 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>programming_submissions</h1>
+
+    <h2>Description</h2>
+    <p>
+        submissions of a programming assignment
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>programming_submission_id</td><td>The unversioned id.</td>
+        </tr>
+        
+        <tr>
+          <td>programming_assignment_id</td><td>The assignment that this submission is for.
+</td>
+        </tr>
+        
+        <tr>
+          <td>taiwan_programming_assignments_user_id</td><td>Encrypted Coursera user id for taiwan programming_assignments data.</td>
+        </tr>
+        
+        <tr>
+          <td>programming_submission_created_ts</td><td>The timestamp of this submission.</td>
+        </tr>
+        
+        <tr>
+          <td>programming_submission_type</td><td>Type(&quot;multipart&quot;)</td>
+        </tr>
+        
+        <tr>
+          <td>programming_submission_grading_status</td><td>Status(&quot;started&quot;, &quot;successed&quot;, &quot;failed&quot;)</td>
+        </tr>
+        
+        <tr>
+          <td>programming_submission_score</td><td>No column description available</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE programming_submissions (
+    programming_submission_id VARCHAR(50) 
+    ,programming_assignment_id VARCHAR(50) 
+    ,taiwan_programming_assignments_user_id VARCHAR(50) NOT NULL
+    ,programming_submission_created_ts TIMESTAMP 
+    ,programming_submission_type VARCHAR(50) 
+    ,programming_submission_grading_status VARCHAR(50) 
+    ,programming_submission_score INT4 
+    ,PRIMARY KEY (programming_submission_id)
+    ,FOREIGN KEY (programming_assignment_id) REFERENCES programming_assignments(programming_assignment_id)
+);
+    </pre>
+</div>

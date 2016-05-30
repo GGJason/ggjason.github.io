@@ -1,0 +1,79 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>users</h1>
+
+    <h2>Description</h2>
+    <p>
+        Information about Coursera users
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>taiwan_user_id</td><td>Encrypted Coursera user id for taiwan data.</td>
+        </tr>
+        
+        <tr>
+          <td>user_join_ts</td><td>The timestamp of when the user joined Coursera.</td>
+        </tr>
+        
+        <tr>
+          <td>country_cd</td><td>The country code of the user&#x27;s location, based on IP address or as set by the user in their profile. </td>
+        </tr>
+        
+        <tr>
+          <td>region_cd</td><td>The region code of the user&#x27;s location, based on IP address or as set by the user in their profile. </td>
+        </tr>
+        
+        <tr>
+          <td>profile_language_cd</td><td>The language code of the user&#x27;s language, based on IP address or as set by the user in their profile. </td>
+        </tr>
+        
+        <tr>
+          <td>browser_language_cd</td><td>The language code of the user&#x27;s language, as set in their broswer.</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE users (
+    taiwan_user_id VARCHAR(50) NOT NULL
+    ,user_join_ts timestamp 
+    ,country_cd varchar 
+    ,region_cd varchar 
+    ,profile_language_cd varchar 
+    ,browser_language_cd varchar 
+    ,PRIMARY KEY (taiwan_user_id)
+);
+    </pre>
+</div>

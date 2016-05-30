@@ -1,0 +1,74 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>discussion_forums</h1>
+
+    <h2>Description</h2>
+    <p>
+        For each course&#x27;s discussion forums, contains the list of forums (e.g. General Discussions, Meet and Greet, etc.)
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>discussion_forum_id</td><td>The id of the discussion forum. </td>
+        </tr>
+        
+        <tr>
+          <td>course_id</td><td>Course in which this forum exists</td>
+        </tr>
+        
+        <tr>
+          <td>discussion_forum_title</td><td>Title of the forum</td>
+        </tr>
+        
+        <tr>
+          <td>discussion_forum_description</td><td>Forum description</td>
+        </tr>
+        
+        <tr>
+          <td>discussion_forum_order</td><td>The order in which the discussion forum appears under the &quot;Course Forums&quot; label on the Discussions page. </td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE discussion_forums (
+    discussion_forum_id VARCHAR(50) 
+    ,course_id VARCHAR(50) 
+    ,discussion_forum_title VARCHAR(20000) 
+    ,discussion_forum_description VARCHAR(20000) 
+    ,discussion_forum_order INT4 
+    ,PRIMARY KEY (discussion_forum_id)
+);
+    </pre>
+</div>

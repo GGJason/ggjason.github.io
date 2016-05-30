@@ -1,0 +1,74 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>discussion_question_votes</h1>
+
+    <h2>Description</h2>
+    <p>
+        records when a discussion question was upvoted
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>taiwan_discussions_user_id</td><td>Encrypted Coursera user id for taiwan discussions data.</td>
+        </tr>
+        
+        <tr>
+          <td>course_id</td><td>22 character unique string identifying an individual course</td>
+        </tr>
+        
+        <tr>
+          <td>discussion_question_id</td><td>The id of the discussion question</td>
+        </tr>
+        
+        <tr>
+          <td>discussion_question_vote_value</td><td>0 = nothing, 1 = upvote</td>
+        </tr>
+        
+        <tr>
+          <td>discussion_question_vote_ts</td><td>Timestamp of vote</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE discussion_question_votes (
+    taiwan_discussions_user_id VARCHAR(50) NOT NULL
+    ,course_id varchar 
+    ,discussion_question_id varchar 
+    ,discussion_question_vote_value int4 
+    ,discussion_question_vote_ts timestamp 
+    ,PRIMARY KEY (taiwan_discussions_user_id, discussion_question_id, discussion_question_vote_ts)
+);
+    </pre>
+</div>

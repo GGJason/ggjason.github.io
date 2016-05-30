@@ -1,0 +1,101 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>assessment_single_numeric_patterns</h1>
+
+    <h2>Description</h2>
+    <p>
+        Table that stores the single numeric pattern type questions.
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>assessment_question_id</td><td>The id that uniquely identifies a question in an assessment</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_pattern_id</td><td>No column description available</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_pattern_type_id</td><td>No column description available</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_pattern_value</td><td>No column description available</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_pattern_max</td><td>No column description available</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_pattern_min</td><td>No column description available</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_pattern_include_min</td><td>No column description available</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_pattern_include_max</td><td>No column description available</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_pattern_feedback</td><td>The text that is displayed to learners upon answering a question that matches the pattern.</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_pattern_correct</td><td>For regular expression type questions, instructors can insert both correct and incorrect answer patterns in order to provide learners with tailored feedback based on common solutions or misconceptions. This field indicates whether the pattern was one that corresponded to a correct solution (t) or an incorrect solution (f).</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE assessment_single_numeric_patterns (
+    assessment_question_id VARCHAR(50) 
+    ,assessment_pattern_id VARCHAR(50) 
+    ,assessment_pattern_type_id INT4 
+    ,assessment_pattern_value VARCHAR(20000) 
+    ,assessment_pattern_max FLOAT8 
+    ,assessment_pattern_min FLOAT8 
+    ,assessment_pattern_include_min BOOL 
+    ,assessment_pattern_include_max BOOL 
+    ,assessment_pattern_feedback VARCHAR(20000) 
+    ,assessment_pattern_correct BOOL 
+    ,PRIMARY KEY (assessment_question_id, assessment_pattern_id)
+    ,FOREIGN KEY (assessment_question_id) REFERENCES assessment_questions(assessment_question_id)
+    ,FOREIGN KEY (assessment_pattern_type_id) REFERENCES assessment_pattern_types(assessment_pattern_type_id)
+);
+    </pre>
+</div>

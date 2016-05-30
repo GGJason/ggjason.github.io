@@ -1,0 +1,119 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>courses</h1>
+
+    <h2>Description</h2>
+    <p>
+        The list of Coursera&#x27;s courses on the Phoenix platform, including info on its important dates (e.g. when it was launched)
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>course_id</td><td>22 character unique string identifying an individual course</td>
+        </tr>
+        
+        <tr>
+          <td>course_slug</td><td>The shortname of a course. This can be found in the course url, in the piece immediately following &quot;coursera.org/learn/&quot;.</td>
+        </tr>
+        
+        <tr>
+          <td>course_name</td><td>The name of a course. </td>
+        </tr>
+        
+        <tr>
+          <td>course_launch_ts</td><td>The timestamp of when a course was made available to learners. </td>
+        </tr>
+        
+        <tr>
+          <td>course_update_ts</td><td>The timestamp of when a course was last updated. </td>
+        </tr>
+        
+        <tr>
+          <td>course_deleted</td><td>The timestamp of when a course was deleted. </td>
+        </tr>
+        
+        <tr>
+          <td>course_graded</td><td>Indicates whether a course contains graded items: 0 (no graded items), 1 (has graded items)</td>
+        </tr>
+        
+        <tr>
+          <td>course_desc</td><td>The course description which appears on the landing page</td>
+        </tr>
+        
+        <tr>
+          <td>course_restricted</td><td>Indicates whether enroll access to the course is open or restricted only to eligible participants. All courses are unrestricted with the exception of Capstone courses and deprecated courses: 0 (unrestricted), 1 (restricted)</td>
+        </tr>
+        
+        <tr>
+          <td>course_verification_enabled_at_ts</td><td>The timestamp of when Course Certificates were enabled for a course. </td>
+        </tr>
+        
+        <tr>
+          <td>primary_translation_equivalent_course_id</td><td>The course id for the primary translation of a course. </td>
+        </tr>
+        
+        <tr>
+          <td>course_preenrollment_ts</td><td>The timestamp of when pre-enrollment was opened for a course. </td>
+        </tr>
+        
+        <tr>
+          <td>course_workload</td><td>The estimated workload of a course as shown on the course description page. </td>
+        </tr>
+        
+        <tr>
+          <td>course_session_enabled_ts</td><td>The timestamp of when this course used sessions (instead of on-demand)</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE courses (
+    course_id VARCHAR(50) 
+    ,course_slug VARCHAR(2000) 
+    ,course_name VARCHAR(2000) 
+    ,course_launch_ts TIMESTAMP 
+    ,course_update_ts TIMESTAMP 
+    ,course_deleted BOOL 
+    ,course_graded BOOL 
+    ,course_desc VARCHAR(10000) 
+    ,course_restricted BOOL 
+    ,course_verification_enabled_at_ts TIMESTAMP 
+    ,primary_translation_equivalent_course_id VARCHAR(50) 
+    ,course_preenrollment_ts TIMESTAMP 
+    ,course_workload VARCHAR(100) 
+    ,course_session_enabled_ts TIMESTAMP 
+    ,PRIMARY KEY (course_id)
+);
+    </pre>
+</div>

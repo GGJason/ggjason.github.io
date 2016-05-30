@@ -1,0 +1,59 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>course_progress_state_types</h1>
+
+    <h2>Description</h2>
+    <p>
+        A mapping table from ids to descriptions of the different course progress states, such as 1 meaning &quot;started&quot;.
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>course_progress_state_type_id</td><td>There are different possible progress state types, each state is given a number. </td>
+        </tr>
+        
+        <tr>
+          <td>course_progress_state_type_desc</td><td>The description of each possible progress state type. Currently 0 (not started), 1 (started), and 2 (completed). </td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE course_progress_state_types (
+    course_progress_state_type_id int4 
+    ,course_progress_state_type_desc varchar 
+    ,PRIMARY KEY (course_progress_state_type_id)
+);
+    </pre>
+</div>

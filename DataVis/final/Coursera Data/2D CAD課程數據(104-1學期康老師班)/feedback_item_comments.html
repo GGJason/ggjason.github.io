@@ -1,0 +1,106 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>feedback_item_comments</h1>
+
+    <h2>Description</h2>
+    <p>
+        Contains the contents of comments on items or sub-items, which should generally be flags
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>course_id</td><td>Course id for the course receiving feedback</td>
+        </tr>
+        
+        <tr>
+          <td>course_item_id</td><td>Item id for the item receiving feedback</td>
+        </tr>
+        
+        <tr>
+          <td>feedback_unit_id</td><td>Detailed info for the element receiving feedback. Will generally be a versioned id for item-level feedback, or a sub-item id when feedback can be left on particular elements within an item, e.g. a part of a programming assignment</td>
+        </tr>
+        
+        <tr>
+          <td>feedback_unit_type</td><td>The type of the element feedback is being left on. May be an item type or sub-item type</td>
+        </tr>
+        
+        <tr>
+          <td>feedback_system</td><td>Feedback system: FLAG for item-level and sub-item-level flagging</td>
+        </tr>
+        
+        <tr>
+          <td>detailed_context</td><td>Contains information on the element and its parents, usually including versioning information</td>
+        </tr>
+        
+        <tr>
+          <td>taiwan_feedback_user_id</td><td>Encrypted Coursera user id for taiwan feedback data.</td>
+        </tr>
+        
+        <tr>
+          <td>feedback_category</td><td>The category flagged by the feedback</td>
+        </tr>
+        
+        <tr>
+          <td>feedback_text</td><td>CML text of the feedback</td>
+        </tr>
+        
+        <tr>
+          <td>feedback_ts</td><td>Timestamp when the feedback was left</td>
+        </tr>
+        
+        <tr>
+          <td>feedback_active</td><td>Indicates whether or not the feedback is still active, or if it was resolved, whether by the submitter or the instructor</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE feedback_item_comments (
+    course_id varchar 
+    ,course_item_id varchar 
+    ,feedback_unit_id varchar 
+    ,feedback_unit_type varchar 
+    ,feedback_system varchar 
+    ,detailed_context varchar 
+    ,taiwan_feedback_user_id VARCHAR(50) NOT NULL
+    ,feedback_category varchar 
+    ,feedback_text varchar 
+    ,feedback_ts timestamp 
+    ,feedback_active bool 
+    ,PRIMARY KEY (course_id, course_item_id, feedback_unit_id, feedback_unit_type, feedback_system, taiwan_feedback_user_id, feedback_category, feedback_ts)
+    ,FOREIGN KEY (course_id) REFERENCES courses(course_id)
+    ,FOREIGN KEY (course_id, course_item_id) REFERENCES course_items(course_id, course_item_id)
+);
+    </pre>
+</div>

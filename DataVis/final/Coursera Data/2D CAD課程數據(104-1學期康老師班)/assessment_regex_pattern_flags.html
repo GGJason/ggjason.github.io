@@ -1,0 +1,60 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>assessment_regex_pattern_flags</h1>
+
+    <h2>Description</h2>
+    <p>
+        [No table description available]
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>assessment_pattern_id</td><td>No column description available</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_pattern_flag_type_id</td><td>ID for a pattern flag type</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE assessment_regex_pattern_flags (
+    assessment_pattern_id VARCHAR(50) 
+    ,assessment_pattern_flag_type_id INT4 
+    ,PRIMARY KEY (assessment_pattern_id, assessment_pattern_flag_type_id)
+    ,FOREIGN KEY (assessment_pattern_flag_type_id) REFERENCES assessment_pattern_flag_types(assessment_pattern_flag_type_id)
+);
+    </pre>
+</div>

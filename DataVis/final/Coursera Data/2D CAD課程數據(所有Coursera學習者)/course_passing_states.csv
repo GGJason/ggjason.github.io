@@ -1,0 +1,5 @@
+course_passing_state_id,course_passing_state_desc
+0,"not passed"
+1,"passed"
+2,"verified passed"
+3,"not passable"

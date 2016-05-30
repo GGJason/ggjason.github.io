@@ -1,0 +1,101 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>feedback_item_ratings</h1>
+
+    <h2>Description</h2>
+    <p>
+        Contains data for item-level ratings
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>course_id</td><td>Course id for the course receiving feedback</td>
+        </tr>
+        
+        <tr>
+          <td>course_item_id</td><td>Item id for the item being rated</td>
+        </tr>
+        
+        <tr>
+          <td>feedback_unit_id</td><td>Detailed info for the element being rated. Will generally be a versioned id for item-level feedback</td>
+        </tr>
+        
+        <tr>
+          <td>feedback_unit_type</td><td>The type of the element being rated. Should be an item type</td>
+        </tr>
+        
+        <tr>
+          <td>feedback_system</td><td>Feedback system: LIKE_OR_DISLIKE for item-level ratings</td>
+        </tr>
+        
+        <tr>
+          <td>taiwan_feedback_user_id</td><td>Encrypted Coursera user id for taiwan feedback data.</td>
+        </tr>
+        
+        <tr>
+          <td>feedback_rating</td><td>Value of the rating. Should be 0 or 1 for item-level ratings</td>
+        </tr>
+        
+        <tr>
+          <td>feedback_max_rating</td><td>Maximum value of the rating: 1 for item-level ratings</td>
+        </tr>
+        
+        <tr>
+          <td>detailed_context</td><td>Contains information on the element and its parents, usually including versioning information</td>
+        </tr>
+        
+        <tr>
+          <td>feedback_ts</td><td>Timestamp when the feedback was left</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE feedback_item_ratings (
+    course_id varchar 
+    ,course_item_id varchar 
+    ,feedback_unit_id varchar 
+    ,feedback_unit_type varchar 
+    ,feedback_system varchar 
+    ,taiwan_feedback_user_id VARCHAR(50) NOT NULL
+    ,feedback_rating int4 
+    ,feedback_max_rating int4 
+    ,detailed_context varchar 
+    ,feedback_ts timestamp 
+    ,PRIMARY KEY (course_id, course_item_id, feedback_unit_id, feedback_unit_type, feedback_system, taiwan_feedback_user_id, feedback_ts)
+    ,FOREIGN KEY (course_id) REFERENCES courses(course_id)
+    ,FOREIGN KEY (course_id, course_item_id) REFERENCES course_items(course_id, course_item_id)
+);
+    </pre>
+</div>

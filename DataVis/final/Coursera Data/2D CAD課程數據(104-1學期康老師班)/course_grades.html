@@ -1,0 +1,91 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>course_grades</h1>
+
+    <h2>Description</h2>
+    <p>
+        This table provides the grading event of when the user hit his or her highest grade in one course.
+Also provides the passing/not-passing state for each user and course.
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>course_id</td><td>22 character unique string identifying an individual course</td>
+        </tr>
+        
+        <tr>
+          <td>taiwan_user_id</td><td>Encrypted Coursera user id for taiwan data.</td>
+        </tr>
+        
+        <tr>
+          <td>course_grade_ts</td><td>The timestamp for when a learner&#x27;s course grade has changed. This occurs everytime a grading event takes place. </td>
+        </tr>
+        
+        <tr>
+          <td>course_passing_state_id</td><td>A learner can be in one of four &quot;states&quot; with respect to passing a course: 0 means they have started the course but not passed, 1 means they have completed the course without identity verification, 2 means they&#x27;ve completed the course with identity verification, 3 means the course is not passable.</td>
+        </tr>
+        
+        <tr>
+          <td>course_grade_overall_passed_items</td><td>The number of items in the course that the learner has passed.</td>
+        </tr>
+        
+        <tr>
+          <td>course_grade_overall</td><td>The grade a learner has in the course, according to the instructor-set grading policy, based on passed items. </td>
+        </tr>
+        
+        <tr>
+          <td>course_grade_verified_passed_items</td><td>The number of items in the course that the learner has passed and verified their identity. </td>
+        </tr>
+        
+        <tr>
+          <td>course_grade_verified</td><td>The grade a learner has in the course, according to the instructor-set grading policy, based on items that have been passed and for which the learner&#x27;s identity has been verified. </td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE course_grades (
+    course_id varchar 
+    ,taiwan_user_id VARCHAR(50) NOT NULL
+    ,course_grade_ts timestamp 
+    ,course_passing_state_id int4 
+    ,course_grade_overall_passed_items int4 
+    ,course_grade_overall float4 
+    ,course_grade_verified_passed_items int4 
+    ,course_grade_verified float4 
+    ,PRIMARY KEY (course_id, taiwan_user_id, course_grade_ts)
+    ,FOREIGN KEY (course_passing_state_id) REFERENCES course_passing_states(course_passing_state_id)
+);
+    </pre>
+</div>

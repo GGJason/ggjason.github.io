@@ -1,0 +1,75 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>peer_assignment_submission_schema_parts</h1>
+
+    <h2>Description</h2>
+    <p>
+        The questions that a submitter must answer in their submission
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>peer_assignment_id</td><td>Assignment that this submission schema part lives in</td>
+        </tr>
+        
+        <tr>
+          <td>peer_assignment_submission_schema_part_id</td><td>This part&#x27;s id within the assignment</td>
+        </tr>
+        
+        <tr>
+          <td>peer_assignment_submission_schema_part_type</td><td>The type (&quot;fileUpload&quot;, &quot;plainText&quot;, &quot;richText&quot;, &quot;url&quot;)</td>
+        </tr>
+        
+        <tr>
+          <td>peer_assignment_submission_schema_part_order</td><td>The order within the assignment (lowest comes first)</td>
+        </tr>
+        
+        <tr>
+          <td>peer_assignment_submission_schema_part_prompt</td><td>The prompt (a question for the submitter to answer)</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE peer_assignment_submission_schema_parts (
+    peer_assignment_id VARCHAR(50) 
+    ,peer_assignment_submission_schema_part_id VARCHAR(50) 
+    ,peer_assignment_submission_schema_part_type VARCHAR(50) 
+    ,peer_assignment_submission_schema_part_order INT4 
+    ,peer_assignment_submission_schema_part_prompt VARCHAR(65535) 
+    ,PRIMARY KEY (peer_assignment_id, peer_assignment_submission_schema_part_id)
+    ,FOREIGN KEY (peer_assignment_id) REFERENCES peer_assignments(peer_assignment_id)
+);
+    </pre>
+</div>

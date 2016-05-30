@@ -1,0 +1,65 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>demographics_questions</h1>
+
+    <h2>Description</h2>
+    <p>
+        Stores questions from the demographics survey and user intent questions.
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>question_id</td><td>Integer id for the questions
+</td>
+        </tr>
+        
+        <tr>
+          <td>question_type_id</td><td>Indiciation of where this data was collected, based on id 0 (choice_id), 1 (integer response), 2 (text response).</td>
+        </tr>
+        
+        <tr>
+          <td>question_desc</td><td>The text of the quesiton the learner was asked.</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE demographics_questions (
+    question_id int4 
+    ,question_type_id int4 
+    ,question_desc varchar 
+    ,PRIMARY KEY (question_id)
+);
+    </pre>
+</div>

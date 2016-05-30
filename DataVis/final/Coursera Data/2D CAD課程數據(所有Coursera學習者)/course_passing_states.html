@@ -1,0 +1,59 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>course_passing_states</h1>
+
+    <h2>Description</h2>
+    <p>
+        The descriptions of passing states for courses from the course_grades table
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>course_passing_state_id</td><td>a unique identifier for course passing state</td>
+        </tr>
+        
+        <tr>
+          <td>course_passing_state_desc</td><td>a description for course passing state (e.g. &quot;passed&quot;, &quot;verified passed&quot;)</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE course_passing_states (
+    course_passing_state_id INT4 
+    ,course_passing_state_desc VARCHAR(255) 
+    ,PRIMARY KEY (course_passing_state_id)
+);
+    </pre>
+</div>

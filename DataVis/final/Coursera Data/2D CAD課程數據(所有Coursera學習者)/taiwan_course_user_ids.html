@@ -1,0 +1,60 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>taiwan_course_user_ids</h1>
+
+    <h2>Description</h2>
+    <p>
+        Encrypted user id mapping table. Use this table to connect learner data from exports, which identifies taiwan learners using taiwan_user_id, to course-scoped data from external surveys.      
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>taiwan_user_id</td><td>Encrypted Coursera user id for taiwan data.</td>
+        </tr>
+        
+        <tr>
+          <td>_2d_cad_user_id</td><td>Encrypted Coursera user id for 2d-cad data.</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE taiwan_course_user_ids (
+    taiwan_user_id VARCHAR(50) NOT NULL
+    ,_2d_cad_user_id VARCHAR(50) NOT NULL
+    ,PRIMARY KEY (taiwan_user_id)
+    ,FOREIGN KEY (taiwan_user_id) REFERENCES users(taiwan_user_id)
+);
+    </pre>
+</div>

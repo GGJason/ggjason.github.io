@@ -1,0 +1,81 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>assessment_assessments_questions</h1>
+
+    <h2>Description</h2>
+    <p>
+        Link table between the assessment and the questions data and describe high-level information of questions in an assessment.
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>assessment_id</td><td>The id that uniquely identifies an assessment</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_question_id</td><td>The id that uniquely identifies a question in an assessment</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_question_internal_id</td><td>No column description available</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_question_cuepoint</td><td>The number of milliseconds into a lecture video that the in-video question is placed. For quizzes that are not in-video quizzes, it is 0.</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_question_order</td><td>Order in which the questions are asked in the assessment.</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_question_weight</td><td>No column description available</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE assessment_assessments_questions (
+    assessment_id VARCHAR(50) 
+    ,assessment_question_id VARCHAR(50) 
+    ,assessment_question_internal_id VARCHAR(50) 
+    ,assessment_question_cuepoint INT4 
+    ,assessment_question_order INT4 
+    ,assessment_question_weight INT4 
+    ,PRIMARY KEY (assessment_id, assessment_question_id, assessment_question_internal_id)
+    ,FOREIGN KEY (assessment_id) REFERENCES assessments(assessment_id)
+    ,FOREIGN KEY (assessment_question_id) REFERENCES assessment_questions(assessment_question_id)
+);
+    </pre>
+</div>

@@ -1,0 +1,113 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>discussion_questions</h1>
+
+    <h2>Description</h2>
+    <p>
+        For each course&#x27;s discussion forums, contains the list of the questions, with its title, content, and author.
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>discussion_question_id</td><td>The id of the question in the discussion forum.</td>
+        </tr>
+        
+        <tr>
+          <td>taiwan_discussions_user_id</td><td>Encrypted Coursera user id for taiwan discussions data.</td>
+        </tr>
+        
+        <tr>
+          <td>discussion_question_title</td><td>The title of the question.</td>
+        </tr>
+        
+        <tr>
+          <td>discussion_question_details</td><td>The content of the question</td>
+        </tr>
+        
+        <tr>
+          <td>discussion_question_context_type</td><td>The context of this discussion question, e.g. &quot;module&quot;</td>
+        </tr>
+        
+        <tr>
+          <td>course_id</td><td>The (on-demand) course in which this question exists.</td>
+        </tr>
+        
+        <tr>
+          <td>course_module_id</td><td>5 character alphanumeric string identifying an individual module within a course. course_module_id need not be unique, but a course_module_id/course_id pair is unique.</td>
+        </tr>
+        
+        <tr>
+          <td>course_item_id</td><td>5 character alphanumeric string identifying an individual item within a course. course_item_id need not be unique, but a course_item_id/course_id pair is unique.</td>
+        </tr>
+        
+        <tr>
+          <td>discussion_forum_id</td><td>The id of the discussion forum. </td>
+        </tr>
+        
+        <tr>
+          <td>country_cd</td><td> The country context in which the question was posted, only applicable to country-specific questions.</td>
+        </tr>
+        
+        <tr>
+          <td>discussion_question_created_ts</td><td>The timestamp of when the discussion question was created. </td>
+        </tr>
+        
+        <tr>
+          <td>discussion_question_updated_ts</td><td>The timestamp of when the discussion question was updated.</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE discussion_questions (
+    discussion_question_id VARCHAR(50) 
+    ,taiwan_discussions_user_id VARCHAR(50) NOT NULL
+    ,discussion_question_title VARCHAR(20000) 
+    ,discussion_question_details VARCHAR(20000) 
+    ,discussion_question_context_type VARCHAR(50) 
+    ,course_id VARCHAR(50) 
+    ,course_module_id VARCHAR(50) 
+    ,course_item_id VARCHAR(50) 
+    ,discussion_forum_id VARCHAR(50) 
+    ,country_cd VARCHAR(2) 
+    ,discussion_question_created_ts TIMESTAMP 
+    ,discussion_question_updated_ts TIMESTAMP 
+    ,PRIMARY KEY (discussion_question_id)
+    ,FOREIGN KEY (course_id) REFERENCES courses(course_id)
+    ,FOREIGN KEY (course_id, course_item_id) REFERENCES course_items(course_id, course_item_id)
+    ,FOREIGN KEY (course_id, course_module_id) REFERENCES course_modules(course_id, course_module_id)
+    ,FOREIGN KEY (discussion_forum_id) REFERENCES discussion_forums(discussion_forum_id)
+);
+    </pre>
+</div>

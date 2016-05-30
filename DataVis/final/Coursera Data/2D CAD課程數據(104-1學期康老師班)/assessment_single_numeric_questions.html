@@ -1,0 +1,60 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>assessment_single_numeric_questions</h1>
+
+    <h2>Description</h2>
+    <p>
+        Information of single numeric (Numeric match) questions
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>assessment_question_id</td><td>unique question id of an assessment</td>
+        </tr>
+        
+        <tr>
+          <td>default_incorrect_feedback</td><td>The default feedback to the learner should the learner answer the question incorrectly</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE assessment_single_numeric_questions (
+    assessment_question_id VARCHAR(50) 
+    ,default_incorrect_feedback VARCHAR(20000) 
+    ,PRIMARY KEY (assessment_question_id)
+    ,FOREIGN KEY (assessment_question_id) REFERENCES assessment_questions(assessment_question_id)
+);
+    </pre>
+</div>

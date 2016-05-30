@@ -1,0 +1,82 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>programming_submission_part_grid_grading_statuses</h1>
+
+    <h2>Description</h2>
+    <p>
+        The status of grading of a submission to an asynchronously graded question
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>programming_assignment_id</td><td>The universal Id of the programming assignment.</td>
+        </tr>
+        
+        <tr>
+          <td>programming_assignment_submission_schema_part_id</td><td>The universal part id of the programming assignment.</td>
+        </tr>
+        
+        <tr>
+          <td>programming_submission_id</td><td>The universal submission Id. </td>
+        </tr>
+        
+        <tr>
+          <td>programming_submission_part_grid_grading_status_pgrtf5</td><td>The grid executorRun Id. Only for internal use. Name shortened from &#x27;programming_submission_part_grid_grading_status_executor_run_id&#x27; for compatibility.</td>
+        </tr>
+        
+        <tr>
+          <td>programming_submission_part_grid_grading_status_x21exo</td><td>The timestamp of the start of the part&#x27;s executor run. Name shortened from &#x27;programming_submission_part_grid_grading_status_executor_run_start_ts&#x27; for compatibility.</td>
+        </tr>
+        
+        <tr>
+          <td>programming_submission_part_grid_grading_status_jzmjz1</td><td>The current status of the executor run. Type(&quot;PENDING&quot;, &quot;SUCCESSED&quot;, &quot;FAILED&quot;). Name shortened from &#x27;programming_submission_part_grid_grading_status_executor_run_status&#x27; for compatibility.</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE programming_submission_part_grid_grading_statuses (
+    programming_assignment_id VARCHAR(50) 
+    ,programming_assignment_submission_schema_part_id VARCHAR(50) 
+    ,programming_submission_id VARCHAR(50) 
+    ,programming_submission_part_grid_grading_status_pgrtf5 VARCHAR(50) 
+    ,programming_submission_part_grid_grading_status_x21exo TIMESTAMP 
+    ,programming_submission_part_grid_grading_status_jzmjz1 VARCHAR(50) 
+    ,PRIMARY KEY (programming_assignment_id, programming_assignment_submission_schema_part_id, programming_submission_id)
+    ,FOREIGN KEY (programming_assignment_id) REFERENCES programming_assignments(programming_assignment_id)
+    ,FOREIGN KEY (programming_assignment_id, programming_submission_id) REFERENCES programming_submissions(programming_assignment_id, programming_submission_id)
+    ,FOREIGN KEY (programming_assignment_submission_schema_part_id, programming_assignment_id) REFERENCES programming_assignment_submission_schema_parts(programming_assignment_submission_schema_part_id, programming_assignment_id)
+);
+    </pre>
+</div>

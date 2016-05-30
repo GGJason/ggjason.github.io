@@ -1,0 +1,60 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>demographics_question_types</h1>
+
+    <h2>Description</h2>
+    <p>
+        Stores question types for the demographics questions.
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>question_type_id</td><td>Indicates the type of answer required by the question: 0 (mulitple choice), 1 (integer), 2 (text).
+</td>
+        </tr>
+        
+        <tr>
+          <td>question_type_desc</td><td>Described the answer required by each question type: 0 (mulitple choice), 1 (integer), 2 (text).</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE demographics_question_types (
+    question_type_id INT4 
+    ,question_type_desc VARCHAR(25) 
+    ,PRIMARY KEY (question_type_id)
+);
+    </pre>
+</div>

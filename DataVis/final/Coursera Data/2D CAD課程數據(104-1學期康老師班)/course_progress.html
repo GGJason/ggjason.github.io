@@ -1,0 +1,75 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>course_progress</h1>
+
+    <h2>Description</h2>
+    <p>
+        Contains a log of when and how a user progresses in one course item of a course, with one of two progress states: &#x27;started&#x27; or &#x27;completed&#x27;
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>course_id</td><td>22 character unique string identifying an individual course</td>
+        </tr>
+        
+        <tr>
+          <td>course_item_id</td><td>5 character alphanumeric string identifying an individual item within a course. course_item_id need not be unique, but a course_item_id/course_id pair is unique.</td>
+        </tr>
+        
+        <tr>
+          <td>taiwan_user_id</td><td>Encrypted Coursera user id for taiwan data.</td>
+        </tr>
+        
+        <tr>
+          <td>course_progress_state_type_id</td><td>value of 1 is the `started` state, where value of 2 is the `completed` state</td>
+        </tr>
+        
+        <tr>
+          <td>course_progress_ts</td><td>The timestamp for when a learner&#x27;s progress on a course item has changed. </td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE course_progress (
+    course_id varchar 
+    ,course_item_id varchar 
+    ,taiwan_user_id VARCHAR(50) NOT NULL
+    ,course_progress_state_type_id int4 
+    ,course_progress_ts timestamp 
+    ,PRIMARY KEY (course_id, course_item_id, taiwan_user_id, course_progress_state_type_id, course_progress_ts)
+    ,FOREIGN KEY (course_progress_state_type_id) REFERENCES course_progress_state_types(course_progress_state_type_id)
+);
+    </pre>
+</div>

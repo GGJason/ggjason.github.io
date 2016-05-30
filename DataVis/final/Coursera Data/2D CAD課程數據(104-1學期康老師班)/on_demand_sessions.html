@@ -1,0 +1,73 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>on_demand_sessions</h1>
+
+    <h2>Description</h2>
+    <p>
+        Contains sessions info (e.g start and end dates) and the Course Versioning used on the Phoenix platform
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>course_id</td><td>22 character unique string identifying an individual course</td>
+        </tr>
+        
+        <tr>
+          <td>on_demand_session_id</td><td>unique identifer for a course&#x27;s session on the Phoenix platform</td>
+        </tr>
+        
+        <tr>
+          <td>on_demand_sessions_start_ts</td><td>The start date of a Phoenix session</td>
+        </tr>
+        
+        <tr>
+          <td>on_demand_sessions_end_ts</td><td>The end date of a Phoenix session</td>
+        </tr>
+        
+        <tr>
+          <td>on_demand_sessions_enrollment_end_ts</td><td>The end date of the enrollment period of a Phoenix session</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE on_demand_sessions (
+    course_id varchar 
+    ,on_demand_session_id varchar 
+    ,on_demand_sessions_start_ts timestamp 
+    ,on_demand_sessions_end_ts timestamp 
+    ,on_demand_sessions_enrollment_end_ts timestamp 
+);
+    </pre>
+</div>

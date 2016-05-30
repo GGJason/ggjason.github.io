@@ -1,0 +1,104 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>assessment_actions</h1>
+
+    <h2>Description</h2>
+    <p>
+        This table stores the interactions of the user with the assessment.
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>assessment_action_id</td><td>Unique id for each interaction of the user with the assessment.</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_action_base_id</td><td>Base id for the assessment interaction that is used for creating new versions for interaction of the user - assessment pair.</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_id</td><td>Each quiz is assigned a unique id that is a combination of a base id and version. </td>
+        </tr>
+        
+        <tr>
+          <td>assessment_scope_id</td><td>Unique contexts in which the user can interact with the assessment.</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_scope_type_id</td><td>the id that links the assessmnt_scope_types table to see the assessment scope type description</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_action_version</td><td>Version of the assessment action</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_action_ts</td><td>Timestamp of the users interaction with the assessment.
+</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_action_start_ts</td><td>Start timestamp of the users interaction with the assessment.
+</td>
+        </tr>
+        
+        <tr>
+          <td>guest_user_id</td><td>ids of learners who did not log in</td>
+        </tr>
+        
+        <tr>
+          <td>taiwan_assessments_user_id</td><td>Encrypted Coursera user id for taiwan assessments data.</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE assessment_actions (
+    assessment_action_id VARCHAR(100) 
+    ,assessment_action_base_id VARCHAR(100) 
+    ,assessment_id VARCHAR(50) 
+    ,assessment_scope_id VARCHAR(50) 
+    ,assessment_scope_type_id INT4 
+    ,assessment_action_version INT4 
+    ,assessment_action_ts TIMESTAMP 
+    ,assessment_action_start_ts TIMESTAMP 
+    ,guest_user_id VARCHAR(50) 
+    ,taiwan_assessments_user_id VARCHAR(50) NOT NULL
+    ,PRIMARY KEY (assessment_action_id)
+    ,FOREIGN KEY (assessment_scope_id, assessment_scope_type_id) REFERENCES assessment_scopes(assessment_scope_id, assessment_scope_type_id)
+    ,FOREIGN KEY (assessment_id) REFERENCES assessments(assessment_id)
+    ,FOREIGN KEY (assessment_scope_type_id) REFERENCES assessment_scope_types(assessment_scope_type_id)
+);
+    </pre>
+</div>

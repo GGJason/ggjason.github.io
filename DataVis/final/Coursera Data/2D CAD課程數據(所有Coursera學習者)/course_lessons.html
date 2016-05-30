@@ -1,0 +1,77 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>course_lessons</h1>
+
+    <h2>Description</h2>
+    <p>
+        Subsection of a single module, can be composed of multiple items in a course.
+
+Note: For courses that uses the Course Versioning feature, please refer to the branch version of this table.
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>course_id</td><td>22 character unique string identifying an individual course</td>
+        </tr>
+        
+        <tr>
+          <td>course_lesson_id</td><td>Lesson id that is unique within a single course.</td>
+        </tr>
+        
+        <tr>
+          <td>course_module_id</td><td>5 character alphanumeric string identifying an individual module within a course. course_module_id need not be unique, but a course_module_id/course_id pair is unique.</td>
+        </tr>
+        
+        <tr>
+          <td>course_lesson_order</td><td>The order of a lesson within a particular module, with &quot;0&quot; indicating the first lesson in a module. </td>
+        </tr>
+        
+        <tr>
+          <td>course_lesson_name</td><td>The name of a lesson, as seen in the learner view of the course. </td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE course_lessons (
+    course_id VARCHAR(50) 
+    ,course_lesson_id VARCHAR(50) 
+    ,course_module_id VARCHAR(50) 
+    ,course_lesson_order INT4 
+    ,course_lesson_name VARCHAR(10000) 
+    ,PRIMARY KEY (course_id, course_lesson_id)
+    ,FOREIGN KEY (course_id, course_module_id) REFERENCES course_modules(course_id, course_module_id)
+);
+    </pre>
+</div>

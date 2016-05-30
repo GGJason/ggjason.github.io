@@ -1,0 +1,87 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>assessment_responses</h1>
+
+    <h2>Description</h2>
+    <p>
+        information of learner responses to a quiz question and the score received
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>assessment_response_id</td><td>unique id for each of users&#x27; responses to an assessment.</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_id</td><td>unique id of each assessment</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_action_id</td><td>unique id for each interaction of the user with the assessment, linking to the assessment_action_id field in the prod.assessment_actions table</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_action_version</td><td>The version of the learner&#x27;s responses to the assessment</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_question_id</td><td>unique question id of an assessment</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_response_score</td><td>score for the particular assessment response</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_response_weighted_score</td><td>No column description available</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE assessment_responses (
+    assessment_response_id VARCHAR(50) 
+    ,assessment_id VARCHAR(50) 
+    ,assessment_action_id VARCHAR(100) 
+    ,assessment_action_version INT4 
+    ,assessment_question_id VARCHAR(50) 
+    ,assessment_response_score FLOAT4 
+    ,assessment_response_weighted_score FLOAT4 
+    ,PRIMARY KEY (assessment_response_id)
+    ,FOREIGN KEY (assessment_action_id) REFERENCES assessment_actions(assessment_action_id)
+    ,FOREIGN KEY (assessment_id, assessment_action_id) REFERENCES assessment_actions(assessment_id, assessment_action_id)
+    ,FOREIGN KEY (assessment_id) REFERENCES assessments(assessment_id)
+);
+    </pre>
+</div>

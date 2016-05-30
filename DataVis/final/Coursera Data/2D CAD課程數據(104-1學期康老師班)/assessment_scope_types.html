@@ -1,0 +1,59 @@
+<head>
+<style>
+
+    div {
+        font-family: monospace;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #FFFFFF;
+    }
+    tr:nth-child(even) {
+        background-color: #EBF2F2;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 5px 10px 5px 5px;
+    }
+
+</style>
+</head>
+
+
+<div>
+    <h1>assessment_scope_types</h1>
+
+    <h2>Description</h2>
+    <p>
+        The description of the varying contexts in which the user can interact with the assessment
+    </p>
+
+    <h2> Columns </h2>
+    <table>
+        <tr><th>Name</th><th>Description</th></tr>
+        
+        <tr>
+          <td>assessment_scope_type_id</td><td>the id that links the assessmnt_scope_types table to see the assessment scope type description</td>
+        </tr>
+        
+        <tr>
+          <td>assessment_scope_type_desc</td><td>No column description available</td>
+        </tr>
+        
+    </table>
+
+    <h2>SQL create statement</h2>
+    <pre>
+CREATE TABLE assessment_scope_types (
+    assessment_scope_type_id INT4 
+    ,assessment_scope_type_desc VARCHAR(255) 
+    ,PRIMARY KEY (assessment_scope_type_id)
+);
+    </pre>
+</div>
