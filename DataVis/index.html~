@@ -19,7 +19,7 @@ Released   : 20140309
 <link href="http://fonts.googleapis.com/css?family=Varela" rel="stylesheet" />
 <link href="default.css" rel="stylesheet" type="text/css" media="all" />
 <link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
-
+<link rel="icon" type="image/png" href="./icon.png">
 <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
 
 </head>
@@ -32,7 +32,6 @@ Released   : 20140309
 		</div>
 		<div id="menu">
 			<ul>
-				<li class="current_page_item"><a href="index.html" accesskey="1" title="">Homepage</a></li>
 				<li><a href="project1.html" accesskey="2" title="">Project 1</a></li>
 				<li><a href="project2.html" accesskey="3" title="">Project 2</a></li>
 				<li><a href="project3.html" accesskey="4" title="">Project 3</a></li>
