@@ -52,7 +52,7 @@ Released   : 20140309
 				<h1>Final Project - Coursera 課程設計輔助系統</h1>
 <!--				<span class="byline">資料視覺化 Data Visualization 2016 Group 15</span> -->
 			</div>
-			<a href="./final/draw1.html" target="show"><button>Seek</button></a><a href="./final/draw2.html" target="show"><button>Play</button></a>
+			<a href="./final/draw1.html" target="show"><button class="button">Seek</button></a><a href="./final/draw2.html" target="show" ><button class="button">Play</button></a>
 			<iframe name="show" src="./final/draw1.html" style="width:100%;height:620pt;border:none"></iframe>
 			
 				
