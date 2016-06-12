@@ -33,11 +33,10 @@ Released   : 20140309
 	<div id="header-wrapper">
 	<div id="header" class="container">
 		<div id="logo">
-			<h1><a href="#">2016 Data Vis. G15</a></h1>
+			<h1><a href="index.html">2016 Data Vis. G15</a></h1>
 		</div>
 		<div id="menu">
 			<ul>
-				<li><a href="index.html" accesskey="1" title="">Homepage</a></li>
 				<li><a href="project1.html" accesskey="2" title="">Project 1</a></li>
 				<li ><a href="project2.html" accesskey="3" title="">Project 2</a></li>
 				<li class="current_page_item"><a href="project3.html" accesskey="4" title="">Project 3</a></li>
@@ -49,8 +48,9 @@ Released   : 20140309
 	<div class="content">
 		<div class="container">
 			<div class="title">
-				<h1>Decision Support Visualization</h1>
-<!--				<span class="byline">資料視覺化 Data Visualization 2016 Group 15</span> -->
+			<div class="title">
+				<h2>Data Visualization - Decision Support Visualization</h2>
+				<span class="byline">資料視覺化 Data Visualization 2016 Group 15</span> 
 			</div>
 			<h2>成果展示</h2>
 			<div class ="svg_index" style="margin-left: auto; margin-right:auto;">

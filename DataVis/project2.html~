@@ -33,11 +33,10 @@ Released   : 20140309
 	<div id="header-wrapper">
 	<div id="header" class="container">
 		<div id="logo">
-			<h1><a href="#">2016 Data Vis. G15</a></h1>
+			<h1><a href="index.html">2016 Data Vis. G15</a></h1>
 		</div>
 		<div id="menu">
 			<ul>
-				<li><a href="index.html" accesskey="1" title="">Homepage</a></li>
 				<li><a href="project1.html" accesskey="2" title="">Project 1</a></li>
 				<li class="current_page_item"><a href="project2.html" accesskey="3" title="">Project 2</a></li>
 				<li><a href="project3.html" accesskey="4" title="">Project 3</a></li>
@@ -49,7 +48,7 @@ Released   : 20140309
 	<div class="content">
 		<div class="container">
 			<div class="title">
-				<h2>Data Visualization</h2>
+				<h2>Project 2 - Interactive Presentation</h2>
 				<span class="byline">資料視覺化 Data Visualization 2016 Group 15</span> 
 			</div>
 	<p>本專案利用d3js將廬山溫泉區的雨量、位移等資料進行視覺化。本組希望能夠設定特定閥值的警戒線而非僅有原先由官方所提供的值，因此在設計上增加了警戒線設定的功能，除了可以在右方直接輸入，使用者也可以手動拉動警戒線。（未完成功能）而針對警戒線，希望能夠設計類似雷射的方式，若是數值超過閥值就會被擋住，而在視覺上會有顯著的顯示。</p>

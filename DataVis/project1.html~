@@ -33,11 +33,10 @@ Released   : 20140309
 	<div id="header-wrapper">
 	<div id="header" class="container">
 		<div id="logo">
-			<h1><a href="#">2016 Data Vis. G15</a></h1>
+			<h1><a href=index.html">2016 Data Vis. G15</a></h1>
 		</div>
 		<div id="menu">
 			<ul>
-				<li><a href="index.html" accesskey="1" title="">Homepage</a></li>
 				<li class="current_page_item"><a href="project1.html" accesskey="2" title="">Project 1</a></li>
 				<li><a href="project2.html" accesskey="3" title="">Project 2</a></li>
 				<li><a href="project3.html" accesskey="4" title="">Project 3</a></li>
@@ -49,7 +48,7 @@ Released   : 20140309
 	<div id="content">
 		<div class="container">
 			<div class="title">
-				<h2>Data Visualization - Clear Presentation</h2>
+				<h2>Project 1 - Clear Presentation</h2>
 				<span class="byline">資料視覺化 Data Visualization 2016 Group 15</span> 
 			</div>
 						<p>本次製作當中我們希望將性別的多寡以線條的寬度呈現，因此可藉由面積進行比較，若是要更精確的總數比較，則可以透過下方的總數進行比較，並且在總數的部份我們也採用大小進行第二次的強調。用長度表示比例的大小，而確切的各分組數字則是利用邊緣的數字直接顯示。而在顏色維度則是利用三種不同漸層的顏色呈現三種不同的年齡層，方便使用者在使用時可以直接找出特定分群的資料。</p>
