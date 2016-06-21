@@ -160,7 +160,7 @@
 
 
 		//callback
-		d3.csv("death.95.csv", Yourname)
+		d3.csv("http://ggjason.tw/data/vie/1/death.95.csv", Yourname)
 		
 	</script>
 </head>
