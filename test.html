@@ -11,10 +11,11 @@ $("document").ready(function(){
   	$.ajax({
 	    url: "./test.json",
 	    data: {format: 'json'},
-	    dataType: 'jsonp',
+	    /*dataType: 'jsonp',
 	    jsonp: 'callback',
-	    jsonpCallback: 'jsonpCallback',
-	    success: function(){
+	    jsonpCallback: 'jsonpCallback',*/
+	    success: function(result){
+    		jsonpCallback(result);
 	        alert("success");
 	    },
 	    error: function(){
