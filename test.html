@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test JSON</title>
+	<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+</head>
+<body>
+<script type="text/javascript">
+	
+$("document").ready(function(){
+  	$.ajax({
+	    url: "./test.json",
+	    /*data: {format: 'json'},
+	    dataType: 'jsonp',
+	    jsonp: 'callback',
+	    jsonpCallback: 'jsonpCallback',*/
+	    success: function(result){
+    		jsonpCallback(result);
+	        alert("success");
+	    },
+	    error: function(){
+	        alert("error");
+	    }
+	});
+      
+});
+      
+    function jsonpCallback(user){
+      for(var i = 0; i < user.length;i++){
+        $("p").append(user.name + "<br>");
+      }
+    }
+</script>
+<p></p>
+</body>
+</html>
