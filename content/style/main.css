@@ -25,13 +25,14 @@ h3{
 	text-align:right;
 }
 #footer{
-	padding:left;
+	display:block;
 	padding: 20pt 0 30pt 0;
 	max-height:200pt;
 	width:100%;
 	left:0pt;
 	right:0pt;
 	bottom:0pt;
+	float:left;
 }
 
 header{
@@ -104,14 +105,20 @@ nav li:hover{
 #profile{
 	width:90%;
 }
-#profile_wrapper{
-		height:280px;
-}
 
 
 .wrapper{
 	margin:30pt 15vw 10pt 15vw;
 	min-height:270pt;
+	display:block;
+	float:left;
+	
+}
+.wide{
+	padding-left:10%;
+	padding-right:10%;
+	margin:0 auto;
+	width:80%;
 }
 
 footer i{
@@ -128,6 +135,7 @@ footer i{
 	background-color:rgba(243,255,226,0.9);
 	color:#225378;
 	border-radius:8pt;
+	display:inline-block;
 }
 .link:hover{
 	background-color:#F3FFE2;
@@ -156,6 +164,12 @@ footer i{
 .linkintro p{	
 	vertical-align:middle;
 }
+#linkspace{
+	text-align:center;
+	width:100%;
+	margin:0;
+	min-height:100pt;
+}
 #contact.resume{
 	text-align:center;
 }
@@ -182,6 +196,77 @@ footer i{
 }
 #photo_img{
 	height:200pt;
+}
+.portfolio.project{
+	background: url("../images/bg.jpg");
+	background-size: auto 100%;
+	background-position: center;
+	display:inline-block;
+	margin:30px;
+	border:solid 2pt black;
+	width:250px;
+	height:400px;
+}
+.portfolio.project span{
+	display:none;
+}
+.project .overlay{
+	text-indent:0;
+	width:100%;
+	height:100%;
+	overflow:hidden;
+}
+.project .overlay:hover{
+	background:rgba(0,0,0,0.4);
+	transition:all 1s;
+	text-indent:0;
+	color:white;
+}
+.project .overlay:hover span{
+	display:inherit;
+	position:relative;
+	text-align:center;
+	vertical-align:center ;
+}
+.webim, .webim body{
+	background:#FCFFF5;
+	color: #193441;
+}
+.webim #contact span{
+	color: #193441;
+	border-color: #193441;
+}
+.webim #contact span:hover{
+	color: #91A9DA;
+}
+.webim h2{
+	margin-top:50px;
+}
+.webim ul{
+	margin-bottom:20px;
+}
+.webim a{
+	color:inherit;
+}
+.transport, .transport body{
+	background:#FCFFF5;
+	color: #193441;
+}
+.transport #contact span{
+	color: #193441;
+	border-color: #193441;
+}
+.transport #contact span:hover{
+	color: #91A9DA;
+}
+.transport h2{
+	margin-top:50px;
+}
+.transport ul{
+	margin-bottom:20px;
+}
+.transport a{
+	color:inherit;
 }
 /*-----------------------------------------------------------------------------------*/
 @media screen and (max-width:1000px){
@@ -215,11 +300,8 @@ footer i{
 		margin:20pt 7vw 5pt 7vw;
 		min-height:200pt;
 		height:auto;
+		
 	}	
-	#profile_wrapper{
-		height:390px;
-	}
-
 	#contact.resume span{
 		line-height:14pt;
 		text-align:left;
@@ -230,6 +312,18 @@ footer i{
 	}
 	#main.resume{
 		width:330pt;
+	}
+	
+	#profile_img_div{
+		padding: 0 25% 0 25%;
+		width:auto;
+		
+	}
+	.profile_text_div h3{
+		text-align:center;
+	}
+	.profile_text_div{
+		width:auto;
 	}
 }
 @media only screen
@@ -242,34 +336,44 @@ and (max-device-width : 480px)
 	}
 
 	.link{
-		width:60pt;
-		height:40pt;
+		padding: 30pt 0 30pt 0;
+		width:150pt;
+		height:80pt;
 	}
 	.link a{
-		font-size:11pt;
+		font-size:20pt;
 	}
 	.wrapper{
+		display:block;
 		margin:30pt 3vw 10pt 5vw;
+		font-size:28pt;
 	}
 	p{
 		margin-top:5pt;
 	}
+	#photo_img{
+		height:auto;
+		width:90%;
+	}
 	#profile_img_div,.profile_text_div{
 		width:100%;
+		padding:0;
 	}
-	#profile_wrapper{
-		min-height:650px;
+	header h1{
+		display:none;
 	}
 	h2{
-		margin-top:5px;
+		margin-top:15pt;
 	}
 	h3{
 		text-align:left;
 	}
 	body{
-		font-size:20pt;
+		font-size:40px;
 	}
+	
 	#footer{
+		padding-top:20pt;
 		font-size:28pt;
 	}
 	.resume #profile_img_div {
@@ -283,6 +387,9 @@ and (max-device-width : 480px)
 	}	
 	li{
 		padding-bottom:15pt;
+	}
+	#photo p{
+		font-size:34pt;
 	}
 }
 
