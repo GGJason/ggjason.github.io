@@ -330,6 +330,9 @@ footer i{
 and (min-device-width : 320px) 
 and (max-device-width : 480px)
 {
+	header h1{
+		width: 100vw;
+	}
 	.linkintro{
 		height:40pt;
 		padding:0 0 0 0;
@@ -358,9 +361,6 @@ and (max-device-width : 480px)
 	#profile_img_div,.profile_text_div{
 		width:100%;
 		padding:0;
-	}
-	header h1{
-		display:none;
 	}
 	h2{
 		margin-top:15pt;
