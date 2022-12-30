@@ -330,8 +330,12 @@ footer i{
 and (min-device-width : 320px) 
 and (max-device-width : 480px)
 {
+	header{
+		height: 50%;
+	}
 	header h1{
 		width: 100vw;
+		font-size: 32px;
 	}
 	.linkintro{
 		height:40pt;
